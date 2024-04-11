@@ -1,29 +1,49 @@
-.select-bg__colors {
-  display: flex;
-  justify-items: center;
-  align-items: center;
-  gap: 16px;
+@import "../../../styles/components.scss";
 
-  & > * {
-    width: 168px;
-    height: 168px;
-    border-radius: 16px;
+.select-bg {
+  &__title {
+    font-size: $G-font-size-24;
+    line-height: 36px;
+    color: $G-color-black-900;
+    font-weight: $G-font-weight-bold;
+    margin-bottom: 4px;
   }
 
-  &--orange {
-    background-color: #ffe2ad;
-    border: 1px solid #ebd09f;
+  &__body {
+    font-size: $G-font-size-16;
+    line-height: 26px;
+    color: $G-color-black-500;
+    font-weight: $G-font-weight-regular;
+    margin-bottom: 24px;
   }
-  &--purple {
-    background-color: #ecd9ef;
-    border: 1px solid #d9c8eb;
-  }
-  &--blue {
-    background-color: #b1e4ff;
-    border: 1px solid #a3d2eb;
-  }
-  &--green {
-    background-color: #d0f5c3;
-    border: 1px solid #c0e2b4;
+
+  &__colors {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    gap: 16px;
+
+    & > * {
+      width: 168px;
+      height: 168px;
+      border-radius: 16px;
+    }
+
+    &--orange {
+      background-color: #ffe2ad;
+      border: 1px solid #ebd09f;
+    }
+    &--purple {
+      background-color: #ecd9ef;
+      border: 1px solid #d9c8eb;
+    }
+    &--blue {
+      background-color: #b1e4ff;
+      border: 1px solid #a3d2eb;
+    }
+    &--green {
+      background-color: #d0f5c3;
+      border: 1px solid #c0e2b4;
+    }
   }
 }

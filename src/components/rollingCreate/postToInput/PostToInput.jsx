@@ -1,4 +1,4 @@
-import "./PostToInput";
+import "./PostToInput.scss";
 
 export default function PostToInput() {
   return (

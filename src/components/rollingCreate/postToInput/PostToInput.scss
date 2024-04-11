@@ -1,13 +1,18 @@
+@import "../../../styles/components.scss";
+
 .post-to-box {
   &__desc {
-    font-size: 24px;
+    font-size: $G-font-size-24;
     line-height: 42px;
     margin-bottom: 12px;
   }
 
   &__input {
-    font-size: 16px;
+    border: 1px solid $G-color-black-300;
+    width: 100%;
+    border-radius: 8px;
     line-height: 26px;
     padding: 12px 16px;
+    margin-bottom: 50px;
   }
 }
