@@ -1,4 +1,3 @@
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import IncludeHeaderStructure from './components/layout/IncludeHeaderStructure';
 import IncludeSubHeaderStructure from './components/layout/IncludeSubHeaderStructure';
