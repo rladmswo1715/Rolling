@@ -1,0 +1,31 @@
+// flex
+@mixin flexStyle($alignItems: center, $justifyContent: flex-start) {
+  display: flex;
+  align-items: $alignItems;
+  justify-content: $justifyContent;
+}
+
+// layout 
+@mixin layoutInnerSize($whidth) {
+  width: 100%;
+  max-width: $whidth;
+  margin: 0 auto;
+}
+
+// profile size
+@mixin profilePicture($width, $height, $borderColor: $G-color-black-200) {
+  width: $width;
+  height: $height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50em;
+  overflow: hidden;
+  border: 1px solid $borderColor;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
