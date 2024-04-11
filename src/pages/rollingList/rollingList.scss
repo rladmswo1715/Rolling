@@ -1,0 +1,12 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
+
+.layout__list {
+  .inner__body {
+    padding: 50px 24px 60px;
+
+    @media screen and (max-width:$G-window-size-tablet) {
+      padding: 40px 0;
+    }
+  }
+}

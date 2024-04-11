@@ -1,7 +1,15 @@
+const header = {
+  height: '68px',
+  position: 'fixed',
+  top: '65px',
+  left: 0,
+  right: 0,
+  background: '#ccc'
+}
 export default function SubHeader() {
   return (
-    <section>
-      /post 페이지에 있는 서브 헤더
+    <section style={header}>
+      sub
     </section>
   )
 }
