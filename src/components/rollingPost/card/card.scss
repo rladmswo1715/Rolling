@@ -3,16 +3,13 @@
   height: 17.5rem;
   border-radius: 1rem;
   box-shadow: 0px 2px 12px 0px #00000014;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
-  // @media screen and (max-width: $G-window-size-tablet) {
-  // }
+  &--empty {
+    display: flex;
+    justify-content: center;
+  }
 
-  // @media screen and (max-width: $G-window-size-mobile) {
-  // }
-  .card--empty {
+  &--img-container {
     width: 3.5rem;
     height: 3.5rem;
     background-color: #555;
@@ -20,5 +17,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &--from-group {
+    display: flex;
   }
 }
