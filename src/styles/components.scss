@@ -1,0 +1,83 @@
+@import './_reset'; // 리셋
+@import './_variables'; // 변수
+@import './_mixin'; // mixin 
+
+// display 
+.d__flex--center {
+  @include flexStyle(center)
+}
+
+.d__flex--btw {
+  @include flexStyle(center, space-between)
+}
+
+// input 
+.input {
+  &__element {
+    width: 100%;
+    line-height: 48px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid $G-color-black-300;
+    padding: 0 15px;
+    color: $G-color-black-900;
+    background-color: $G-white;
+
+    &::placeholder {
+      color: $G-color-black-500;
+    }
+
+    &:hover {
+      border-color: $G-color-black-500;
+    }
+
+    &:focus {
+      outline-color: $G-color-black-500;
+    }
+
+    &:active:not(:disabled) {
+      border-width: 2px;
+      line-height: 46px;
+      padding: 0 14px;
+      border-color: $G-color-black-700;
+    }
+
+    &:disabled {
+      color: $G-color-black-400;
+      border-color: $G-color-black-300;
+      background-color: $G-color-black-100;
+
+      &::placeholder {
+        color: $G-color-black-400;
+      }
+    }
+
+  }
+
+  &--error {
+    border-color: $G-error;
+
+    &:hover {
+      border-color: $G-error;
+    }
+  }
+}
+
+// profile
+.profile-picture {
+  &--small {
+    @include profilePicture(28px, 28px);
+  }
+
+  &--medium {
+    @include profilePicture(32px, 32px);
+  }
+
+  &--large {
+    @include profilePicture(58px, 58px);
+  }
+
+  &--xlarge {
+    @include profilePicture(81px, 81px);
+  }
+}

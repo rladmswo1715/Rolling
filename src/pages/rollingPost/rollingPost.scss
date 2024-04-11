@@ -1,0 +1,16 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
+
+.layout__post {
+  .inner__body {
+    padding: 181px 24px 60px;
+
+    @media screen and (max-width:$G-window-size-tablet) {
+      padding: 161px 24px 60px;
+    }
+
+    @media screen and (max-width:$G-window-size-mobile) {
+      padding: 84px 24px 40px;
+    }
+  }
+}
