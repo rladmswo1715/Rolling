@@ -1,5 +1,6 @@
 import './rollingPost.scss';
 import Card from '../../components/rollingPost/card/Card';
+import Emoji from '../../components/rollingPost/emoji/Emoji';
 
 export default function RollingPost() {
   // const handleCardClick = () => {
@@ -13,6 +14,7 @@ export default function RollingPost() {
         {/* 여기서 작업해주세요 */}
         <span>생성된 롤링페이퍼 페이지 /post/id</span>
         <Card />
+        <Emoji />
       </div>
     </section>
   );
