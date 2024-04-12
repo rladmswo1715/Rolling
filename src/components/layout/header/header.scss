@@ -1,5 +1,5 @@
-@import '../../../styles/_variables';
-@import '../../../styles/_mixin';
+@import "../../../styles/_variables";
+@import "../../../styles/_mixin";
 
 .header {
   &__wrap {
@@ -8,7 +8,7 @@
     left: 0;
     right: 0;
     max-height: 65px;
-    border-bottom: 1px solid #EDEDED;
+    border-bottom: 1px solid #ededed;
     background-color: $G-white;
   }
 
@@ -20,5 +20,14 @@
 
   &__image__logo {
     height: 40px;
+  }
+}
+
+.button {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+  &:hover {
+    cursor: pointer;
   }
 }
