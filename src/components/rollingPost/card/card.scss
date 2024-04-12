@@ -14,6 +14,22 @@
     align-items: flex-start;
   }
 
+  &--from-group {
+    display: flex;
+    gap: 0.38rem;
+    padding-top: 1rem;
+  }
+
+  &--from {
+    font-size: 1.25rem;
+  }
+
+  &--profile-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.38rem;
+  }
+
   &--empty {
     display: flex;
     justify-content: center;
@@ -24,30 +40,8 @@
     height: 3.5rem;
     background-color: #555;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexStyle(center, center);
   }
-
-  &--from-group {
-    padding-top: 1.7rem;
-    display: flex;
-    gap: 0.38rem;
-  }
-}
-
-.card--flex {
-  display: flex;
-}
-
-.card--from {
-  font-size: 1.25rem;
-}
-
-.text-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.38rem;
 }
 
 .badge {
@@ -55,34 +49,33 @@
   height: 1.25rem;
   background-color: $G-color-green-100;
   border-radius: 4px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  @include flexStyle(center, center);
 
-.badge--title {
-  font-size: 0.87rem;
-  color: $G-color-green-500;
-}
-
-.container {
-  text-overflow: clip;
+  &--title {
+    font-size: 0.87rem;
+    color: $G-color-green-500;
+  }
 }
 
 .content {
-  width: 330px;
-  height: 130px;
-  padding-top: 1.5rem;
-  border-top: 1px solid #eee;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  text-align: left;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: clip;
 
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  color: #4a4a4a;
+  &--short {
+    width: 330px;
+    height: 130px;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.75rem;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    color: #4a4a4a;
+  }
 }
 
 .createdAt {

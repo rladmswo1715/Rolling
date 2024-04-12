@@ -18,18 +18,17 @@ function Card() {
   return (
     <>
       {hasCard ? (
-        <button className="card card--flex">
+        <button className="card">
           <div className="card--container">
             <div className="card--from-group">
               <div className="card--from-group--img profile-picture--large">
                 <img src={mockImg} alt="목업 이미지" />
               </div>
 
-              <div className="text-group">
+              <div className="card--profile-text-group">
                 <div className="card--from">
-                  <span className="from">From.</span>
-
-                  <strong className="caller">김동훈</strong>
+                  <span>From.</span>
+                  <strong>김동훈</strong>
                 </div>
 
                 {/* 뱃지도 받아서 와야 함 */}
@@ -39,11 +38,11 @@ function Card() {
               </div>
             </div>
 
-            <div className="container">
-              <p className="content">
+            <div className="content">
+              <p className="content--short">
                 코로나가 또다시 기승을 부리는 요즘이네요. 건강, 체력 모두 조심
-                또
-                하세요!ddddddddddsdfsjfhsidfjlsdjfksdjlfjksdflajkdjflasjdlfkjsaldkjfkaksdjlkfjlsdjfsaj
+                또 하세요!
+                가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하
               </p>
             </div>
 
