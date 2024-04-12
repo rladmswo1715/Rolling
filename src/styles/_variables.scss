@@ -1,6 +1,11 @@
 $G-window-size-tablet: 900px;
 $G-window-size-mobile: 540px;
 
+// z-index
+$G-z-index-header: 10;
+$G-z-index-toast: 15;
+$G-z-index-modal: 20;
+
 // font
 $G-font-size-28: 28px;
 $G-font-size-24: 24px;
@@ -11,8 +16,8 @@ $G-font-size-15: 15px;
 $G-font-size-14: 14px;
 $G-font-size-12: 12px;
 
-$G-font-weight-bold: bold;
-$G-font-weight-regular: normal;
+$G-font-weight-bold: 700;
+$G-font-weight-regular: 400;
 
 // color
 $G-color-purple-100: #F8F0FF;

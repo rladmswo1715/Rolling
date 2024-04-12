@@ -1,11 +1,11 @@
 import "./main.scss";
-import mainImage1 from "../../assets/image/image_main1.svg";
-import mainImage2 from "../../assets/image/image_main2.svg";
+import mainImage1 from "/assets/image/image_main1.svg";
+import mainImage2 from "/assets/image/image_main2.png";
 
 export default function Main() {
   return (
     <section className="layout__main">
-      <div className="inner__body">
+      <div className="inner__size-ls inner__body">
         <div className="main">
           <div className="main__wrap">
             <div className="main__wrap__point">
