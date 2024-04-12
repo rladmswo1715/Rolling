@@ -2,13 +2,36 @@
 @import './_variables'; // 변수
 @import './_mixin'; // mixin 
 
-// display 
+// display flex 
+.d__flex {
+  display: flex;
+}
+
 .d__flex--center {
   @include flexStyle(center)
 }
 
 .d__flex--btw {
   @include flexStyle(center, space-between)
+}
+
+// profile
+.profile-picture {
+  &--small {
+    @include profilePicture(28px, 28px);
+  }
+
+  &--medium {
+    @include profilePicture(32px, 32px);
+  }
+
+  &--large {
+    @include profilePicture(58px, 58px);
+  }
+
+  &--xlarge {
+    @include profilePicture(81px, 81px);
+  }
 }
 
 // input 
@@ -35,10 +58,7 @@
       outline-color: $G-color-black-500;
     }
 
-    &:active:not(:disabled) {
-      border-width: 2px;
-      line-height: 46px;
-      padding: 0 14px;
+    &:active:not(:disabled):not(.error) {
       border-color: $G-color-black-700;
     }
 
@@ -52,32 +72,334 @@
       }
     }
 
-  }
-
-  &--error {
-    border-color: $G-error;
-
-    &:hover {
+    &.error {
       border-color: $G-error;
+  
+      &:hover {
+        border-color: $G-error;
+      }
     }
   }
 }
 
-// profile
-.profile-picture {
-  &--small {
-    @include profilePicture(28px, 28px);
+// button
+.font-bold {
+  font-weight: $G-font-weight-bold;
+}
+
+.button {
+  &__size {
+    &-h56 {
+      @include buttonHeight(56px, 18px, 12px);
+    }
+
+    &-h40 {
+      @include buttonHeight(40px);
+    }
+
+    &-h36 {
+      @include buttonHeight(36px);
+    }
+
+    &-h28 {
+      @include buttonHeight(28px, $fontSize: 14px);
+    }
+
   }
 
-  &--medium {
-    @include profilePicture(32px, 32px);
+  &--fill {
+    &-primary {
+      @include buttonStyle($G-color-purple-600, $width: 200px);
+      color: $G-white;
+
+      &:hover {
+        @include buttonAttrStyle($G-color-purple-700, $G-color-purple-700);
+      }
+
+      &:focus {
+        @include buttonAttrStyle($G-color-purple-800, $G-color-purple-800);
+        outline-color: $G-color-purple-800;
+      }
+      &:disabled {
+        @include buttonAttrStyle($G-color-black-300, $G-color-black-300);
+      }
+    }
   }
 
-  &--large {
-    @include profilePicture(58px, 58px);
+  &--outlined {
+    gap: 4px;
+    color: $G-black;
+    @include buttonStyle($G-white, $G-color-black-300);
+    @extend .button--attr-style;
+
+    &.before-icon {
+      &::before {
+        content: "";
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        background-repeat: no-repeat;
+      }
+
+      &.btn-add {
+        width: 88px;
+
+        &::before {
+          background-image: url(/public/assets/icon/icon_add-24.svg)
+        }
+
+        &:disabled {
+          &::before {
+            background-image: url(/public/assets/icon/icon_add-24-white.svg)
+          }
+        }
+
+        @media screen and (max-width:$G-window-size-mobile) {
+          width: 36px;
+          height: 32px;
+
+          span {
+            display: none;
+          }
+        }
+      }
+
+      &.btn-delete {
+        width: 36px;
+
+        &::before {
+          background-image: url(/public/assets/icon/icon_deleted.svg)
+        }
+
+        &:disabled {
+          &::before {
+            background-image: url(/public/assets/icon/icon_deleted-white.svg)
+          }
+        }
+
+        @media screen and (max-width:$G-window-size-mobile) {
+          height: 32px;
+
+          span {
+            display: none;
+          }
+        }
+      }
+
+      .unvisible {
+        position: absolute;
+        clip: rect(0, 0, 0, 0);
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        opacity: 0.1;
+        overflow: hidden
+      }
+    }
   }
 
-  &--xlarge {
-    @include profilePicture(81px, 81px);
+  &--icon-plus {
+    @include buttonOnlyIconStyle(56px, 56px, $G-color-black-500, $G-color-black-500);
+    border-radius: 50em;
+
+    &:hover {
+      @include buttonAttrStyle($G-color-black-600, $G-color-black-600);
+    }
+
+    &:focus {
+      @include buttonAttrStyle($G-color-black-700, $G-color-black-700);
+      outline: none;
+    }
+
+    &:active {
+      @include buttonAttrStyle($G-color-black-700, $G-color-black-700);
+    }
+
+    &:disabled {
+      @include buttonAttrStyle($G-color-black-300, $G-color-black-300);
+      color: $G-white;
+    }
+  }
+
+  &--icon-shadow {
+    @include buttonOnlyIconStyle(40px, 40px, $G-color-black-300);
+    border-radius: 50em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08);
+    @extend .button--attr-style;
+  }
+
+  &--toggle-box {
+    @include flexStyle(center);
+
+    .button--toggle {
+      position: relative;
+      @include buttonStyle($G-color-black-100, $G-color-black-100, $width: 122px);
+
+      &:last-child {
+        margin-left: -10px;
+      }
+
+      &:hover {
+        background-color: $G-color-black-200;
+      }
+
+      &.active {
+        @include buttonStyle($G-white, $G-color-purple-600, $width: 122px);
+        color: $G-color-purple-600;
+        font-weight: 700;
+        border-width: 2px;
+        z-index: 1;
+
+        &:hover {
+          background-color: $G-color-purple-100;
+        }
+      }
+    }
+  }
+}
+
+.button--attr-style {
+  &:hover {
+    @include buttonAttrStyle($G-color-black-100, $G-color-black-300);
+  }
+
+  &:focus {
+    @include buttonAttrStyle($G-white, $G-color-black-500);
+    outline: none;
+  }
+
+  &:active {
+    @include buttonAttrStyle($G-color-black-100, $G-color-black-300);
+  }
+
+  &:disabled {
+    @include buttonAttrStyle($G-color-black-300, $G-color-black-300);
+    color: $G-white;
+  }
+}
+
+// drop dwon
+.dropdown {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+
+  .dropdown__toggle {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0 48px 0 16px;
+    font-size: 16px;
+    color: $G-color-black-900;
+    line-height: 48px;
+    text-align: left;
+    border-radius: 8px;
+    border: 1px solid $G-color-black-300;
+    background-color: $G-white;
+
+    &::placeholder {
+      color: $G-color-black-500;
+    }
+
+    &:hover {
+      border-color: $G-color-black-500;
+    }
+
+    &:focus {
+      outline-color: $G-color-black-500;
+    }
+
+    &:active:not(:disabled):not(.error) {
+      border-color: $G-color-black-700;
+    }
+
+    &:disabled {
+      color: $G-color-black-400;
+      border-color: $G-color-black-300;
+      background-color: $G-color-black-100;
+
+      &::placeholder {
+        color: $G-color-black-400;
+      }
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      width: 16px;
+      height: 16px;
+      background: url(/public/assets/icon/icon_arrow_down.svg) no-repeat center;
+    }
+
+    &.hide::before {
+      transform: rotate(180deg);
+    }
+
+    &.error {
+      border-color: $G-error;
+
+      &:hover {
+        border-color: $G-error;
+      }
+    }
+  }
+
+  .dropdown__menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 10px 0;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid $G-color-black-300;
+    background-color: $G-white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+
+    &.hide {
+      display: none;
+    }
+
+    .item {
+      padding: 0 16px;
+      line-height: 50px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $G-color-black-100;
+      }
+    }
+  }
+}
+
+// badge
+.badge {
+  &__orange {
+    @include badgeStyle($G-color-orange-100, $G-color-orange-500)
+  }
+
+  &__purple {
+    @include badgeStyle($G-color-purple-100, $G-color-purple-600)
+  }
+
+  &__green {
+    @include badgeStyle($G-color-green-100, $G-color-green-500)
+  }
+
+  &__blue {
+    @include badgeStyle($G-color-blue-100, $G-color-blue-500)
+  }
+}
+
+// error message text
+.error {
+  &--message {
+    padding-top: 4px;
+    color: $G-error ;
+    font-size: 12px;
+    line-height: 18px;
   }
 }
