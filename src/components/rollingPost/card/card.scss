@@ -1,8 +1,18 @@
+@import '../../../styles/_variables';
+@import '../../../styles/_mixin';
+
 .card {
   width: 24rem;
   height: 17.5rem;
   border-radius: 1rem;
   box-shadow: 0px 2px 12px 0px #00000014;
+
+  &--container {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 1.5em;
+    align-items: flex-start;
+  }
 
   &--empty {
     display: flex;
@@ -20,6 +30,62 @@
   }
 
   &--from-group {
+    padding-top: 1.7rem;
     display: flex;
+    gap: 0.38rem;
   }
+}
+
+.card--flex {
+  display: flex;
+}
+
+.card--from {
+  font-size: 1.25rem;
+}
+
+.text-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.badge {
+  width: 2.5rem;
+  height: 1.25rem;
+  background-color: $G-color-green-100;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge--title {
+  font-size: 0.87rem;
+  color: $G-color-green-500;
+}
+
+.container {
+  text-overflow: clip;
+}
+
+.content {
+  width: 330px;
+  height: 130px;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  color: #4a4a4a;
+}
+
+.createdAt {
+  font-size: 0.75rem;
+  color: #999;
 }
