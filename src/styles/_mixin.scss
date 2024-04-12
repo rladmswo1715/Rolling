@@ -40,7 +40,7 @@
 // button
 @mixin buttonHeight($height, $fontSize: 16px, $radius: 6px) {
   height: $height;
-  line-height: calc($height - 2px);
+  line-height: $height;
   border-radius: $radius;
   font-size: $fontSize;
 }
@@ -63,7 +63,7 @@
   flex-shrink: 0;
   width: $width;
   height: $height;
-  line-height: calc($height - 2px);
+  line-height: $height;
   border: 1px solid $borderColor;
   background-color: $bgColor;
 }

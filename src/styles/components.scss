@@ -2,7 +2,7 @@
 @import './_variables'; // 변수
 @import './_mixin'; // mixin 
 
-// display 
+// display flex 
 .d__flex {
   display: flex;
 }
@@ -58,10 +58,7 @@
       outline-color: $G-color-black-500;
     }
 
-    &:active:not(:disabled) {
-      border-width: 2px;
-      line-height: 46px;
-      padding: 0 14px;
+    &:active:not(:disabled):not(.error) {
       border-color: $G-color-black-700;
     }
 
@@ -74,13 +71,13 @@
         color: $G-color-black-400;
       }
     }
-  }
 
-  &--error {
-    border-color: $G-error;
-
-    &:hover {
+    &.error {
       border-color: $G-error;
+  
+      &:hover {
+        border-color: $G-error;
+      }
     }
   }
 }
@@ -107,6 +104,7 @@
     &-h28 {
       @include buttonHeight(28px, $fontSize: 14px);
     }
+
   }
 
   &--fill {
@@ -122,11 +120,6 @@
         @include buttonAttrStyle($G-color-purple-800, $G-color-purple-800);
         outline-color: $G-color-purple-800;
       }
-
-      &:active {
-        @include buttonAttrStyle($G-color-purple-800, $G-color-purple-800);
-      }
-
       &:disabled {
         @include buttonAttrStyle($G-color-black-300, $G-color-black-300);
       }
@@ -152,12 +145,12 @@
         width: 88px;
 
         &::before {
-          background-image: url(../assets/icon/icon_add-24.svg)
+          background-image: url(/public/assets/icon/icon_add-24.svg)
         }
 
         &:disabled {
           &::before {
-            background-image: url(../assets/icon/icon_add-24-white.svg)
+            background-image: url(/public/assets/icon/icon_add-24-white.svg)
           }
         }
 
@@ -175,12 +168,12 @@
         width: 36px;
 
         &::before {
-          background-image: url(../assets/icon/icon_deleted.svg)
+          background-image: url(/public/assets/icon/icon_deleted.svg)
         }
 
         &:disabled {
           &::before {
-            background-image: url(../assets/icon/icon_deleted-white.svg)
+            background-image: url(/public/assets/icon/icon_deleted-white.svg)
           }
         }
 
@@ -317,15 +310,7 @@
     }
 
     &:active:not(:disabled):not(.error) {
-      border-width: 2px;
-      line-height: 46px;
-      padding: 0 47px 0 15px;
       border-color: $G-color-black-700;
-
-      &::before {
-        top: 15px;
-        right: 15px;
-      }
     }
 
     &:disabled {
@@ -345,7 +330,7 @@
       top: 16px;
       width: 16px;
       height: 16px;
-      background: url(../assets/icon/icon_arrow_down.svg) no-repeat center;
+      background: url(/public/assets/icon/icon_arrow_down.svg) no-repeat center;
     }
 
     &.hide::before {
@@ -409,7 +394,7 @@
   }
 }
 
-// error
+// error message text
 .error {
   &--message {
     padding-top: 4px;
