@@ -5,6 +5,12 @@
   justify-content: $justifyContent;
 }
 
+// grid
+@mixin gridStyle($columns) {
+  display: grid;
+  grid-template-columns: $columns;
+}
+
 // layout 
 @mixin layoutInnerSize($whidth) {
   width: 100%;
@@ -28,4 +34,55 @@
     height: 100%;
     object-fit: cover;
   }
+}
+
+
+// button
+@mixin buttonHeight($height, $fontSize: 16px, $radius: 6px) {
+  height: $height;
+  line-height: $height;
+  border-radius: $radius;
+  font-size: $fontSize;
+}
+
+.button--mixin-style {
+  @include flexStyle(center, center)
+}
+
+@mixin buttonStyle($bgColor, $borderColor: $bgColor, $width: 100%) {
+  @extend .button--mixin-style;
+  width: $width;
+  text-align: center;
+  border: 1px solid $borderColor;
+  background-color: $bgColor;
+  background-size: 24px auto;
+}
+
+@mixin buttonOnlyIconStyle($width, $height, $borderColor, $bgColor: $G-white) {
+  @extend .button--mixin-style;
+  flex-shrink: 0;
+  width: $width;
+  height: $height;
+  line-height: $height;
+  border: 1px solid $borderColor;
+  background-color: $bgColor;
+}
+
+@mixin buttonAttrStyle($bgColor, $borderColor) {
+  border-color: $borderColor;
+  background-color: $bgColor;
+}
+
+// badge
+@mixin badgeStyle($bgColor, $color) {
+  display: block;
+  width: 41px;
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: $color;
+  text-align: center;
+  border-radius: 4px;
+  background-color: $bgColor;
+  letter-spacing: -0.05px;
 }
