@@ -9,7 +9,11 @@ export default function RollingCreate() {
         <PostToInput />
         <BackgroundOption />
 
-        <div>박스</div>
+        <div>
+          <button class="button--fill-primary button__size-h56 font-bold">
+            생성하기
+          </button>
+        </div>
       </div>
     </section>
   );
