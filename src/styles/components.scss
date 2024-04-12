@@ -3,6 +3,10 @@
 @import './_mixin'; // mixin 
 
 // display 
+.d__flex {
+  display: flex;
+}
+
 .d__flex--center {
   @include flexStyle(center)
 }
