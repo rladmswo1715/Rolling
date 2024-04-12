@@ -1,6 +1,19 @@
+import { useGetData } from "../../../utills/useGetData";
 import "./BackgroundOption.scss";
 
 export default function BackgroundOption() {
+  const { data, isLoading, error } = useGetData(
+    "https://rolling-api.vercel.app/background-images/"
+  );
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
   return (
     <section className="select-bg">
       <p className="select-bg__title"> 배경화면을 선택해 주세요. </p>
@@ -13,6 +26,30 @@ export default function BackgroundOption() {
         <div className="select-bg__colors--purple"></div>
         <div className="select-bg__colors--blue"></div>
         <div className="select-bg__colors--green"></div>
+      </div>
+      <div className="select-bg__images">
+        {data.imageUrls.map((link) => (
+          <div className="select-bg__images__container">
+            <img
+              src={link}
+              alt="배경이미지 선택 옵션"
+              className="select-bg__images__container__img"
+            />
+          </div>
+        ))}
+
+        {/* <div className="select-bg__images--1">
+          <img src={data.imageUrls[0]} />
+        </div>
+        <div className="select-bg__images--2">
+          <img src={data.imageUrls[1]} />
+        </div>
+        <div className="select-bg__images--3">
+          <img src={data.imageUrls[2]} />
+        </div>
+        <div className="select-bg__images--4">
+          <img src={data.imageUrls[3]} />
+        </div> */}
       </div>
     </section>
   );
