@@ -1,18 +1,21 @@
-import { useGetData } from "../../../utills/useGetData";
+import { useEffect } from "react";
+import { useGetData } from "../../../utills/hooks/useGetData";
 import "./BackgroundOption.scss";
-import icon_selected from "../../../assets/icon/icon_selected.svg";
+import iconselected from "/assets/icon/icon_selected.svg";
 
 export default function BackgroundOption() {
   const { data, isLoading, error } = useGetData(
     "https://rolling-api.vercel.app/background-images/"
   );
 
+  useEffect(() => {
+    if (error) {
+      alert("데이터를 불러오는 동안 오류가 발생했습니다.");
+    }
+  }, [error]);
+
   if (isLoading) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
   }
 
   return (
@@ -36,7 +39,7 @@ export default function BackgroundOption() {
               alt="배경이미지 선택 옵션"
               className="select-bg__images__container__img"
             />
-            <img src={icon_selected} />
+            <img src={iconselected} />
           </div>
         ))}
 
