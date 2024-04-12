@@ -1,4 +1,4 @@
-import './main.scss'
+import "./main.scss";
 
 export default function Main() {
   return (
@@ -6,9 +6,7 @@ export default function Main() {
       <div className="inner__size-ls inner__body">
         {/* 여기서 작업해주세요 */}
         메인
-        <div>
-          박스
-        </div>
+        <div>박스</div>
       </div>
     </section>
   );
