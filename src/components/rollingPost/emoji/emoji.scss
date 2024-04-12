@@ -1,0 +1,15 @@
+@import '../../../styles/_variables';
+@import '../../../styles/_mixin';
+
+.emoji {
+  width: 66px;
+  height: 36px;
+  background-color: $G-color-black-500;
+  @include flexStyle(center, center);
+  gap: 10px;
+  border-radius: 2rem;
+  &--count {
+    font-size: 1rem;
+    color: $G-color-black-100;
+  }
+}
