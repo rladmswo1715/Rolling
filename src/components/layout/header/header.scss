@@ -1,5 +1,5 @@
-@import "../../../styles/_variables";
-@import "../../../styles/_mixin";
+@import '../../../styles/_variables';
+@import '../../../styles/_mixin';
 
 .header {
   &__wrap {
@@ -20,14 +20,11 @@
 
   &__image__logo {
     height: 40px;
-  }
-}
-
-.button {
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 10px;
-  &:hover {
     cursor: pointer;
+  }
+
+  &__button-box {
+    width: 157px;
+    height: 40px;
   }
 }

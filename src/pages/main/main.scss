@@ -1,5 +1,5 @@
-@import "../../styles/_variables";
-@import "../../styles/_mixin";
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
 
 .layout__main {
   .inner__body {
@@ -12,68 +12,78 @@
     @media screen and (max-width: $G-window-size-mobile) {
       padding: 42px 24px;
     }
-  }
-}
-.main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
-  &:nth-child(2) &__wrap {
-    gap: 0;
-  }
-  &__wrap {
-    display: flex;
-    gap: 152px;
-    padding: 60px 60px;
-    background-color: #f6f8ff;
-    border-radius: 16px;
-    width: 1200px;
-    height: 324px;
-    &__point {
-      &__title {
-        border-radius: 50px;
-        background-color: #9935ff;
-        font-size: 14px;
-        color: #fff;
-        width: 80px;
-        height: 32px;
-        padding: 6px 12px;
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+
+      &__wrap {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: Pretendard;
-        font-weight: 700;
-        margin-bottom: 16px;
-      }
-      &__description {
-        h1 {
-          font-family: Pretendard;
-          font-size: 24px;
-          line-height: 36px;
-          letter-spacing: -0.24px;
-          margin-bottom: 8px;
-          font-weight: 700;
+        gap: 150px;
+        padding: 60px 0;
+        background-color: #f6f8ff;
+        border-radius: 16px;
+        width: 1200px;
+        height: 324px;
+        &.second {
+          gap: 0;
         }
-        p {
-          color: #555;
-          font-family: Pretendard;
-          font-size: 18px;
-          line-height: 28px;
-          letter-spacing: -0.18px;
-          font-weight: 400;
+
+        &__point {
+          &.second {
+            margin-left: 0;
+            order: 1;
+          }
+          margin-left: 60px;
+
+          &--title {
+            border-radius: 50px;
+            background-color: #9935ff;
+            font-size: 14px;
+            color: #fff;
+            width: 80px;
+            height: 32px;
+            padding: 6px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Pretendard;
+            font-weight: 700;
+            margin-bottom: 16px;
+          }
+
+          &--description {
+            h1 {
+              font-family: Pretendard;
+              font-size: 24px;
+              line-height: 36px;
+              letter-spacing: -0.24px;
+              margin-bottom: 8px;
+              font-weight: 700;
+            }
+            p {
+              color: #555;
+              font-family: Pretendard;
+              font-size: 18px;
+              line-height: 28px;
+              letter-spacing: -0.18px;
+              font-weight: 400;
+            }
+          }
+        }
+
+        &__image {
+          width: 720px;
+          height: 204px;
+          order: 0;
         }
       }
-    }
-    &__image {
-      width: 720px;
-      height: 204px;
+
+      .main_button-box {
+        margin-top: 28px;
+        width: 280px;
+      }
     }
   }
-}
-.button-temp {
-  margin-top: 48px;
-  border-radius: 5px;
-  padding: 20px;
-  border: 1px solid black;
 }
