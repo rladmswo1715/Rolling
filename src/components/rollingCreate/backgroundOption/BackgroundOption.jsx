@@ -1,5 +1,6 @@
 import { useGetData } from "../../../utills/useGetData";
 import "./BackgroundOption.scss";
+import icon_selected from "../../../assets/icon/icon_selected.svg";
 
 export default function BackgroundOption() {
   const { data, isLoading, error } = useGetData(
@@ -35,6 +36,7 @@ export default function BackgroundOption() {
               alt="배경이미지 선택 옵션"
               className="select-bg__images__container__img"
             />
+            <img src={icon_selected} />
           </div>
         ))}
 
