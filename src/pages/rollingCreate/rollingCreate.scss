@@ -1,15 +1,15 @@
-@import '../../styles/_variables';
-@import '../../styles/_mixin';
+@import "../../styles/_variables";
+@import "../../styles/_mixin";
 
 .layout__create {
   .inner__body {
     padding: 57px 24px 60px;
 
-    @media screen and (max-width:$G-window-size-tablet) {
+    @media screen and (max-width: $G-window-size-tablet) {
       padding: 49px 24px;
     }
 
-    @media screen and (max-width:$G-window-size-mobile) {
+    @media screen and (max-width: $G-window-size-mobile) {
       padding: 42px 24px;
     }
   }
