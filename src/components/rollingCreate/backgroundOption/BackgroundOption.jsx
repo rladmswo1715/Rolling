@@ -7,9 +7,17 @@ export default function BackgroundOption() {
   const { data, isLoading, error } = useGetData(
     "https://rolling-api.vercel.app/background-images/"
   );
+  // 배경 이미지의 색상이름을 key로, 클래스 이름을 value 값으로 객체화
+  const colors = {
+    orange: "select-bg__colors--orange",
+    purple: "select-bg__colors--purple",
+    blue: "select-bg__colors--blue",
+    green: "select-bg__colors--green",
+  };
 
   const [isColorSelected, setColorSelected] = useState(true); // 컬러 선택 여부 track state
-  const [selectedItem, setSelectedItem] = useState(null); // 선택된 아이템 track state
+  const [selectedColor, setSelectedColor] = useState(Object.keys(colors)[0]); // 선택된  컬러 아이템 track state
+  const [selectedImageIndex, setSelectedImageIndex] = useState(null); // 선택된 이미지 아이템 track state
 
   useEffect(() => {
     if (error) {
@@ -21,24 +29,18 @@ export default function BackgroundOption() {
     return <div>Loading...</div>;
   }
 
-  // 배경 이미지의 색상이름을 key로, 클래스 이름을 value 값으로 객체화
-  const colors = {
-    orange: "select-bg__colors--orange",
-    purple: "select-bg__colors--purple",
-    blue: "select-bg__colors--blue",
-    green: "select-bg__colors--green",
-  };
-
   // 컬러 handlclick 이벤트
   const handleColorClick = (color) => {
     setColorSelected(true);
-    setSelectedItem(color);
+    setSelectedColor(color);
+    setSelectedImageIndex(null); // Reset selected image index
   };
 
   // 이미지 handleclick 이벤트
   const handleImageClick = (index) => {
     setColorSelected(false);
-    setSelectedItem(index);
+    setSelectedImageIndex(index);
+    setSelectedColor(null); // Reset selected color
   };
 
   return (
@@ -53,7 +55,11 @@ export default function BackgroundOption() {
           className={`button--toggle button__size-h40 ${
             isColorSelected ? "active" : ""
           }`}
-          onClick={() => setColorSelected(true)}
+          onClick={() => {
+            setColorSelected(true);
+            setSelectedColor(Object.keys(colors)[0]); // 첫 컬러 요소를 선택
+            setSelectedImageIndex(null); // 이미지 요소 초기화
+          }}
         >
           컬러
         </button>
@@ -62,7 +68,11 @@ export default function BackgroundOption() {
           className={`button--toggle button__size-h40 ${
             !isColorSelected ? "active" : ""
           }`}
-          onClick={() => setColorSelected(false)}
+          onClick={() => {
+            setColorSelected(false);
+            setSelectedImageIndex(0); // 첫 이미지 요소를 선택
+            setSelectedColor(null); // 컬러 요소 초기화
+          }}
         >
           이미지
         </button>
@@ -73,11 +83,11 @@ export default function BackgroundOption() {
             <div
               key={colorName}
               className={`${className} ${
-                selectedItem === colorName ? "selected" : ""
+                selectedColor === colorName ? "selected" : ""
               } `}
               onClick={() => handleColorClick(colorName)}
             >
-              {selectedItem === colorName && (
+              {selectedColor === colorName && (
                 <img
                   src={iconselected}
                   alt="선택 아이콘"
@@ -93,7 +103,7 @@ export default function BackgroundOption() {
             <div
               key={index}
               className={`select-bg__images__container ${
-                selectedItem === index ? "selected" : ""
+                selectedImageIndex === index ? "selected" : ""
               }`}
               onClick={() => handleImageClick(index)}
             >
@@ -102,7 +112,7 @@ export default function BackgroundOption() {
                 alt="배경이미지 선택 옵션"
                 className="select-bg__images__container__img"
               />
-              {selectedItem === index && (
+              {selectedImageIndex === index && (
                 <img
                   src={iconselected}
                   alt="선택 아이콘"
