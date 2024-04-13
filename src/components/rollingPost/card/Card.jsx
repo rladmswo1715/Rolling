@@ -2,7 +2,7 @@ import './card.scss';
 import '../../../styles/components.scss';
 import { Link } from 'react-router-dom';
 import RollingPostEdit from '../../../pages/rollingPostEdit/RollingPostEdit';
-import plusIcon from '../../../assets/icon/icon_plus.svg';
+import plusIcon from '/assets/icon/icon_plus.svg';
 import mockImg from './mock_img.png';
 import { useState } from 'react';
 

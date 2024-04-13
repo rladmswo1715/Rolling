@@ -1,4 +1,6 @@
 import './rollingPostMessage.scss';
+import NameInput from '../../components/rollingPostMessage/NameInput';
+import ProfileBox from "../../components/rollingPostMessage/ProfileBox";
 
 export default function RollingPostMessage() {
   
@@ -9,38 +11,24 @@ export default function RollingPostMessage() {
         <form className="send-form">
           <div className="send-form__content">
             <span>From.</span>
-            <input type="text" placeholder="이름을 입력해 주세요." className="send-form__input" />
+            <NameInput />
           </div>
 
           <div className="send-form__content">
             <span>프로필 이미지</span>
-            <div className="send-form__profile-wrap">
-              <div className="profile-picture--xlarge">
-                이미지
-              </div>
-              <div className="send-form__profile-wrap-inner">
-                <span>프로필 이미지를 선택해주세요!</span>
-                <div className="send-form__profile-list">
-                  <div className="profile-picture--large"></div>
-                  <div className="profile-picture--large"></div>
-                  <div className="profile-picture--large"></div>
-                  <div className="profile-picture--large"></div>
-                  <div className="profile-picture--large"></div>
-                  <div className="profile-picture--large"></div>
-                  <div className="profile-picture--large"></div>
-                  <div className="profile-picture--large"></div>
-                  <div className="profile-picture--large"></div>
-                  <div className="profile-picture--large"></div>
-                </div>
-              </div>
-            </div>
+            <ProfileBox />
           </div>
 
           <div className="send-form__content">
             <span>상대와의 관계</span>
-            <select>
-              <option>지인</option>
-            </select>
+            <div className="dropdown">
+              <button className="dropdown__toggle hide">선택</button>
+              {/* <ul className="dropdown__menu">
+                <li className="item">메뉴 항목 1</li>
+                <li className="item">메뉴 항목 2</li>
+                <li className="item">메뉴 항목 3</li>
+              </ul> */}
+            </div>
           </div>
 
           <div className="send-form__content">
@@ -50,12 +38,17 @@ export default function RollingPostMessage() {
 
           <div className="send-form__content">
             <span>폰트 선택</span>
-            <select>
-              <option>Noto Sans</option>
-            </select>
+            <div className="dropdown">
+              <button className="dropdown__toggle hide">선택</button>
+              {/* <ul className="dropdown__menu">
+                <li className="item">메뉴 항목 1</li>
+                <li className="item">메뉴 항목 2</li>
+                <li className="item">메뉴 항목 3</li>
+              </ul> */}
+            </div>
           </div>
 
-          <button className="button--fill-primary button__size-h56 font-bold">123</button>
+          <button className="button--fill-primary button__size-h56 font-bold send-form__btn">생성하기</button>
         </form>
       </div>
     </section>
