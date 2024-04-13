@@ -31,8 +31,8 @@ export default function RollingCreate() {
       if (backgroundOption.type === "color") {
         postData.backgroundColor = backgroundOption.value;
       } else if (backgroundOption.type === "image") {
+        postData.backgroundImageURL = backgroundOption.value;
         postData.backgroundColor = "beige";
-        postData.backgroundUrls = [backgroundOption.value];
       }
 
       // POST 요청 보내기
@@ -49,7 +49,9 @@ export default function RollingCreate() {
 
       if (response.ok) {
         // POST 요청이 성공하면 페이지 이동
-        navigate("/post"); // useNavigate로 페이지 이동
+        const responseData = await response.json(); // 응답 데이터를 JSON 형식으로 파싱
+        const newId = responseData.id; // 배열의 첫 번째 요소의 ID 값
+        navigate(`/post/${newId}`); // useNavigate로 페이지 이동
       } else {
         // POST 요청이 실패한 경우 에러 처리
         const responseData = await response.json(); // 서버에서 반환된 응답을 JSON 형식으로 파싱
