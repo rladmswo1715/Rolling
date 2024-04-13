@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useGetData } from "../../../utills/hooks/useGetData";
-import "./BackgroundOption.scss";
+import "./backgroundOption.scss";
 import iconselected from "/assets/icon/icon_selected.svg";
 
 export default function BackgroundOption() {

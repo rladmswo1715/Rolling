@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./PostToInput.scss";
+import "./postToInput.scss";
 
 export default function PostToInput({ onInputChange }) {
   const [inputValue, setInputValue] = useState("");
