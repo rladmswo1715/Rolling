@@ -16,7 +16,7 @@ ex)[홍길동][Header] 헤더 생성
 
 ### 반영 브랜치
 
-feature- -> devlop
+feature- -> develop
 
 ### 변경 사항
 
