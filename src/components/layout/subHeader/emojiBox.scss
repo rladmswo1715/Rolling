@@ -1,0 +1,59 @@
+@import '../../../styles/_variables';
+@import '../../../styles/_mixin';
+
+.emoji {
+  &-box {
+    &__wrap{
+      padding: 0 13px 0 28px;
+      .emoji--add {
+        margin-left: 8px;
+        @include buttonIconWithBackground(88px, 36px, 24px, 24px, '/public/assets/icon/icon_add-24.svg', '/public/assets/icon/icon_add-24-white.svg', 36px, 32px);
+      }
+    }
+    &__dropdown {
+      position: relative;
+      &--view {
+        gap: 8px;
+      }
+      &--toggle-btn {
+        @include buttonIconWithBackground(36px, 36px, 100%, 100%, '/public/assets/icon/icon_arrow_down.svg', '/public/assets/icon/icon_arrow_down.svg', 24px, 24px);
+        &::before {
+          transition: all 0.3s;
+        }
+        &.hide {
+          &::before {
+            transform: rotate(-180deg)
+          }
+        }
+      }
+
+      &--detail {
+        @include gridStyle(repeat(4,1fr));
+        position: absolute;
+        top: calc(100% + 10px);
+        left: 50%;
+        transform: translateX(calc(-50% - 18px));
+        padding: 24px;
+        border-radius: 8px;
+        border: 1px solid #B6B6B6;
+        background-color: $G-white;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        gap: 8px;
+      }
+ 
+    }
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    &-box {
+      &__wrap{
+        padding: 0 15px 0 0
+      }
+      &__dropdown {
+        &--detail {
+          left: 10px;
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+}

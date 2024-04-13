@@ -18,6 +18,17 @@
   margin: 0 auto;
 }
 
+// text oveflow
+@mixin textLineOverflow($line:1) {
+  width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: $line;
+  -webkit-box-orient: vertical
+}
+
 // profile size
 @mixin profilePicture($width, $height, $borderColor: $G-color-black-200) {
   width: $width;
@@ -66,6 +77,43 @@
   line-height: $height;
   border: 1px solid $borderColor;
   background-color: $bgColor;
+}
+
+@mixin buttonIconWithBackground($width, $height, $beforeWidth, $beforeHeight, $bgImage, $disabledBgImage,  $MoWidth:$width, $MoHeight:$height, $bgSize: 24px 24px, $MoBgSize:20px 20px) {
+  width: $width;
+  height: $height;
+  &::before {
+    content: "";
+    display: inline-block;
+    width: $beforeWidth;
+    height: $beforeHeight;
+    background-image: url($bgImage);
+    background-size: $bgSize;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &::before {
+
+  }
+
+  &:disabled {
+    &::before {
+      background-image: url($disabledBgImage);
+    }
+  }
+
+  @media screen and (max-width: $G-window-size-mobile) {
+    width: $MoWidth;
+    height: $MoHeight;
+
+    &::before {
+      background-size: $MoBgSize;
+    }
+
+    span {
+      display: none;
+    }
+  }
 }
 
 @mixin buttonAttrStyle($bgColor, $borderColor) {
