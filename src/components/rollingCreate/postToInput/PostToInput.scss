@@ -1,10 +1,17 @@
 @import "../../../styles/components.scss";
 
 .post-to-box {
+  position: relative;
+
   &__desc {
     font-size: $G-font-size-24;
     line-height: 42px;
     margin-bottom: 12px;
+  }
+
+  & .error--message {
+    position: absolute;
+    bottom: 0;
   }
 }
 .input__element {

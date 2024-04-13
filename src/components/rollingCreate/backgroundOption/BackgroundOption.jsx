@@ -8,8 +8,8 @@ export default function BackgroundOption() {
     "https://rolling-api.vercel.app/background-images/"
   );
 
-  const [isColorSelected, setColorSelected] = useState(true); // State to track whether color is selected or not
-  const [selectedItem, setSelectedItem] = useState(null); // State to track selected item (color or image)
+  const [isColorSelected, setColorSelected] = useState(true); // 컬러 선택 여부 track state
+  const [selectedItem, setSelectedItem] = useState(null); // 선택된 아이템 track state
 
   useEffect(() => {
     if (error) {
@@ -21,7 +21,7 @@ export default function BackgroundOption() {
     return <div>Loading...</div>;
   }
 
-  // Color object containing color names and their respective class names
+  // 배경 이미지의 색상이름을 key로, 클래스 이름을 value 값으로 객체화
   const colors = {
     orange: "select-bg__colors--orange",
     purple: "select-bg__colors--purple",
@@ -29,13 +29,13 @@ export default function BackgroundOption() {
     green: "select-bg__colors--green",
   };
 
-  // Handle click event for selecting color
+  // 컬러 handlclick 이벤트
   const handleColorClick = (color) => {
     setColorSelected(true);
     setSelectedItem(color);
   };
 
-  // Handle click event for selecting image
+  // 이미지 handleclick 이벤트
   const handleImageClick = (index) => {
     setColorSelected(false);
     setSelectedItem(index);
