@@ -3,13 +3,13 @@ import { useGetData } from "../../../utills/hooks/useGetData";
 import "./backgroundOption.scss";
 import iconselected from "/assets/icon/icon_selected.svg";
 
-export default function BackgroundOption() {
+export default function BackgroundOption({ onOptionChange }) {
   const { data, isLoading, error } = useGetData(
     "https://rolling-api.vercel.app/background-images/"
   );
   // 배경 이미지의 색상이름을 key로, 클래스 이름을 value 값으로 객체화
   const colors = {
-    orange: "select-bg__colors--orange",
+    beige: "select-bg__colors--orange",
     purple: "select-bg__colors--purple",
     blue: "select-bg__colors--blue",
     green: "select-bg__colors--green",
@@ -34,6 +34,8 @@ export default function BackgroundOption() {
     setColorSelected(true);
     setSelectedColor(color);
     setSelectedImageIndex(null); // Reset selected image index
+    // 부모 컴포넌트로 선택된 컬러 전달
+    onOptionChange({ type: "color", value: color });
   };
 
   // 이미지 handleclick 이벤트
@@ -41,6 +43,8 @@ export default function BackgroundOption() {
     setColorSelected(false);
     setSelectedImageIndex(index);
     setSelectedColor(null); // Reset selected color
+    // 부모 컴포넌트로 선택된 이미지 전달
+    onOptionChange({ type: "image", value: data.imageUrls[index] });
   };
 
   return (
