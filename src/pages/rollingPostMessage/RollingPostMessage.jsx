@@ -23,11 +23,6 @@ export default function RollingPostMessage() {
             <span>상대와의 관계</span>
             <div className="dropdown">
               <button className="dropdown__toggle hide">선택</button>
-              {/* <ul className="dropdown__menu">
-                <li className="item">메뉴 항목 1</li>
-                <li className="item">메뉴 항목 2</li>
-                <li className="item">메뉴 항목 3</li>
-              </ul> */}
             </div>
           </div>
 
@@ -40,11 +35,6 @@ export default function RollingPostMessage() {
             <span>폰트 선택</span>
             <div className="dropdown">
               <button className="dropdown__toggle hide">선택</button>
-              {/* <ul className="dropdown__menu">
-                <li className="item">메뉴 항목 1</li>
-                <li className="item">메뉴 항목 2</li>
-                <li className="item">메뉴 항목 3</li>
-              </ul> */}
             </div>
           </div>
 
