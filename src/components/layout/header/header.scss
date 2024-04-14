@@ -10,6 +10,7 @@
     max-height: 65px;
     border-bottom: 1px solid #ededed;
     background-color: $G-white;
+    z-index: $G-z-index-header;
   }
 
   &__inner {
