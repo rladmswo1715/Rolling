@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import './rollingList.scss';
-import RollingPaperPurple from '../../components/rollingList/RollingPaperPurple';
-// import RollingPaperPurple from '../../components/rollingList/RollingPaperPurple';
+import RollingPaper from '../../components/rollingList/RollingPaper';
 import { useState, useEffect } from 'react';
 import { BASE_URL_RECIPIENT } from '../../constants/url';
+import PopularPapers from './PopularPapers';
+import RecentPapers from './RecentPapers';
 
 export default function RollingList() {
   const [recipients, setRecipients] = useState([]);
@@ -38,24 +39,8 @@ export default function RollingList() {
     <section className="layout__list">
       <div className="inner__size-full inner__body">
         <div className="RollingList">
-          <div className="RollingList__wrap">
-            <h1>인기 롤링 페이퍼 🔥</h1>
-            <div className="RollingList__wrap--papers">
-              <RollingPaperPurple />
-              {/* <RollingPaperOrange />
-              <RollingPaperBlue />
-              <RollingPaperGreen /> */}
-            </div>
-          </div>
-          <div className="RollingList__wrap">
-            <h1>최근에 만든 롤링 페이퍼 ⭐️</h1>
-            <div className="RollingList__wrap--papers">
-              {/* <RollingPaperPurple />
-              <RollingPaperOrange />
-              <RollingPaperBlue />
-              <RollingPaperGreen /> */}
-            </div>
-          </div>
+          <PopularPapers recipients={recipients} />
+          <RecentPapers recipients={recipients} />
           <div className="button-box">
             <Link to={'/post'}>
               <button className="button--fill-primary button__size-h56 main__button-box">
@@ -64,9 +49,6 @@ export default function RollingList() {
             </Link>
           </div>
         </div>
-        {/* 롤링페이퍼 리스트 페이지
-        <div>아래는 fetch된 데이터를 사용하는 예시에요</div>
-        {!isLoading && recipients.map((el) => <p key={el.id}>id는 {el.id}</p>)} */}
       </div>
     </section>
   );

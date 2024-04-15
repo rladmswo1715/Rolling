@@ -2,6 +2,22 @@
 @import '../../styles/_mixin';
 
 .RollingPaper {
+  &--image {
+    z-index: -2;
+    padding: 30px 24px 20px;
+    width: 275px;
+    height: 260px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+  }
   &--purple {
     z-index: -2;
     padding: 30px 24px 20px;
@@ -16,8 +32,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    background-image: url('/assets/icon/pattern_purple.svg');
+    background-repeat: no-repeat;
+    background-position: 135px 120px;
   }
-  &--orange {
+  &--beige {
+    z-index: -2;
+    padding: 30px 24px 20px;
     width: 275px;
     height: 260px;
     position: relative;
@@ -26,8 +47,16 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
     background-color: $G-color-orange-200;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url('/assets/icon/pattern_orange.svg');
+    background-repeat: no-repeat;
+    background-position: 135px 120px;
   }
   &--green {
+    z-index: -2;
+    padding: 30px 24px 20px;
     width: 275px;
     height: 260px;
     position: relative;
@@ -36,8 +65,16 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
     background-color: $G-color-green-200;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url('/assets/icon/pattern_green.svg');
+    background-repeat: no-repeat;
+    background-position: 135px 120px;
   }
   &--blue {
+    z-index: -2;
+    padding: 30px 24px 20px;
     width: 275px;
     height: 260px;
     position: relative;
@@ -46,6 +83,12 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.08);
     background-color: $G-color-blue-200;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-image: url('/assets/icon/pattern_blue.svg');
+    background-repeat: no-repeat;
+    background-position: 135px 120px;
   }
   &__profile {
     & h1 {
