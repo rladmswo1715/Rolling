@@ -8,8 +8,9 @@
     left: 0;
     right: 0;
     max-height: 65px;
-    border-bottom: 1px solid #EDEDED;
+    border-bottom: 1px solid #ededed;
     background-color: $G-white;
+    z-index: $G-z-index-header;
   }
 
   &__inner {
@@ -19,6 +20,12 @@
   }
 
   &__image__logo {
+    height: 40px;
+    cursor: pointer;
+  }
+
+  &__button-box {
+    width: 157px;
     height: 40px;
   }
 }

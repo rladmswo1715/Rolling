@@ -1,18 +1,18 @@
 @import './_reset'; // 리셋
 @import './_variables'; // 변수
-@import './_mixin'; // mixin 
+@import './_mixin'; // mixin
 
-// display flex 
+// display flex
 .d__flex {
   display: flex;
 }
 
 .d__flex--center {
-  @include flexStyle(center)
+  @include flexStyle(center);
 }
 
 .d__flex--btw {
-  @include flexStyle(center, space-between)
+  @include flexStyle(center, space-between);
 }
 
 // profile
@@ -34,7 +34,7 @@
   }
 }
 
-// input 
+// input
 .input {
   &__element {
     width: 100%;
@@ -74,7 +74,7 @@
 
     &.error {
       border-color: $G-error;
-  
+
       &:hover {
         border-color: $G-error;
       }
@@ -104,7 +104,6 @@
     &-h28 {
       @include buttonHeight(28px, $fontSize: 14px);
     }
-
   }
 
   &--fill {
@@ -134,7 +133,7 @@
 
     &.before-icon {
       &::before {
-        content: "";
+        content: '';
         display: inline-block;
         width: 24px;
         height: 24px;
@@ -145,16 +144,16 @@
         width: 88px;
 
         &::before {
-          background-image: url(/public/assets/icon/icon_add-24.svg)
+          background-image: url(/public/assets/icon/icon_add-24.svg);
         }
 
         &:disabled {
           &::before {
-            background-image: url(/public/assets/icon/icon_add-24-white.svg)
+            background-image: url(/public/assets/icon/icon_add-24-white.svg);
           }
         }
 
-        @media screen and (max-width:$G-window-size-mobile) {
+        @media screen and (max-width: $G-window-size-mobile) {
           width: 36px;
           height: 32px;
 
@@ -168,16 +167,16 @@
         width: 36px;
 
         &::before {
-          background-image: url(/public/assets/icon/icon_deleted.svg)
+          background-image: url(/public/assets/icon/icon_deleted.svg);
         }
 
         &:disabled {
           &::before {
-            background-image: url(/public/assets/icon/icon_deleted-white.svg)
+            background-image: url(/public/assets/icon/icon_deleted-white.svg);
           }
         }
 
-        @media screen and (max-width:$G-window-size-mobile) {
+        @media screen and (max-width: $G-window-size-mobile) {
           height: 32px;
 
           span {
@@ -193,13 +192,18 @@
         height: 1px;
         margin: -1px;
         opacity: 0.1;
-        overflow: hidden
+        overflow: hidden;
       }
     }
   }
 
   &--icon-plus {
-    @include buttonOnlyIconStyle(56px, 56px, $G-color-black-500, $G-color-black-500);
+    @include buttonOnlyIconStyle(
+      56px,
+      56px,
+      $G-color-black-500,
+      $G-color-black-500
+    );
     border-radius: 50em;
 
     &:hover {
@@ -233,7 +237,11 @@
 
     .button--toggle {
       position: relative;
-      @include buttonStyle($G-color-black-100, $G-color-black-100, $width: 122px);
+      @include buttonStyle(
+        $G-color-black-100,
+        $G-color-black-100,
+        $width: 122px
+      );
 
       &:last-child {
         margin-left: -10px;
@@ -378,19 +386,19 @@
 // badge
 .badge {
   &__orange {
-    @include badgeStyle($G-color-orange-100, $G-color-orange-500)
+    @include badgeStyle($G-color-orange-100, $G-color-orange-500);
   }
 
   &__purple {
-    @include badgeStyle($G-color-purple-100, $G-color-purple-600)
+    @include badgeStyle($G-color-purple-100, $G-color-purple-600);
   }
 
   &__green {
-    @include badgeStyle($G-color-green-100, $G-color-green-500)
+    @include badgeStyle($G-color-green-100, $G-color-green-500);
   }
 
   &__blue {
-    @include badgeStyle($G-color-blue-100, $G-color-blue-500)
+    @include badgeStyle($G-color-blue-100, $G-color-blue-500);
   }
 }
 
@@ -398,7 +406,7 @@
 .error {
   &--message {
     padding-top: 4px;
-    color: $G-error ;
+    color: $G-error;
     font-size: 12px;
     line-height: 18px;
   }
