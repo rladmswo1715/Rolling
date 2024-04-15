@@ -17,7 +17,7 @@ export default function BackgroundOption({ onOptionChange }) {
     `${BASE_URL}background-images/`
   );
 
-  const [isColorSelected, setColorSelected] = useState(true); // 컬러 선택 여부 track state
+  const [isColorSelected, setIsColorSelected] = useState(true); // 컬러 선택 여부 track state
   const [selectedColor, setSelectedColor] = useState(Object.keys(COLORS)[0]); // 선택된  컬러 아이템 track state
   const [selectedImageIndex, setSelectedImageIndex] = useState(null); // 선택된 이미지 아이템 track state
 
@@ -29,7 +29,7 @@ export default function BackgroundOption({ onOptionChange }) {
 
   // 컬러 handleclick 이벤트
   function handleColorClick(color) {
-    setColorSelected(true);
+    setIsColorSelected(true);
     setSelectedColor(color);
     setSelectedImageIndex(null); // Reset selected image index
     // 부모 컴포넌트로 선택된 컬러 전달
@@ -38,7 +38,7 @@ export default function BackgroundOption({ onOptionChange }) {
 
   // 이미지 handleclick 이벤트
   function handleImageClick(index) {
-    setColorSelected(false);
+    setIsColorSelected(false);
     setSelectedImageIndex(index);
     setSelectedColor(null); // Reset selected color
     // 부모 컴포넌트로 선택된 이미지 전달
@@ -62,7 +62,7 @@ export default function BackgroundOption({ onOptionChange }) {
                 isColorSelected ? "active" : ""
               }`}
               onClick={() => {
-                setColorSelected(true);
+                setIsColorSelected(true);
                 setSelectedColor(Object.keys(COLORS)[0]); // 첫 컬러 요소를 선택
                 setSelectedImageIndex(null); // 이미지 요소 초기화
               }}
@@ -75,7 +75,7 @@ export default function BackgroundOption({ onOptionChange }) {
                 !isColorSelected ? "active" : ""
               }`}
               onClick={() => {
-                setColorSelected(false);
+                setIsColorSelected(false);
                 setSelectedImageIndex(0); // 첫 이미지 요소를 선택
                 setSelectedColor(null); // 컬러 요소 초기화
               }}
