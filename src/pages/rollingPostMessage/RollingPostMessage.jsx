@@ -1,6 +1,7 @@
 import './rollingPostMessage.scss';
 import NameInput from '../../components/rollingPostMessage/NameInput';
 import ProfileBox from "../../components/rollingPostMessage/ProfileBox";
+import RelationDropBox from "../../components/rollingPostMessage/RelationDropBox";
 
 export default function RollingPostMessage() {
   
@@ -20,9 +21,7 @@ export default function RollingPostMessage() {
 
           <div className="send-form__content">
             <span>상대와의 관계</span>
-            <div className="dropdown">
-              <button className="dropdown__toggle hide">선택</button>
-            </div>
+            <RelationDropBox />
           </div>
 
           <div className="send-form__content">
