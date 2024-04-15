@@ -5,19 +5,19 @@ export default function PostToInput({ onInputChange }) {
   const [inputValue, setInputValue] = useState("");
   const [error, setError] = useState(false);
 
-  const handleBlur = () => {
+  function handleBlur() {
     if (inputValue.trim() === "") {
       setError(true);
     } else {
       setError(false);
     }
-  };
+  }
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     const value = e.target.value;
     setInputValue(value);
     onInputChange(value); // 부모 컴포넌트로 input value를 전달
-  };
+  }
 
   return (
     <section className="post-to-box">

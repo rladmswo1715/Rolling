@@ -30,22 +30,22 @@ export default function BackgroundOption({ onOptionChange }) {
   }
 
   // 컬러 handleclick 이벤트
-  const handleColorClick = (color) => {
+  function handleColorClick(color) {
     setColorSelected(true);
     setSelectedColor(color);
     setSelectedImageIndex(null); // Reset selected image index
     // 부모 컴포넌트로 선택된 컬러 전달
     onOptionChange({ type: "color", value: color });
-  };
+  }
 
   // 이미지 handleclick 이벤트
-  const handleImageClick = (index) => {
+  function handleImageClick(index) {
     setColorSelected(false);
     setSelectedImageIndex(index);
     setSelectedColor(null); // Reset selected color
     // 부모 컴포넌트로 선택된 이미지 전달
     onOptionChange({ type: "image", value: data.imageUrls[index] });
-  };
+  }
 
   return (
     <section className="select-bg">
