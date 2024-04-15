@@ -6,13 +6,8 @@ export default function PostToInput({ onInputChange }) {
   const [error, setError] = useState(false);
 
   function handleBlur() {
-    if (inputValue.trim() === "") {
-      setError(true);
-    } else {
-      setError(false);
-    }
+    setError(!inputValue.trim());
   }
-
   function handleChange(e) {
     const value = e.target.value;
     setInputValue(value);

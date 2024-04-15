@@ -3,46 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PostToInput from "../../components/rollingCreate/postToInput/PostToInput";
 import BackgroundOption from "../../components/rollingCreate/backgroundOption/BackgroundOption";
 import "./rollingPostCreate.scss";
-import { BASE_URL_RECIPIENT } from "../../constants/url";
-
-async function handleCreatePost() {
-  try {
-    // 생성하기 버튼을 누를 때 API로 보낼 데이터
-    const postData = {
-      team: "5-7",
-      name: inputValue.trim(), // 입력된 값
-    };
-
-    if (backgroundOption.type === "color") {
-      postData.backgroundColor = backgroundOption.value;
-    } else if (backgroundOption.type === "image") {
-      postData.backgroundImageURL = backgroundOption.value;
-      postData.backgroundColor = "beige";
-    }
-
-    // POST 요청 보내기
-    const response = await fetch(BASE_URL_RECIPIENT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postData),
-    });
-
-    if (response.ok) {
-      // POST 요청이 성공하면 페이지 이동
-      const responseData = await response.json(); // 응답 데이터를 JSON 형식으로 파싱
-      const newId = responseData.id;
-      navigate(`/post/${newId}`); // useNavigate로 페이지 이동
-    } else {
-      // POST 요청이 실패한 경우 에러 처리
-      const responseData = await response.json(); // 서버에서 반환된 응답을 JSON 형식으로 파싱
-      console.error("POST request failed:", responseData);
-    }
-  } catch (error) {
-    console.error("Error:", error);
-  }
-}
+import CreateRollingPaper from "../../api/CreateRollingPaper";
 
 export default function RollingCreate() {
   const [inputValue, setInputValue] = useState("");
@@ -58,6 +19,11 @@ export default function RollingCreate() {
 
   function handleBackgroundOptionChange(option) {
     setBackgroundOption(option);
+  }
+
+  async function handleCreatePost() {
+    const res = await CreateRollingPaper(inputValue, backgroundOption);
+    navigate(`/post/${res.id}`); // useNavigate로 페이지 이동
   }
 
   return (

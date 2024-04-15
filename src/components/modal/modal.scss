@@ -1,0 +1,30 @@
+@import "../../styles/_variables";
+@import "../../styles/_mixin";
+@import "../../styles/components.scss";
+
+.modal__content {
+  @include flexStyle();
+  flex-direction: column;
+
+  &__header {
+    @include flexStyle(center, space-between);
+    padding: 40px 45px 20px 39px;
+
+    &__profile {
+      @include flexStyle();
+      flex-direction: row;
+      gap: 16px;
+
+      &__name > p {
+        font-size: $G-font-size-24;
+      }
+    }
+
+    &__message-created > p {
+      font-size: $G-font-size-14;
+    }
+  }
+  &__body {
+    font-size: $G-font-size-18;
+  }
+}
