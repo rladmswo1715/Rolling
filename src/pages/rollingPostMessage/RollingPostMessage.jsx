@@ -5,7 +5,6 @@ import ProfileBox from "../../components/rollingPostMessage/ProfileBox";
 export default function RollingPostMessage() {
   
   return (
-
     <section className="layout__message">
       <div className="inner__size-ms inner__body">
         <form className="send-form">
