@@ -1,0 +1,99 @@
+@import '../../../styles/_variables';
+@import '../../../styles/_mixin';
+
+.subHeader {
+  &__wrap {
+    position: fixed;
+    top: 65px;
+    left: 0;
+    right: 0;
+    background-color: $G-white;
+    border-bottom: 1px solid #ededed;
+    .header__inner {
+      padding: 16px 24px;
+    }
+    .btn-share {
+      flex-shrink: 0;
+      margin-left: 13px;
+    }
+    .content--separator {
+      position: relative;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 1px;
+        height: 28px;
+        transform: translateY(-50%);
+        background-color: $G-color-black-200;
+      }
+    }
+  }
+  &__left {
+    .btn-back {
+      display: none !important;
+    }
+    transition: all 0.3s;
+  }
+  &__right {
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+  &__title {
+    font-size: $G-font-size-28;
+    font-weight: $G-font-weight-bold;
+    @include textLineOverflow(1);
+    transition: all 0.3s;
+  }
+  @media screen and (max-width: $G-window-size-tablet) {
+    &__wrap {
+      .profile-picture__wrap {
+        display: none !important;
+      }
+    }
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    &__wrap {
+      .profile-picture__wrap {
+        display: none !important;
+      }
+      .btn-share {
+        margin-left: 15px;
+      }
+    }
+    &__inner {
+      flex-direction: column;
+      padding: 0 !important;
+    }
+    &__left {
+      width: 100%;
+      padding: 0 24px;
+      align-self: flex-start;
+      border-bottom: 1px solid #eeeeee;
+      .btn-back {
+        display: block !important;
+      }
+    }
+    &__right {
+      &.d__flex--center {
+        width: 100%;
+        padding: 11px 24px;
+        align-self: flex-start;
+        justify-content: space-between;
+      }
+    }
+    &__title {
+      max-width: calc(100% - 90px);
+      font-size: $G-font-size-18;
+      line-height: 51px;
+    }
+  }
+  @media screen and (max-width: $G-window-size-mobile2) {
+    &__right {
+      &.d__flex--center {
+        justify-content: flex-start;
+      }
+    }
+  }
+}

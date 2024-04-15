@@ -6,7 +6,7 @@ import RollingList from "./pages/rollingList/RollingList";
 import RollingPost from "./pages/rollingPost/RollingPost";
 import RollingPostEdit from "./pages/rollingPostEdit/RollingPostEdit";
 import RollingPostMessage from "./pages/rollingPostMessage/RollingPostMessage";
-import RollingCreate from "./pages/rollingCreate/RollingCreate";
+import RollingPostCreate from "./pages/rollingCreate/RollingPostCreate";
 
 function App() {
   return (
@@ -15,13 +15,13 @@ function App() {
         <Route path="/" element={<IncludeHeaderStructure />}>
           <Route index element={<Main />} />
           <Route path="list" element={<RollingList />} />
-          <Route path="rolling-create" element={<RollingCreate />} />
+          <Route path="post" element={<RollingPostCreate />} />
           <Route path="post/:id/message" element={<RollingPostMessage />} />
         </Route>
 
-        <Route path="/post" element={<IncludeSubHeaderStructure />}>
-          <Route path=":id" element={<RollingPost />} />
-          <Route path=":id/edit" element={<RollingPostEdit />} />
+        <Route path="/post/:id" element={<IncludeSubHeaderStructure />}>
+          <Route index element={<RollingPost />} />
+          <Route path="edit" element={<RollingPostEdit />} />
         </Route>
       </Routes>
     </>

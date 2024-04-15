@@ -1,0 +1,29 @@
+@import '../../../styles/_variables';
+
+.profile {
+  &-picture {
+    &__wrap {
+      gap: 12px;
+      padding: 0 28px;
+    }
+    &__list {
+      [class^="profile-picture"] {
+        margin-left: -12px;
+      }
+    }
+    &--write-counter {
+      strong {
+        font-size: $G-font-size-18;
+        font-weight: $G-font-weight-bold;
+      }
+      span {
+        font-size: $G-font-size-18;
+      }
+    }
+  }
+  &--counter {
+    font-size: 10px;
+    color: $G-color-black-600;
+    background-color: $G-white;
+  }
+}
