@@ -19,7 +19,7 @@
     .content--separator {
       position: relative;
       &::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 50%;
         right: 0;
@@ -31,14 +31,14 @@
     }
   }
   &__left {
-    .btn-back {
-      display: none !important;
-    }
+    .btn-back {display: none !important;}
     transition: all 0.3s;
+
   }
   &__right {
     flex-shrink: 0;
     transition: all 0.3s;
+
   }
   &__title {
     font-size: $G-font-size-28;
@@ -46,18 +46,14 @@
     @include textLineOverflow(1);
     transition: all 0.3s;
   }
-  @media screen and (max-width: $G-window-size-tablet) {
+  @media screen and (max-width:$G-window-size-tablet) {
     &__wrap {
-      .profile-picture__wrap {
-        display: none !important;
-      }
+      .profile-picture__wrap {display: none !important;}
     }
   }
   @media screen and (max-width: $G-window-size-mobile) {
     &__wrap {
-      .profile-picture__wrap {
-        display: none !important;
-      }
+      .profile-picture__wrap {display: none !important;}
       .btn-share {
         margin-left: 15px;
       }
@@ -71,9 +67,7 @@
       padding: 0 24px;
       align-self: flex-start;
       border-bottom: 1px solid #eeeeee;
-      .btn-back {
-        display: block !important;
-      }
+      .btn-back {display: block !important;}
     }
     &__right {
       &.d__flex--center {

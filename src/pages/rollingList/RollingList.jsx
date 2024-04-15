@@ -1,11 +1,39 @@
 import { Link } from 'react-router-dom';
 import './rollingList.scss';
 import RollingPaperPurple from '../../components/rollingList/RollingPaperPurple';
-import RollingPaperOrange from '../../components/rollingList/RollingPaperOrange';
-import RollingPaperBlue from '../../components/rollingList/RollingPaperBlue';
-import RollingPaperGreen from '../../components/rollingList/RollingPaperGreen';
+// import RollingPaperPurple from '../../components/rollingList/RollingPaperPurple';
+import { useState, useEffect } from 'react';
+import { BASE_URL_RECIPIENT } from '../../constants/url';
 
 export default function RollingList() {
+  const [recipients, setRecipients] = useState([]);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function getRecipientData(limit = 8, offset = 0) {
+    try {
+      setIsLoading(true);
+      const response = await fetch(
+        `${BASE_URL_RECIPIENT}?limit=${limit}&offset=${offset}`
+      );
+      if (response.ok) {
+        const res = await response.json();
+        setRecipients(res.results);
+        setIsLoading(false);
+      } else {
+        throw new Error('데이터를 받아오는데 실패했습니다!');
+      }
+    } catch (error) {
+      setError(error);
+    }
+  }
+
+  useEffect(() => {
+    getRecipientData(10, 0);
+  }, []);
+
+  console.log(recipients);
+
   return (
     <section className="layout__list">
       <div className="inner__size-full inner__body">
@@ -14,9 +42,9 @@ export default function RollingList() {
             <h1>인기 롤링 페이퍼 🔥</h1>
             <div className="RollingList__wrap--papers">
               <RollingPaperPurple />
-              <RollingPaperOrange />
+              {/* <RollingPaperOrange />
               <RollingPaperBlue />
-              <RollingPaperGreen />
+              <RollingPaperGreen /> */}
             </div>
           </div>
           <div className="RollingList__wrap">
@@ -36,6 +64,9 @@ export default function RollingList() {
             </Link>
           </div>
         </div>
+        {/* 롤링페이퍼 리스트 페이지
+        <div>아래는 fetch된 데이터를 사용하는 예시에요</div>
+        {!isLoading && recipients.map((el) => <p key={el.id}>id는 {el.id}</p>)} */}
       </div>
     </section>
   );
