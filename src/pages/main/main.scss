@@ -5,12 +5,141 @@
   .inner__body {
     padding: 60px 24px;
 
-    @media screen and (max-width:$G-window-size-tablet) {
+    @media screen and (max-width: $G-window-size-tablet) {
       padding: 40px 24px;
     }
 
-    @media screen and (max-width:$G-window-size-mobile) {
+    @media screen and (max-width: $G-window-size-mobile) {
       padding: 42px 24px;
     }
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+
+      &__wrap {
+        padding: 60px 0;
+        background-color: #f6f8ff;
+        border-radius: 16px;
+        width: 1200px;
+        height: 324px;
+        overflow: hidden;
+        @media screen and (max-width: $G-window-size-tablet) {
+          width: 100%;
+          height: 440px;
+          padding: 40px 0;
+        }
+        @media screen and (max-width: $G-window-size-mobile) {
+          padding: 30px;
+        }
+
+        &--first {
+          display: flex;
+          gap: 150px;
+          @media screen and (max-width: $G-window-size-tablet) {
+            flex-direction: column;
+            gap: 20px;
+          }
+          @media screen and (max-width: $G-window-size-mobile) {
+            gap: 40px;
+          }
+        }
+
+        &--second {
+          display: flex;
+          gap: 0;
+          @media screen and (max-width: $G-window-size-tablet) {
+            flex-direction: column;
+            gap: 20px;
+            gap: 40px;
+          }
+        }
+
+        &__point {
+          &--first {
+            margin-left: 60px;
+            @media screen and (max-width: $G-window-size-mobile) {
+              margin-left: 0;
+            }
+          }
+          &--second {
+            order: 1;
+            @media screen and (max-width: $G-window-size-tablet) {
+              order: 0;
+              margin-left: 60px;
+            }
+            @media screen and (max-width: $G-window-size-mobile) {
+              margin-left: 0;
+            }
+          }
+
+          &--title {
+            border-radius: 50px;
+            background-color: #9935ff;
+            font-size: 14px;
+            color: #fff;
+            width: 80px;
+            height: 32px;
+            padding: 6px 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Pretendard;
+            font-weight: 700;
+            margin-bottom: 16px;
+          }
+
+          &--description {
+            h1 {
+              font-family: Pretendard;
+              font-size: 24px;
+              line-height: 36px;
+              letter-spacing: -0.24px;
+              margin-bottom: 8px;
+              font-weight: 700;
+              @media screen and (max-width: $G-window-size-mobile) {
+                font-size: 18px;
+              }
+            }
+            p {
+              color: #555;
+              font-family: Pretendard;
+              font-size: 18px;
+              line-height: 28px;
+              letter-spacing: -0.18px;
+              font-weight: 400;
+              @media screen and (max-width: $G-window-size-mobile) {
+                font-size: 15px;
+              }
+            }
+          }
+        }
+
+        &__image {
+          width: 720px;
+          height: 204px;
+          order: 0;
+
+          @media screen and (max-width: $G-window-size-tablet) {
+            margin: 0 auto;
+          }
+          @media screen and (max-width: $G-window-size-mobile) {
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+      & button {
+        margin: 28px auto;
+        width: 280px;
+        @media screen and (max-width: $G-window-size-tablet) {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .button-box {
+    width: 100%;
   }
 }
