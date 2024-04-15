@@ -1,6 +1,6 @@
 import './profileBox.scss';
 import { useEffect,useState,useCallback } from "react";
-import { useGetData } from "../../utills/hooks/useGetData";
+import { useGetData } from "../../hooks/useGetData";
 import { BASE_URL } from "../../constants/url.js";
 import ProfileImage from "./ProfileImage";
 
