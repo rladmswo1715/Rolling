@@ -4,8 +4,8 @@ const header = {
   top: '65px',
   left: 0,
   right: 0,
-  background: '#ccc'
-}
+  background: '#ccc',
+};
 export default function SubHeader() {
   return (
     <nav className="sub-header">
@@ -34,8 +34,8 @@ export default function SubHeader() {
             <img src={addIcon} />
             <span>추가</span>
           </button>
-        </div>
-      </div>
-    </section>
+        </li>
+      </ul>
+    </nav>
   );
 }
