@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { useGetData } from "../../../hooks/useGetData";
 import "./backgroundOption.scss";
 import iconselected from "/assets/icon/icon_selected.svg";
+import { BASE_URL } from "../../../constants/url";
 
 export default function BackgroundOption({ onOptionChange }) {
   const { data, isLoading, error } = useGetData(
-    "https://rolling-api.vercel.app/background-images/"
+    `${BASE_URL}background-images/`
   );
   // 배경 이미지의 색상이름을 key로, 클래스 이름을 value 값으로 객체화
   const colors = {

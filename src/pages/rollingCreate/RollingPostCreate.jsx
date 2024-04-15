@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PostToInput from "../../components/rollingCreate/postToInput/PostToInput";
 import BackgroundOption from "../../components/rollingCreate/backgroundOption/BackgroundOption";
 import "./rollingPostCreate.scss";
+import { BASE_URL_RECIPIENT } from "../../constants/url";
 
 async function handleCreatePost() {
   try {
@@ -20,16 +21,13 @@ async function handleCreatePost() {
     }
 
     // POST 요청 보내기
-    const response = await fetch(
-      "https://rolling-api.vercel.app/5-7/recipients/",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(postData),
-      }
-    );
+    const response = await fetch(BASE_URL_RECIPIENT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    });
 
     if (response.ok) {
       // POST 요청이 성공하면 페이지 이동
