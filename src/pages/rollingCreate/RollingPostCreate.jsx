@@ -5,8 +5,8 @@ import BackgroundOption from "../../components/rollingCreate/backgroundOption/Ba
 import "./rollingPostCreate.scss";
 import CreateRollingPaper from "../../api/CreateRollingPaper";
 
-export default function RollingCreate() {
-  const [inputValue, setInputValue] = useState("");
+export default function RollingPostCreate() {
+  const [receiverName, setReceiverName] = useState("");
   const [backgroundOption, setBackgroundOption] = useState({
     type: "color",
     value: "beige",
@@ -14,7 +14,7 @@ export default function RollingCreate() {
   const navigate = useNavigate(); // useNavigate로 변경
 
   function handleInputChange(value) {
-    setInputValue(value);
+    setReceiverName(value);
   }
 
   function handleBackgroundOptionChange(option) {
@@ -22,7 +22,7 @@ export default function RollingCreate() {
   }
 
   async function handleCreatePost() {
-    const res = await CreateRollingPaper(inputValue, backgroundOption);
+    const res = await CreateRollingPaper(receiverName, backgroundOption);
     navigate(`/post/${res.id}`); // useNavigate로 페이지 이동
   }
 
@@ -31,7 +31,7 @@ export default function RollingCreate() {
       <div className="inner__size-ms inner__body">
         <PostToInput
           onInputChange={handleInputChange}
-          inputValue={inputValue}
+          receiverName={receiverName}
         />
         <BackgroundOption
           onOptionChange={handleBackgroundOptionChange}
@@ -40,9 +40,9 @@ export default function RollingCreate() {
 
         <div className="btn--container">
           <button
-            className={`button--fill-primary button__size-h56 font-bold ${inputValue.trim() === "" ? "disabled" : ""}`}
+            className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === "" ? "disabled" : ""}`}
             onClick={handleCreatePost}
-            disabled={inputValue.trim() === ""}
+            disabled={receiverName.trim() === ""}
           >
             생성하기
           </button>

@@ -47,89 +47,89 @@ export default function BackgroundOption({ onOptionChange }) {
 
   return (
     <section className="select-bg">
-      {isLoading ? (
-        <div>Loading...</div>
+      <p className="select-bg__title"> 배경화면을 선택해 주세요. </p>
+      <p className="select-bg__body">
+        컬러를 선택하거나, 이미지를 선택할 수 있습니다.
+      </p>
+      <div className="button--toggle-box">
+        <button
+          type="button"
+          className={`button--toggle button__size-h40 ${
+            isColorSelected ? "active" : ""
+          }`}
+          onClick={() => {
+            setIsColorSelected(true);
+            setSelectedColor(Object.keys(COLORS)[0]); // 첫 컬러 요소를 선택
+            setSelectedImageIndex(null); // 이미지 요소 초기화
+          }}
+        >
+          컬러
+        </button>
+        <button
+          type="button"
+          className={`button--toggle button__size-h40 ${
+            !isColorSelected ? "active" : ""
+          }`}
+          onClick={() => {
+            setIsColorSelected(false);
+            setSelectedImageIndex(0); // 첫 이미지 요소를 선택
+            setSelectedColor(null); // 컬러 요소 초기화
+          }}
+        >
+          이미지
+        </button>
+      </div>
+      {isColorSelected ? (
+        <div className="select-bg__colors">
+          {Object.entries(COLORS).map(([colorName, className]) => (
+            <div
+              key={colorName}
+              className={`${className} ${
+                selectedColor === colorName ? "selected" : ""
+              } `}
+              onClick={() => handleColorClick(colorName)}
+            >
+              {selectedColor === colorName && (
+                <img
+                  src={iconselected}
+                  alt="선택 아이콘"
+                  className="selected-icon"
+                />
+              )}
+            </div>
+          ))}
+        </div>
       ) : (
-        <>
-          <p className="select-bg__title"> 배경화면을 선택해 주세요. </p>
-          <p className="select-bg__body">
-            컬러를 선택하거나, 이미지를 선택할 수 있습니다.
-          </p>
-          <div className="button--toggle-box">
-            <button
-              type="button"
-              className={`button--toggle button__size-h40 ${
-                isColorSelected ? "active" : ""
-              }`}
-              onClick={() => {
-                setIsColorSelected(true);
-                setSelectedColor(Object.keys(COLORS)[0]); // 첫 컬러 요소를 선택
-                setSelectedImageIndex(null); // 이미지 요소 초기화
-              }}
-            >
-              컬러
-            </button>
-            <button
-              type="button"
-              className={`button--toggle button__size-h40 ${
-                !isColorSelected ? "active" : ""
-              }`}
-              onClick={() => {
-                setIsColorSelected(false);
-                setSelectedImageIndex(0); // 첫 이미지 요소를 선택
-                setSelectedColor(null); // 컬러 요소 초기화
-              }}
-            >
-              이미지
-            </button>
-          </div>
-          {isColorSelected ? (
-            <div className="select-bg__colors">
-              {Object.entries(COLORS).map(([colorName, className]) => (
-                <div
-                  key={colorName}
-                  className={`${className} ${
-                    selectedColor === colorName ? "selected" : ""
-                  } `}
-                  onClick={() => handleColorClick(colorName)}
-                >
-                  {selectedColor === colorName && (
-                    <img
-                      src={iconselected}
-                      alt="선택 아이콘"
-                      className="selected-icon"
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
+        <div className="select-bg__images">
+          {isLoading ? (
+            // 로딩 중인 경우
+            <div>Loading...</div>
           ) : (
-            <div className="select-bg__images">
-              {data.imageUrls.map((link, index) => (
-                <div
-                  key={index}
-                  className={`select-bg__images__container ${
-                    selectedImageIndex === index ? "selected" : ""
-                  }`}
-                  onClick={() => handleImageClick(index)}
-                >
+            // 로딩 중이 아닌 경우
+            data.imageUrls.map((link, index) => (
+              <div
+                key={index}
+                className={`select-bg__images__container ${
+                  selectedImageIndex === index ? "selected" : ""
+                }`}
+                onClick={() => handleImageClick(index)}
+              >
+                <img
+                  src={link}
+                  alt="배경이미지 선택 옵션"
+                  className="select-bg__images__container__img"
+                />
+                {selectedImageIndex === index && (
                   <img
-                    src={link}
-                    alt="배경이미지 선택 옵션"
-                    className="select-bg__images__container__img"
+                    src={iconselected}
+                    alt="선택 아이콘"
+                    className="selected-icon"
                   />
-                  {selectedImageIndex === index && (
-                    <img
-                      src={iconselected}
-                      alt="선택 아이콘"
-                      className="selected-icon"
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
+                )}
+              </div>
+            ))
           )}
-        </>
+        </div>
       )}
     </section>
   );
