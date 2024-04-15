@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 function Card() {
   const [hasCard, setHasCard] = useState(false);
-  
+
   const handleCardClick = () => {
     console.log('버튼 클릭!');
     setHasCard(true);

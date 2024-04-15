@@ -1,4 +1,4 @@
-import './profileList.scss';
+import "./profileList.scss";
 export default function ProfileList({ arrayProps }) {
   return (
     <div className="profile-picture d__flex--center content--separator profile-picture__wrap">
