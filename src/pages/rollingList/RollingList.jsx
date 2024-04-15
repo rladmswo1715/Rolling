@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
 import './rollingList.scss';
-import RollingPaper from '../../components/rollingList/RollingPaper';
+
+import RollingPaperPurple from '../../components/rollingList/RollingPaperPurple';
+import RollingPaperOrange from '../../components/rollingList/RollingPaperOrange';
+import RollingPaperBlue from '../../components/rollingList/RollingPaperBlue';
+import RollingPaperGreen from '../../components/rollingList/RollingPaperGreen';
 
 export default function RollingList() {
   return (
@@ -11,16 +15,19 @@ export default function RollingList() {
             <div className="RollingList__wrap">
               <h1>인기 롤링 페이퍼 🔥</h1>
               <div className="RollingList__wrap--papers">
-                <RollingPaper />
-                <RollingPaper />
-                <RollingPaper />
-                <RollingPaper />
+                <RollingPaperPurple />
+                <RollingPaperOrange />
+                <RollingPaperBlue />
+                <RollingPaperGreen />
               </div>
             </div>
             <div className="RollingList__wrap">
-              <h1>최근에 만든 롤링 페이퍼⭐️ </h1>
-              <div>
-                <RollingPaper />
+              <h1>최근에 만든 롤링 페이퍼 ⭐️</h1>
+              <div className="RollingList__wrap--papers">
+                <RollingPaperPurple />
+                <RollingPaperOrange />
+                <RollingPaperBlue />
+                <RollingPaperGreen />
               </div>
             </div>
             <div className="button-box">
