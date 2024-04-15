@@ -2,14 +2,23 @@
 @import '../../../styles/_mixin';
 
 .emoji {
-  width: 66px;
-  height: 36px;
-  background-color: $G-color-black-500;
   @include flexStyle(center, center);
-  gap: 10px;
-  border-radius: 2rem;
-  &--count {
-    font-size: 1rem;
-    color: $G-color-black-100;
+  padding: 0 12px;
+  color: $G-color-black-100;
+  line-height: 36px;
+  border-radius: 50em;
+  background-color: $G-color-black-500;
+  gap: 6px;
+  &--emoji {
+    font-size: 16px;
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    padding: 0 8px;
+    line-height: 26px;
+    font-size: $G-font-size-14;
+    gap: 4px;
+    &--emoji {
+      font-size: 13px;
+    }
   }
 }
