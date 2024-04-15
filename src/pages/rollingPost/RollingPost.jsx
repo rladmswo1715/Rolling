@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Card from '../../components/rollingPost/card/Card';
 import Emoji from '../../components/rollingPost/emoji/Emoji';
 import { BASE_URL_RECIPIENT, BASE_URL_MESSAGE } from '../../constants/url';
-import useRecipient from '../../utills/hooks/useRecipient';
+import useRecipient from '../../hooks/useRecipient';
 
 export default function RollingPost() {
   // const [recipients, setRecipients] = useState([]);

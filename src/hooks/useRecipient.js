@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BASE_URL_RECIPIENT } from '../../constants/url';
+import { BASE_URL_RECIPIENT } from '../constants/url';
 
 export default function useRecipient() {
   const [recipients, setRecipients] = useState([]);
