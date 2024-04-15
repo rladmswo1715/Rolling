@@ -18,10 +18,7 @@
   }
 
   &__colors {
-    display: grid;
-    grid-template-columns: repeat(4, 168px);
-    justify-items: center;
-    align-items: center;
+    @include gridStyle(repeat(4, 168px));
     gap: 16px;
     margin: 45px 0 69px;
 
@@ -73,10 +70,7 @@
   }
 
   &__images {
-    display: grid;
-    grid-template-columns: repeat(4, 168px);
-    justify-items: center;
-    align-items: center;
+    @include gridStyle(repeat(4, 168px));
     gap: 16px;
     margin: 45px 0 69px;
 
