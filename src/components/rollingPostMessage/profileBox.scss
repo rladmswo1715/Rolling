@@ -1,0 +1,27 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
+
+.send-form {
+  &__profile-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+
+      > span {
+        line-height: 1.625;
+        color: $G-color-black-500;
+      }
+    }
+  }
+
+  &__profile-list {
+    display: flex;
+    gap: 4px;
+  }
+}
