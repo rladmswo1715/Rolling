@@ -18,17 +18,33 @@
   }
 
   &__colors {
-    display: flex;
-    justify-items: center;
-    align-items: center;
+    @include gridStyle(repeat(4, 168px));
     gap: 16px;
     margin: 45px 0 69px;
+
+    @media screen and (max-width: $G-window-size-tablet) {
+      margin: 40px 0 340px;
+    }
+
+    @media screen and (max-width: $G-window-size-mobile) {
+      grid-template-columns: repeat(2, 154px);
+      grid-template-rows: repeat(2, 154px);
+      gap: 12px;
+      margin: 28px 0 82px;
+    }
 
     & > * {
       width: 168px;
       height: 168px;
       border-radius: 16px;
       overflow: hidden;
+      position: relative;
+      cursor: pointer;
+
+      @media screen and (max-width: $G-window-size-mobile) {
+        width: 154px;
+        height: 154px;
+      }
 
       &:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 1); /* 그림자 효과 */
@@ -54,18 +70,33 @@
   }
 
   &__images {
-    display: flex;
-    flex-wrap: wrap;
+    @include gridStyle(repeat(4, 168px));
     gap: 16px;
     margin: 45px 0 69px;
 
+    @media screen and (max-width: $G-window-size-tablet) {
+      margin: 40px 0 340px;
+    }
+
+    @media screen and (max-width: $G-window-size-mobile) {
+      grid-template-columns: repeat(2, 154px);
+      grid-template-rows: repeat(2, 154px);
+      gap: 12px;
+      margin: 28px 0 82px;
+    }
+
     &__container {
-      flex: 1 1 auto;
       position: relative;
       width: 168px;
       height: 168px;
       border-radius: 16px;
       overflow: hidden;
+      cursor: pointer;
+
+      @media screen and (max-width: $G-window-size-mobile) {
+        width: 154px;
+        height: 154px;
+      }
 
       &:hover {
         box-shadow: 0 0 10px rgba(0, 0, 0, 1); /* 그림자 효과 */
@@ -77,4 +108,11 @@
       }
     }
   }
+}
+
+.selected-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
