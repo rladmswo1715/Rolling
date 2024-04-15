@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PostToInput from "../../components/rollingCreate/postToInput/PostToInput";
 import BackgroundOption from "../../components/rollingCreate/backgroundOption/BackgroundOption";
-import "./rollingCreate.scss";
+import "./rollingPostCreate.scss";
 
 export default function RollingCreate() {
   const [inputValue, setInputValue] = useState("");

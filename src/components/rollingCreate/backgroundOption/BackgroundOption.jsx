@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useGetData } from "../../../utills/hooks/useGetData";
+import { useGetData } from "../../../../src/hooks/useGetData";
 import "./backgroundOption.scss";
 import iconselected from "/assets/icon/icon_selected.svg";
 
@@ -29,7 +29,7 @@ export default function BackgroundOption({ onOptionChange }) {
     return <div>Loading...</div>;
   }
 
-  // 컬러 handlclick 이벤트
+  // 컬러 handleclick 이벤트
   const handleColorClick = (color) => {
     setColorSelected(true);
     setSelectedColor(color);
