@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from 'react';
 
 export function useGetData(url) {
   const [data, setData] = useState(null);
@@ -13,7 +13,7 @@ export function useGetData(url) {
         const data = await response.json();
         setData(data);
       } else {
-        throw new Error("요청이 실패했습니다.");
+        throw new Error('요청이 실패했습니다.');
       }
     } catch (error) {
       setError(error); // 에러 상태 업데이트
