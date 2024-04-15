@@ -1,7 +1,7 @@
 import './rollingPostMessage.scss';
 import NameInput from '../../components/rollingPostMessage/NameInput';
-import ProfileBox from "../../components/rollingPostMessage/ProfileBox";
-import RelationDropBox from "../../components/rollingPostMessage/RelationDropBox";
+import ProfileBox from '../../components/rollingPostMessage/ProfileBox';
+import DropBox from '../../components/rollingPostMessage/DropBox';
 
 export default function RollingPostMessage() {
   
@@ -21,7 +21,7 @@ export default function RollingPostMessage() {
 
           <div className="send-form__content">
             <span>상대와의 관계</span>
-            <RelationDropBox />
+            <DropBox boxType="relation" />
           </div>
 
           <div className="send-form__content">
@@ -31,9 +31,7 @@ export default function RollingPostMessage() {
 
           <div className="send-form__content">
             <span>폰트 선택</span>
-            <div className="dropdown">
-              <button className="dropdown__toggle hide">선택</button>
-            </div>
+            <DropBox boxType="font" />
           </div>
 
           <button className="button--fill-primary button__size-h56 font-bold send-form__btn">생성하기</button>

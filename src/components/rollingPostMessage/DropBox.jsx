@@ -1,13 +1,19 @@
 import './relationDropBox.scss';
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function dropBoxArrowToggle(element, toggleBoolean) {
   element.classList.toggle('hide', toggleBoolean);
 }
 
-export default function RelationDropBox() {
-  const [seletedRelation, setSelectedRelation] = useState('지인');
+const LIST_SET = {
+  "relation" : ['지인', '친구', '동료', '가족'],
+  "font" : ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체']
+}
+
+export default function RelationDropBox({boxType}) {
+  const [seletedRelation, setSelectedRelation] = useState(LIST_SET[boxType][0]);
   const [isDropBoxOpen, setIsDropBoxOpen] = useState(false);
+  const dropDownRef = useRef(null);
 
   function handleSelectRelation(e) {
     if(e.target.nodeName === 'UL') {
@@ -16,7 +22,7 @@ export default function RelationDropBox() {
     };
     setSelectedRelation(e.target.dataset.value);
     setIsDropBoxOpen(false);
-    dropBoxArrowToggle(document.querySelector('#relationDropDown'), false);
+    dropBoxArrowToggle(dropDownRef.current, false);
   }
 
   function handleOpenDropBox(e) {
@@ -26,13 +32,12 @@ export default function RelationDropBox() {
 
   return (
     <div className="dropdown">
-      <button type="button" className="dropdown__toggle" id="relationDropDown" onClick={handleOpenDropBox}>{seletedRelation}</button>
+      <button type="button" className="dropdown__toggle" ref={dropDownRef} onClick={handleOpenDropBox}>{seletedRelation}</button>
       {isDropBoxOpen && 
         <ul className="dropdown__menu" onClick={handleSelectRelation}>
-          <li className="item" data-value={"지인"}>지인</li>
-          <li className="item" data-value={"친구"}>친구</li>
-          <li className="item" data-value={"동료"}>동료</li>
-          <li className="item" data-value={"가족"}>가족</li>
+          {LIST_SET[boxType].map((listItem)=> {
+            return <li key={listItem} className="item" data-value={listItem}>{listItem}</li>
+          })}
         </ul>}
     </div>
   )
