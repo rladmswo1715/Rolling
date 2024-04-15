@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // useNavigate import 변경
+import { useNavigate } from "react-router-dom";
 import PostToInput from "../../components/rollingCreate/postToInput/PostToInput";
 import BackgroundOption from "../../components/rollingCreate/backgroundOption/BackgroundOption";
 import "./rollingCreate.scss";
@@ -50,7 +50,7 @@ export default function RollingCreate() {
       if (response.ok) {
         // POST 요청이 성공하면 페이지 이동
         const responseData = await response.json(); // 응답 데이터를 JSON 형식으로 파싱
-        const newId = responseData.id; // 배열의 첫 번째 요소의 ID 값
+        const newId = responseData.id;
         navigate(`/post/${newId}`); // useNavigate로 페이지 이동
       } else {
         // POST 요청이 실패한 경우 에러 처리
