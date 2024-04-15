@@ -1,7 +1,7 @@
-import "./subHeader.scss";
-import ProfileList from "./ProfileList";
-import EmojiBox from "./EmojiBox";
-import { Link } from "react-router-dom";
+import './subHeader.scss';
+import ProfileList from './ProfileList';
+import EmojiBox from './EmojiBox';
+import { Link } from 'react-router-dom';
 
 const testArr = Array.from({ length: 97 }, (_, i) => i);
 const emojiArr = Array.from({ length: 8 }, (_, i) => i);
