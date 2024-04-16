@@ -7,10 +7,15 @@ import { BASE_URL_RECIPIENT } from "../../../constants/url";
 
 export default function SubHeader() {
   const { id } = useParams();
-  const { data: getAllapi } = useGetData(`${BASE_URL_RECIPIENT}/${id}/`);
-  const { data: getEmojiApi } = useGetData(
+  const { data: getAllapi, isLoading: allLoading } = useGetData(
+    `${BASE_URL_RECIPIENT}/${id}/`
+  );
+  const { data: getEmojiApi, isLoading: emojiLoading } = useGetData(
     `${BASE_URL_RECIPIENT}${id}/reactions/`
   );
+
+  const Loading = allLoading && emojiLoading;
+  console.log(Loading);
   return (
     <section className="subHeader__wrap">
       <div className="inner__size-ls d__flex--btw header__inner subHeader__inner">
@@ -23,9 +28,7 @@ export default function SubHeader() {
           </h1>
         </div>
         <div className="d__flex--center subHeader__right">
-          {getAllapi && (
-            <ProfileList onComent={getAllapi.recentMessages} onID={id} />
-          )}
+          {getAllapi && <ProfileList onComent={getAllapi.recentMessages} />}
           {getEmojiApi && <EmojiBox onEmoji={getEmojiApi} onID={id} />}
           <button className="button--outlined button__size-h36 before-icon btn-share">
             <span className="unvisible">공유하기</span>

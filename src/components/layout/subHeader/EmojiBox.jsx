@@ -1,8 +1,8 @@
 import "./emojiBox.scss";
 import { useRef, useState } from "react";
-import EPicker from "./EPicker";
 import Emoji from "../../rollingPost/emoji/Emoji";
 import { BASE_URL_RECIPIENT } from "../../../constants/url";
+import EmojiPicker from "emoji-picker-react";
 
 async function setPostEmoji(id, method, emoji, type) {
   try {
@@ -95,13 +95,15 @@ export default function EmojiBox({ onEmoji, onID }) {
               onClickCount={() => handleEmojiClickCount(emoji.id, emoji.emoji)}
             />
           ))}
-          <button
-            type="button"
-            className={`before-icon emoji-box__dropdown--toggle-btn ${isEmojiMore && "hide"}`}
-            onClick={handleDoropDwonOpen}
-          >
-            <span className="unvisible">열기</span>
-          </button>
+          {isSelectedEmojis.length > 3 && (
+            <button
+              type="button"
+              className={`before-icon emoji-box__dropdown--toggle-btn ${isEmojiMore && "hide"}`}
+              onClick={handleDoropDwonOpen}
+            >
+              <span className="unvisible">열기</span>
+            </button>
+          )}
         </div>
         {isEmojiMore && (
           <div className="emoji-box__dropdown--detail">
@@ -123,10 +125,14 @@ export default function EmojiBox({ onEmoji, onID }) {
           <span>추가</span>
         </button>
         <div className="emoji-box--picker-box">
-          <EPicker
+          <EmojiPicker
             emojiStyle={"google"}
-            lazyLoadEmojis={false}
-            onEmojiAdd={isEmojiAdd}
+            searchDisabled={true}
+            previewConfig={{
+              showPreview: false,
+            }}
+            lazyLoadEmojis={true}
+            open={isEmojiAdd}
             onEmojiClick={handleEmojiPickerIconClick}
           />
         </div>
