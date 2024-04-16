@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useGetData } from "../../../utills/hooks/useGetData";
+import { useGetData } from "../../../hooks/useGetData";
 import "./BackgroundOption.scss";
 import iconselected from "/assets/icon/icon_selected.svg";
 

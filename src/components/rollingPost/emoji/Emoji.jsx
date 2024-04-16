@@ -1,14 +1,11 @@
-import './emoji.scss';
-function Emoji() {
-  const handleToggleEmoji = () => {
-    console.log('이모지 클릭!');
-  };
+import "./emoji.scss";
 
+function Emoji({ emoji, count, onClickCount }) {
   return (
     <>
-      <button className="emoji" onClick={handleToggleEmoji}>
-        <div className="emoji--emoji">😍</div>
-        <span className="emoji--count">34</span>
+      <button className="emoji" onClick={onClickCount}>
+        <div className="emoji--emoji">{emoji}</div>
+        <span className="emoji--count">{count}</span>
       </button>
     </>
   );

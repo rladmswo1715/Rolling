@@ -1,39 +1,136 @@
-import { useState } from "react";
-import Emoji from "../../rollingPost/emoji/Emoji";
 import "./emojiBox.scss";
+import { useRef, useState } from "react";
+import EPicker from "./EPicker";
+import Emoji from "../../rollingPost/emoji/Emoji";
+import { BASE_URL_RECIPIENT } from "../../../constants/url";
 
-export default function EmojiBox({ arrayProps }) {
-  const [isOpen, setIsOpen] = useState(false);
+async function setPostEmoji(id, method, emoji, type) {
+  try {
+    const response = await fetch(`${BASE_URL_RECIPIENT}${id}/reactions/`, {
+      method,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        emoji,
+        type,
+      }),
+    });
+    if (!response.ok) {
+      console.log("보냄");
+      throw new Error(`Failed to ${type} reaction`);
+    }
+  } catch (e) {
+    console.log(e);
+    return;
+  }
+}
+
+export default function EmojiBox({ onEmoji, onID }) {
+  const [isEmojiAdd, setIsEmojiAdd] = useState(false);
+  const [isEmojiMore, setIsEmojiMore] = useState(false);
+  const [isSelectedEmojis, setIsSelectedEmojis] = useState(onEmoji.results);
+  const refID = useRef(0);
 
   const handleDoropDwonOpen = () => {
-    setIsOpen((prev) => !prev);
+    setIsEmojiMore((prev) => !prev);
   };
+
+  const handleEmojiPickerOpen = () => {
+    setIsEmojiAdd((prev) => !prev);
+  };
+
+  // emoji 8개 노출
+  const headleEmojiLength = () => {
+    return isSelectedEmojis.length > 7 ? false : true;
+  };
+
+  // emojiPicker의 emoji 클릭
+  const handleEmojiPickerIconClick = (emojiData) => {
+    if (
+      !emojiData ||
+      isSelectedEmojis.some((data) => data.emoji === emojiData.emoji)
+    )
+      return;
+    // 8개 까지만 emoji 추가
+    if (headleEmojiLength()) {
+      setIsSelectedEmojis((prev) => [
+        ...prev,
+        {
+          id: refID.current++,
+          emoji: emojiData.emoji,
+          count: 1,
+        },
+      ]);
+      setPostEmoji(onID, "POST", emojiData.emoji, "increase");
+    }
+    setIsEmojiAdd(false);
+    return;
+  };
+
+  const hendleStateUpdate = (id) => {
+    const emojiStateUpdate = isSelectedEmojis.map((emoji) =>
+      emoji.id === id ? { ...emoji, count: emoji.count + 1 } : emoji
+    );
+    return emojiStateUpdate.sort((a, b) => b.count - a.count);
+  };
+
+  // emoji count 증가
+  const handleEmojiClickCount = (id) => {
+    const emojiApiUpdate = isSelectedEmojis.find(
+      (emoji) => emoji.id === id && emoji
+    );
+    setPostEmoji(onID, "POST", emojiApiUpdate.emoji, "increase");
+    setIsSelectedEmojis(() => hendleStateUpdate(id));
+  };
+
   return (
     <div className="d__flex--btw content--separator emoji-box__wrap">
       <div className="emoji-box__dropdown">
         <div className="emoji-box__dropdown--view d__flex--center">
-          {arrayProps.slice(0, 3).map((data) => (
-            <Emoji key={data} />
+          {isSelectedEmojis.slice(0, 3).map((emoji, i) => (
+            <Emoji
+              key={emoji.id}
+              {...emoji}
+              onClickCount={() => handleEmojiClickCount(emoji.id, emoji.emoji)}
+            />
           ))}
           <button
             type="button"
-            className={`before-icon emoji-box__dropdown--toggle-btn ${isOpen && "hide"}`}
+            className={`before-icon emoji-box__dropdown--toggle-btn ${isEmojiMore && "hide"}`}
             onClick={handleDoropDwonOpen}
           >
             <span className="unvisible">열기</span>
           </button>
         </div>
-        {isOpen && (
+        {isEmojiMore && (
           <div className="emoji-box__dropdown--detail">
-            {arrayProps.map((data) => (
-              <Emoji key={data} />
+            {isSelectedEmojis.map((emoji) => (
+              <Emoji
+                key={emoji.id}
+                {...emoji}
+                onClickCount={() => handleEmojiClickCount(emoji.id)}
+              />
             ))}
           </div>
         )}
       </div>
-      <button className="button--outlined button__size-h36 before-icon emoji--add">
-        <span>추가</span>
-      </button>
+      <div className="emoji-box__add-box">
+        <button
+          className="button--outlined button__size-h36 before-icon emoji--add"
+          onClick={handleEmojiPickerOpen}
+        >
+          <span>추가</span>
+        </button>
+        <div className="emoji-box--picker-box">
+          <EPicker
+            emojiStyle={"google"}
+            lazyLoadEmojis={false}
+            onEmojiAdd={isEmojiAdd}
+            onEmojiClick={handleEmojiPickerIconClick}
+          />
+        </div>
+      </div>
     </div>
   );
 }
