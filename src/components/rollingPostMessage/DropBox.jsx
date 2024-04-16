@@ -1,4 +1,4 @@
-import './relationDropBox.scss';
+import './dropBox.scss';
 import { useState, useRef } from "react";
 
 function dropBoxArrowToggle(element, toggleBoolean) {
