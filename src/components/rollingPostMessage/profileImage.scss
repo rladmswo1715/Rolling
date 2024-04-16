@@ -1,0 +1,10 @@
+.send-form__profile-list {
+  & .profile-picture--large {
+    cursor: pointer;
+    
+    &:hover {
+      transform: scale(1.08);
+      transition: 0.5s;
+    }
+  }
+}
