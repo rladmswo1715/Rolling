@@ -37,7 +37,6 @@ export default function RollingPostCreate() {
           onOptionChange={handleBackgroundOptionChange}
           backgroundOption={backgroundOption}
         />
-
         <div className="btn--container">
           <button
             className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === "" ? "disabled" : ""}`}

@@ -2,29 +2,63 @@
 @import "../../styles/_mixin";
 @import "../../styles/components.scss";
 
-.modal__content {
-  @include flexStyle();
-  flex-direction: column;
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
+  @include flexStyle(center, center);
 
-  &__header {
-    @include flexStyle(center, space-between);
-    padding: 40px 45px 20px 39px;
+  &__button-container {
+    @include flexStyle(center, center);
+    margin-top: auto;
 
-    &__profile {
-      @include flexStyle();
-      flex-direction: row;
-      gap: 16px;
-
-      &__name > p {
-        font-size: $G-font-size-24;
-      }
-    }
-
-    &__message-created > p {
-      font-size: $G-font-size-14;
+    .button--fill-primary {
+      width: 120px;
     }
   }
-  &__body {
-    font-size: $G-font-size-18;
+
+  &__content {
+    @include flexStyle(unset, flex-start);
+    flex-direction: column;
+    background-color: white;
+    width: 600px;
+    height: 476px;
+    padding: 40px;
+    border-radius: 16px;
+
+    &__header {
+      @include flexStyle(center, space-between);
+
+      &__profile {
+        @include flexStyle();
+        flex-direction: row;
+        gap: 16px;
+
+        &__name > p {
+          font-size: $G-font-size-24;
+        }
+      }
+
+      &__message-created > p {
+        font-size: $G-font-size-14;
+        padding-right: 5px;
+      }
+    }
+    &__body {
+      font-size: $G-font-size-18;
+      padding-top: 16px;
+      padding-right: 16px;
+      border-top: 1px solid #eee;
+      margin-top: 22px;
+      margin-bottom: 24px;
+      line-height: 28px;
+      text-align: left;
+      width: 520px;
+      height: 256px;
+      overflow: auto;
+    }
   }
 }
