@@ -4,6 +4,7 @@ import PostToInput from "../../components/rollingCreate/postToInput/PostToInput"
 import BackgroundOption from "../../components/rollingCreate/backgroundOption/BackgroundOption";
 import "./rollingPostCreate.scss";
 import CreateRollingPaper from "../../api/CreateRollingPaper";
+import CopyUrl from "../../components/share/CopyUrl";
 
 export default function RollingPostCreate() {
   const [receiverName, setReceiverName] = useState("");
@@ -37,6 +38,7 @@ export default function RollingPostCreate() {
           onOptionChange={handleBackgroundOptionChange}
           backgroundOption={backgroundOption}
         />
+        <CopyUrl />
         <div className="btn--container">
           <button
             className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === "" ? "disabled" : ""}`}
