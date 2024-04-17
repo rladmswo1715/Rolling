@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
-import { useGetData } from "../../../hooks/useGetData";
-import "./backgroundOption.scss";
-import iconselected from "/assets/icon/icon_selected.svg";
-import { BASE_URL } from "../../../constants/url";
+import { useEffect, useState } from 'react';
+import { useGetData } from '../../../hooks/useGetData';
+import './backgroundOption.scss';
+import iconselected from '/assets/icon/icon_selected.svg';
+import { BASE_URL } from '../../../constants/url';
 
 // 배경 이미지의 색상이름을 key로, 클래스 이름을 value 값으로 객체화
 const COLORS = {
-  beige: "select-bg__colors--orange",
-  purple: "select-bg__colors--purple",
-  blue: "select-bg__colors--blue",
-  green: "select-bg__colors--green",
+  beige: 'select-bg__colors--orange',
+  purple: 'select-bg__colors--purple',
+  blue: 'select-bg__colors--blue',
+  green: 'select-bg__colors--green',
 };
 
 export default function BackgroundOption({ onOptionChange }) {
@@ -23,7 +23,7 @@ export default function BackgroundOption({ onOptionChange }) {
 
   useEffect(() => {
     if (error) {
-      alert("데이터를 불러오는 동안 오류가 발생했습니다.");
+      alert('데이터를 불러오는 동안 오류가 발생했습니다.');
     }
   }, [error]);
 
@@ -33,7 +33,7 @@ export default function BackgroundOption({ onOptionChange }) {
     setSelectedColor(color);
     setSelectedImageIndex(null); // Reset selected image index
     // 부모 컴포넌트로 선택된 컬러 전달
-    onOptionChange({ type: "color", value: color });
+    onOptionChange({ type: 'color', value: color });
   }
 
   // 이미지 handleclick 이벤트
@@ -42,7 +42,7 @@ export default function BackgroundOption({ onOptionChange }) {
     setSelectedImageIndex(index);
     setSelectedColor(null); // Reset selected color
     // 부모 컴포넌트로 선택된 이미지 전달
-    onOptionChange({ type: "image", value: data.imageUrls[index] });
+    onOptionChange({ type: 'image', value: data.imageUrls[index] });
   }
 
   return (
@@ -55,7 +55,7 @@ export default function BackgroundOption({ onOptionChange }) {
         <button
           type="button"
           className={`button--toggle button__size-h40 ${
-            isColorSelected ? "active" : ""
+            isColorSelected ? 'active' : ''
           }`}
           onClick={() => {
             setIsColorSelected(true);
@@ -68,7 +68,7 @@ export default function BackgroundOption({ onOptionChange }) {
         <button
           type="button"
           className={`button--toggle button__size-h40 ${
-            !isColorSelected ? "active" : ""
+            !isColorSelected ? 'active' : ''
           }`}
           onClick={() => {
             setIsColorSelected(false);
@@ -85,7 +85,7 @@ export default function BackgroundOption({ onOptionChange }) {
             <div
               key={colorName}
               className={`${className} ${
-                selectedColor === colorName ? "selected" : ""
+                selectedColor === colorName ? 'selected' : ''
               } `}
               onClick={() => handleColorClick(colorName)}
             >
@@ -110,7 +110,7 @@ export default function BackgroundOption({ onOptionChange }) {
               <div
                 key={index}
                 className={`select-bg__images__container ${
-                  selectedImageIndex === index ? "selected" : ""
+                  selectedImageIndex === index ? 'selected' : ''
                 }`}
                 onClick={() => handleImageClick(index)}
               >

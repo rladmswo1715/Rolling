@@ -1,0 +1,38 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
+@import '../../styles/components.scss';
+
+.toast--msg {
+  padding: 19px 30px;
+  background-color: #333333;
+  border-radius: 8px;
+  width: 524px;
+  height: 64px;
+  position: fixed;
+  bottom: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: $G-z-index-toast;
+
+  @media screen and (max-width: $G-window-size-tablet) {
+    bottom: 50px;
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    width: 320px;
+    bottom: 88px;
+  }
+  &__container {
+    @include flexStyle(center, space-between);
+    &-body {
+      @include flexStyle(center, center);
+      gap: 12px;
+      &__text {
+        color: $G-white;
+      }
+    }
+
+    &-button {
+      @include flexStyle();
+    }
+  }
+}
