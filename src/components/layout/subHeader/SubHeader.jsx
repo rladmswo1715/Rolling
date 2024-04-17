@@ -4,6 +4,7 @@ import EmojiBox from "./EmojiBox";
 import { Link, useParams } from "react-router-dom";
 import { useGetData } from "../../../hooks/useGetData";
 import { BASE_URL_RECIPIENT } from "../../../constants/url";
+import ShareBox from "./ShareBox";
 
 export default function SubHeader() {
   const { id } = useParams();
@@ -15,7 +16,6 @@ export default function SubHeader() {
   );
 
   const Loading = allLoading && emojiLoading;
-  console.log(Loading);
   return (
     <section className="subHeader__wrap">
       <div className="inner__size-ls d__flex--btw header__inner subHeader__inner">
@@ -27,13 +27,13 @@ export default function SubHeader() {
             To. Ashley Kim Ashley Kim Ashley Kim
           </h1>
         </div>
-        <div className="d__flex--center subHeader__right">
-          {getAllapi && <ProfileList onComent={getAllapi.recentMessages} />}
-          {getEmojiApi && <EmojiBox onEmoji={getEmojiApi} onID={id} />}
-          <button className="button--outlined button__size-h36 before-icon btn-share">
-            <span className="unvisible">공유하기</span>
-          </button>
-        </div>
+        {!Loading && (
+          <div className="d__flex--center subHeader__right">
+            {getAllapi && <ProfileList onComent={getAllapi.recentMessages} />}
+            {getEmojiApi && <EmojiBox onEmoji={getEmojiApi} onID={id} />}
+            <ShareBox />
+          </div>
+        )}
       </div>
     </section>
   );

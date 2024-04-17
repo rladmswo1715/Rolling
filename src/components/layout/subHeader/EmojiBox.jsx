@@ -17,12 +17,10 @@ async function setPostEmoji(id, method, emoji, type) {
       }),
     });
     if (!response.ok) {
-      console.log("보냄");
       throw new Error(`Failed to ${type} reaction`);
     }
   } catch (e) {
-    console.log(e);
-    return;
+    throw new Error(e);
   }
 }
 
