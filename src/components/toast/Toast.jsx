@@ -3,12 +3,12 @@ import toasticon from '/assets/icon/icon_toast.svg';
 import './toast.scss';
 import { useState } from 'react';
 
-function Toast() {
+function Toast({ message }) {
   const [showToast, setShowToast] = useState(true);
 
-  const handleClose = () => {
+  function handleClose() {
     setShowToast(false);
-  };
+  }
 
   return (
     <>
@@ -17,9 +17,7 @@ function Toast() {
           <div className="toast--msg__container">
             <div className="toast--msg__container-body">
               <img src={toasticon} alt="toasticon" />
-              <p className="toast--msg__container-body__text">
-                URL이 복사 되었습니다.
-              </p>
+              <p className="toast--msg__container-body__text">{message}</p>
             </div>
             <button
               className="toast--msg__container-button"
