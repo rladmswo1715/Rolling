@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import './rollingList.scss';
-import RollingPaper from '../../components/rollingList/RollingPaper';
 import { useState, useEffect } from 'react';
 import { BASE_URL_RECIPIENT } from '../../constants/url';
-import PopularPapers from './PopularPapers';
-import RecentPapers from './RecentPapers';
+import PopularPapers from '../../components/rollingList/PopularPapers';
+import RecentPapers from '../../components/rollingList/RecentPapers';
 
 export default function RollingList() {
   const [recipients, setRecipients] = useState([]);
@@ -30,7 +29,7 @@ export default function RollingList() {
   }
 
   useEffect(() => {
-    getRecipientData(10, 0);
+    getRecipientData(20, 0);
   }, []);
 
   console.log(recipients);

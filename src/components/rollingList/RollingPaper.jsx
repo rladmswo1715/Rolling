@@ -1,40 +1,53 @@
+import ProfileList from '../layout/subHeader/ProfileList';
+import Emoji from '../rollingPost/emoji/Emoji';
 import './rollingPaper.scss';
-import profileImage from '/assets/icon/icon_temp.svg';
-import emoji from '/assets/image/emoji_temp.png';
+
+const testArr = Array.from({ length: 97 }, (_, i) => i);
+const emojiArr = Array.from({ length: 8 }, (_, i) => i);
 
 export default function RollingPaper({ recepient }) {
   if (!recepient) return null;
-  const { name, backgroundColor, backgroundImageURL, createdAt, messageCount } =
-    recepient;
+  const {
+    id,
+    name,
+    backgroundColor,
+    backgroundImageURL,
+    createdAt,
+    messageCount,
+  } = recepient;
 
   const background = `RollingPaper--${backgroundColor}`;
+  const imageStyle = {
+    background: `linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.54) 100%), url(${backgroundImageURL})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };
 
   return (
     <div className="RollingPaper">
       {backgroundImageURL ? (
-        <div
-          className="RollingPaper--image"
-          style={{ backgroundImage: `url(${backgroundImageURL})` }}
-        >
-          <div className="RollingPaper__profile">
+        <div className="RollingPaper--image" style={imageStyle}>
+          <div className="RollingPaper--profile">
             <h1>{name}</h1>
-            <img src={profileImage} alt="profileImage" />
-            <p>
-              <b>{messageCount}</b>명이 작성했어요!
-            </p>
+            <ProfileList arrayProps={testArr} />
           </div>
-          <img src={emoji} alt="emoji" />
+          <div className="RollingPaper--emoji">
+            {emojiArr.slice(0, 3).map((data) => (
+              <Emoji key={data} />
+            ))}
+          </div>
         </div>
       ) : (
         <div className={background}>
-          <div className="RollingPaper__profile">
+          <div className="RollingPaper--profile">
             <h1>{name}</h1>
-            <img src={profileImage} alt="profileImage" />
-            <p>
-              <b>{messageCount}</b>명이 작성했어요!
-            </p>
+            <ProfileList arrayProps={testArr} />
           </div>
-          <img src={emoji} alt="emoji" />
+          <div className="RollingPaper--emoji">
+            {emojiArr.slice(0, 3).map((data) => (
+              <Emoji key={data} />
+            ))}
+          </div>
         </div>
       )}
     </div>
