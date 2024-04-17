@@ -17,7 +17,7 @@ export default function Card({
       <div className="card--container">
         <div className="card--from-group">
           <div className="card--from-group--img profile-picture--large">
-            <img src={profileImageURL} alt="목업 이미지" />
+            <img src={profileImageURL} alt="프로필 이미지" />
           </div>
 
           <div className="card--profile-text-group">
