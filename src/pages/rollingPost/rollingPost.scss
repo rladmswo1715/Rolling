@@ -56,21 +56,35 @@
     background: $G-color-purple-200;
     top: 65px;
     height: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
   }
+
   &__beige {
     background-color: $G-color-orange-200;
     top: 65px;
     height: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
   }
 
   &__blue {
     background-color: $G-color-blue-200;
     top: 65px;
     height: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
   }
+
   &__green {
     background-color: $G-color-green-200;
     top: 65px;
     height: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
   }
 }
