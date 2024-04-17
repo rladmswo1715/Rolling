@@ -2,20 +2,15 @@ import { useState } from "react";
 import "./postToInput.scss";
 
 export default function PostToInput({ onInputChange }) {
-  const [inputValue, setInputValue] = useState("");
+  const [receiverName, setReceiverName] = useState("");
   const [error, setError] = useState(false);
 
   function handleBlur() {
-    if (inputValue.trim() === "") {
-      setError(true);
-    } else {
-      setError(false);
-    }
+    setError(!receiverName.trim());
   }
-
   function handleChange(e) {
     const value = e.target.value;
-    setInputValue(value);
+    setReceiverName(value);
     onInputChange(value); // 부모 컴포넌트로 input value를 전달
   }
 
@@ -26,7 +21,7 @@ export default function PostToInput({ onInputChange }) {
         type="text"
         className={`input__element ${error ? "error" : ""}`}
         placeholder="받는 사람 이름을 입력해 주세요"
-        value={inputValue}
+        value={receiverName}
         onChange={handleChange}
         onBlur={handleBlur}
       />

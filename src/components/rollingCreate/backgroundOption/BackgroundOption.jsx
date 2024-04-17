@@ -2,21 +2,23 @@ import { useEffect, useState } from "react";
 import { useGetData } from "../../../hooks/useGetData";
 import "./backgroundOption.scss";
 import iconselected from "/assets/icon/icon_selected.svg";
+import { BASE_URL } from "../../../constants/url";
+
+// 배경 이미지의 색상이름을 key로, 클래스 이름을 value 값으로 객체화
+const COLORS = {
+  beige: "select-bg__colors--orange",
+  purple: "select-bg__colors--purple",
+  blue: "select-bg__colors--blue",
+  green: "select-bg__colors--green",
+};
 
 export default function BackgroundOption({ onOptionChange }) {
   const { data, isLoading, error } = useGetData(
-    "https://rolling-api.vercel.app/background-images/"
+    `${BASE_URL}background-images/`
   );
-  // 배경 이미지의 색상이름을 key로, 클래스 이름을 value 값으로 객체화
-  const colors = {
-    beige: "select-bg__colors--orange",
-    purple: "select-bg__colors--purple",
-    blue: "select-bg__colors--blue",
-    green: "select-bg__colors--green",
-  };
 
-  const [isColorSelected, setColorSelected] = useState(true); // 컬러 선택 여부 track state
-  const [selectedColor, setSelectedColor] = useState(Object.keys(colors)[0]); // 선택된  컬러 아이템 track state
+  const [isColorSelected, setIsColorSelected] = useState(true); // 컬러 선택 여부 track state
+  const [selectedColor, setSelectedColor] = useState(Object.keys(COLORS)[0]); // 선택된  컬러 아이템 track state
   const [selectedImageIndex, setSelectedImageIndex] = useState(null); // 선택된 이미지 아이템 track state
 
   useEffect(() => {
@@ -25,13 +27,9 @@ export default function BackgroundOption({ onOptionChange }) {
     }
   }, [error]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   // 컬러 handleclick 이벤트
   function handleColorClick(color) {
-    setColorSelected(true);
+    setIsColorSelected(true);
     setSelectedColor(color);
     setSelectedImageIndex(null); // Reset selected image index
     // 부모 컴포넌트로 선택된 컬러 전달
@@ -40,7 +38,7 @@ export default function BackgroundOption({ onOptionChange }) {
 
   // 이미지 handleclick 이벤트
   function handleImageClick(index) {
-    setColorSelected(false);
+    setIsColorSelected(false);
     setSelectedImageIndex(index);
     setSelectedColor(null); // Reset selected color
     // 부모 컴포넌트로 선택된 이미지 전달
@@ -60,8 +58,8 @@ export default function BackgroundOption({ onOptionChange }) {
             isColorSelected ? "active" : ""
           }`}
           onClick={() => {
-            setColorSelected(true);
-            setSelectedColor(Object.keys(colors)[0]); // 첫 컬러 요소를 선택
+            setIsColorSelected(true);
+            setSelectedColor(Object.keys(COLORS)[0]); // 첫 컬러 요소를 선택
             setSelectedImageIndex(null); // 이미지 요소 초기화
           }}
         >
@@ -73,7 +71,7 @@ export default function BackgroundOption({ onOptionChange }) {
             !isColorSelected ? "active" : ""
           }`}
           onClick={() => {
-            setColorSelected(false);
+            setIsColorSelected(false);
             setSelectedImageIndex(0); // 첫 이미지 요소를 선택
             setSelectedColor(null); // 컬러 요소 초기화
           }}
@@ -83,7 +81,7 @@ export default function BackgroundOption({ onOptionChange }) {
       </div>
       {isColorSelected ? (
         <div className="select-bg__colors">
-          {Object.entries(colors).map(([colorName, className]) => (
+          {Object.entries(COLORS).map(([colorName, className]) => (
             <div
               key={colorName}
               className={`${className} ${
@@ -103,28 +101,34 @@ export default function BackgroundOption({ onOptionChange }) {
         </div>
       ) : (
         <div className="select-bg__images">
-          {data.imageUrls.map((link, index) => (
-            <div
-              key={index}
-              className={`select-bg__images__container ${
-                selectedImageIndex === index ? "selected" : ""
-              }`}
-              onClick={() => handleImageClick(index)}
-            >
-              <img
-                src={link}
-                alt="배경이미지 선택 옵션"
-                className="select-bg__images__container__img"
-              />
-              {selectedImageIndex === index && (
+          {isLoading ? (
+            // 로딩 중인 경우
+            <div>Loading...</div>
+          ) : (
+            // 로딩 중이 아닌 경우
+            data.imageUrls.map((link, index) => (
+              <div
+                key={index}
+                className={`select-bg__images__container ${
+                  selectedImageIndex === index ? "selected" : ""
+                }`}
+                onClick={() => handleImageClick(index)}
+              >
                 <img
-                  src={iconselected}
-                  alt="선택 아이콘"
-                  className="selected-icon"
+                  src={link}
+                  alt="배경이미지 선택 옵션"
+                  className="select-bg__images__container__img"
                 />
-              )}
-            </div>
-          ))}
+                {selectedImageIndex === index && (
+                  <img
+                    src={iconselected}
+                    alt="선택 아이콘"
+                    className="selected-icon"
+                  />
+                )}
+              </div>
+            ))
+          )}
         </div>
       )}
     </section>
