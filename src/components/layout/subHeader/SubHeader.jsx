@@ -1,12 +1,21 @@
 import "./subHeader.scss";
 import ProfileList from "./ProfileList";
 import EmojiBox from "./EmojiBox";
-import { Link } from "react-router-dom";
-
-const testArr = Array.from({ length: 97 }, (_, i) => i);
-const emojiArr = Array.from({ length: 8 }, (_, i) => i);
+import { Link, useParams } from "react-router-dom";
+import { useGetData } from "../../../hooks/useGetData";
+import { BASE_URL_RECIPIENT } from "../../../constants/url";
+import ShareBox from "./ShareBox";
 
 export default function SubHeader() {
+  const { id } = useParams();
+  const { data: getAllapi, isLoading: allLoading } = useGetData(
+    `${BASE_URL_RECIPIENT}/${id}/`
+  );
+  const { data: getEmojiApi, isLoading: emojiLoading } = useGetData(
+    `${BASE_URL_RECIPIENT}${id}/reactions/`
+  );
+
+  const Loading = allLoading && emojiLoading;
   return (
     <section className="subHeader__wrap">
       <div className="inner__size-ls d__flex--btw header__inner subHeader__inner">
@@ -18,13 +27,13 @@ export default function SubHeader() {
             To. Ashley Kim Ashley Kim Ashley Kim
           </h1>
         </div>
-        <div className="d__flex--center subHeader__right">
-          <ProfileList arrayProps={testArr} />
-          <EmojiBox arrayProps={emojiArr} />
-          <button className="button--outlined button__size-h36 before-icon btn-share">
-            <span className="unvisible">공유하기</span>
-          </button>
-        </div>
+        {!Loading && (
+          <div className="d__flex--center subHeader__right">
+            {getAllapi && <ProfileList onComent={getAllapi.recentMessages} />}
+            {getEmojiApi && <EmojiBox onEmoji={getEmojiApi} onID={id} />}
+            <ShareBox />
+          </div>
+        )}
       </div>
     </section>
   );

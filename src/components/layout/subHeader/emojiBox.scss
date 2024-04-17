@@ -42,6 +42,16 @@
       }
  
     }
+    &__add-box {
+      position: relative;
+    }
+    &--picker-box {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: -100%;
+      transform: translateX(-50%);
+      height: 0;
+    }
   }
   @media screen and (max-width: $G-window-size-mobile) {
     &-box {

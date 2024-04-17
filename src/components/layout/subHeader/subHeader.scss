@@ -12,10 +12,6 @@
     .header__inner {
       padding: 16px 24px;
     }
-    .btn-share {
-      flex-shrink: 0;
-      margin-left: 13px;
-    }
     .content--separator {
       position: relative;
       &::before {
@@ -33,7 +29,6 @@
   &__left {
     .btn-back {display: none !important;}
     transition: all 0.3s;
-
   }
   &__right {
     flex-shrink: 0;
@@ -54,9 +49,7 @@
   @media screen and (max-width: $G-window-size-mobile) {
     &__wrap {
       .profile-picture__wrap {display: none !important;}
-      .btn-share {
-        margin-left: 15px;
-      }
+
     }
     &__inner {
       flex-direction: column;
