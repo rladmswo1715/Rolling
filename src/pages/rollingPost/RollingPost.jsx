@@ -1,20 +1,32 @@
 import './rollingPost.scss';
-import Card from '../../components/rollingPost/card/Card';
-import Emoji from '../../components/rollingPost/emoji/Emoji';
+import { useEffect } from 'react';
+import { useGetRecipient } from '../../api/rollingPost';
+import {
+  hasBackgroundImage,
+  getBackgroundImage,
+  getBackgroundColor,
+} from '../../utills/dataToStyle';
+import CardList from '../../components/rollingPost/card/CardList';
 
 export default function RollingPost() {
-  // const handleCardClick = () => {
-  //   console.log('버튼 클릭!');
-  //   return <Link to={<RollingPostEdit />} />;
-  // };
+  const { recipient, getRecipientData } = useGetRecipient();
+
+  useEffect(() => {
+    getRecipientData(5852);
+  }, []);
 
   return (
-    <section className="layout__post">
-      <div className="inner__size-ls inner__body">
-        {/* 여기서 작업해주세요 */}
-        <span>생성된 롤링페이퍼 페이지 /post/id</span>
-        <Card />
-        <Emoji />
+    <section>
+      <div
+        className={
+          hasBackgroundImage(recipient)
+            ? getBackgroundImage(recipient)
+            : getBackgroundColor(recipient)
+        }
+      >
+        <div className="card__layout">
+          <CardList />
+        </div>
       </div>
     </section>
   );
