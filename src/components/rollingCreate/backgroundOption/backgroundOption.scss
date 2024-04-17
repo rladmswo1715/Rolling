@@ -92,6 +92,7 @@
       border-radius: 16px;
       overflow: hidden;
       cursor: pointer;
+      background-color: $G-color-black-400;
 
       @media screen and (max-width: $G-window-size-mobile) {
         width: 154px;
