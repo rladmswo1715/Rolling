@@ -2,8 +2,12 @@ import './rollingPostMessage.scss';
 import NameInput from '../../components/rollingPostMessage/NameInput';
 import ProfileBox from '../../components/rollingPostMessage/ProfileBox';
 import DropBox from '../../components/rollingPostMessage/DropBox';
+import TextEditor from "../../components/rollingPostMessage/TextEditor";
+import { useState } from "react";
 
 export default function RollingPostMessage() {
+
+  const [data, setData] = useState("");
   
   return (
     <section className="layout__message">
@@ -26,7 +30,7 @@ export default function RollingPostMessage() {
 
           <div className="send-form__content">
             <span>내용을 입력해 주세요</span>
-            <div>에디터</div>
+            <TextEditor setData={setData} />
           </div>
 
           <div className="send-form__content">
