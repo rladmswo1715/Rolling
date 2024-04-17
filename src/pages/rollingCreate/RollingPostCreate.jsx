@@ -1,16 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import PostToInput from "../../components/rollingCreate/postToInput/PostToInput";
-import BackgroundOption from "../../components/rollingCreate/backgroundOption/BackgroundOption";
-import "./rollingPostCreate.scss";
-import CreateRollingPaper from "../../api/CreateRollingPaper";
-import CopyUrl from "../../components/share/CopyUrl";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PostToInput from '../../components/rollingCreate/postToInput/PostToInput';
+import BackgroundOption from '../../components/rollingCreate/backgroundOption/BackgroundOption';
+import './rollingPostCreate.scss';
+import CreateRollingPaper from '../../api/CreateRollingPaper';
 
 export default function RollingPostCreate() {
-  const [receiverName, setReceiverName] = useState("");
+  const [receiverName, setReceiverName] = useState('');
   const [backgroundOption, setBackgroundOption] = useState({
-    type: "color",
-    value: "beige",
+    type: 'color',
+    value: 'beige',
   });
   const navigate = useNavigate(); // useNavigate로 변경
 
@@ -38,12 +37,11 @@ export default function RollingPostCreate() {
           onOptionChange={handleBackgroundOptionChange}
           backgroundOption={backgroundOption}
         />
-        <CopyUrl />
         <div className="btn--container">
           <button
-            className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === "" ? "disabled" : ""}`}
+            className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === '' ? 'disabled' : ''}`}
             onClick={handleCreatePost}
-            disabled={receiverName.trim() === ""}
+            disabled={receiverName.trim() === ''}
           >
             생성하기
           </button>
