@@ -1,0 +1,21 @@
+@import '../../../styles/_variables';
+
+.share-box {
+  &--wrap {
+    &.dropdown {
+      width: unset;
+      max-width: unset;
+      margin-left: 13px;
+      .btn-share {
+        flex-shrink: 0;
+      }
+      .dropdown__menu {
+        left: unset;
+        width: 140px;
+      }
+      @media screen and (max-width: $G-window-size-mobile) {
+        margin-left: 15px;
+      }
+    }
+  }
+}
