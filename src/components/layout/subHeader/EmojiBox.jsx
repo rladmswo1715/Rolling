@@ -27,7 +27,7 @@ async function setPostEmoji(id, method, emoji, type) {
 export default function EmojiBox({ onEmoji, onID }) {
   const [isEmojiAdd, setIsEmojiAdd] = useState(false);
   const [isEmojiMore, setIsEmojiMore] = useState(false);
-  const [isSelectedEmojis, setIsSelectedEmojis] = useState(onEmoji.results);
+  const [isSelectedEmojis, setIsSelectedEmojis] = useState(onEmoji?.results || []);
   const refID = useRef(0);
 
   const handleDoropDwonOpen = () => {
