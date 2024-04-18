@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MsgCreateDataSet } from '../../context/MsgCreateDataSet';
+import { useFormDataSet } from '../../hooks/useFormDataSet';
 
 function NameInput() {
   const [userName,setUserName] = useState('');
@@ -10,12 +10,15 @@ function NameInput() {
 
   function handleSetUserName(e) {
     setUserName(e.target.value);
+  }
 
+  useEffect(() => {
     setData((prevData) => ({
       ...prevData,
-      name: userName
+      sender: userName
     }));
-  }
+  },[userName]);
+  //useFormDataSet(setData, 'sender', userName);
 
   function handleInputFocusOut(e) {
     const isUserName = (userName === '');

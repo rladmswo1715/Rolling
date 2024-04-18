@@ -4,22 +4,21 @@ import ProfileBox from '../../components/rollingPostMessage/ProfileBox';
 import DropBox from '../../components/rollingPostMessage/DropBox';
 import TextEditor from '../../components/rollingPostMessage/TextEditor';
 import { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { MsgCreateDataSet } from '../../context/MsgCreateDataSet';
 
 export default function RollingPostMessage() {
+  const params = useParams();
 
   const [data, setData] = useState({
-    name: "",
-    profileImage: "",
+    sender: "",
+    profileImageURL: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { name, profileImage } = data;
-
-    console.log("Name:", name);
-    console.log("Profile Image:", profileImage);
+    const { sender, profileImageURL, relationship, content, font } = data;
 
   };
   
@@ -40,7 +39,7 @@ export default function RollingPostMessage() {
 
             <div className="send-form__content">
               <span>상대와의 관계</span>
-              <DropBox boxType="relation" />
+              <DropBox boxType="relationship" />
             </div>
 
             <div className="send-form__content">
