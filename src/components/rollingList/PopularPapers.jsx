@@ -6,14 +6,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import './styles.scss';
+import './swiperStyles.scss';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
 export default function PopularPapers({ recipients }) {
   if (!recipients) return null;
-  const popularRecipients = recipients;
   const [swiperRef, setSwiperRef] = useState(null);
+  const popularRecipients = recipients.slice();
+
+  // 이모지 많은 순으로 정렬
+  popularRecipients.sort((a, b) => b.reactionCount - a.reactionCount);
 
   return (
     <div className="PopularPapers">
@@ -21,7 +24,7 @@ export default function PopularPapers({ recipients }) {
       <div className="PopularPapers--papers">
         <Swiper
           onSwiper={setSwiperRef}
-          slidesPerView={1.5}
+          slidesPerView={'auto'}
           centeredSlides={false}
           spaceBetween={30}
           pagination={{
@@ -34,22 +37,21 @@ export default function PopularPapers({ recipients }) {
             1100: {
               slidesPerView: 4,
             },
-            800: {
-              slidesPerView: 2.5,
-            },
           }}
           autoplay={{
             delay: 3000,
             disableOnInteraction: false,
           }}
         >
-          {popularRecipients.map((recepient) => (
-            <SwiperSlide key={recepient.id}>
-              <Link to={`/post/${recepient.id}`}>
-                <RollingPaper recepient={recepient} />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {popularRecipients.map((popularRecipient) => {
+            return (
+              <SwiperSlide key={popularRecipient.id}>
+                <Link to={`/post/${popularRecipient.id}`}>
+                  <RollingPaper recipient={popularRecipient} />
+                </Link>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
     </div>

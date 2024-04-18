@@ -32,8 +32,6 @@ export default function RollingList() {
     getRecipientData(20, 0);
   }, []);
 
-  console.log(recipients);
-
   return (
     <section className="layout__list">
       <div className="inner__size-full inner__body">

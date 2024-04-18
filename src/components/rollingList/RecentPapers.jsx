@@ -6,14 +6,15 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import './styles.scss';
+import './swiperStyles.scss';
 import { Pagination, Navigation } from 'swiper/modules';
 import { Link } from 'react-router-dom';
 
 export default function RecentPapers({ recipients }) {
   if (!recipients) return null;
-  const recentRecipients = recipients;
   const [swiperRef, setSwiperRef] = useState(null);
+
+  const recentRecipients = recipients.slice();
 
   return (
     <div className="RecentPapers">
@@ -21,7 +22,7 @@ export default function RecentPapers({ recipients }) {
       <div className="RecentPapers--papers">
         <Swiper
           onSwiper={setSwiperRef}
-          slidesPerView={1.5}
+          slidesPerView={'auto'}
           centeredSlides={false}
           spaceBetween={30}
           pagination={{
@@ -34,18 +35,17 @@ export default function RecentPapers({ recipients }) {
             1100: {
               slidesPerView: 4,
             },
-            800: {
-              slidesPerView: 2.5,
-            },
           }}
         >
-          {recentRecipients.map((recepient) => (
-            <SwiperSlide key={recepient.id}>
-              <Link to={`/post/${recepient.id}`}>
-                <RollingPaper recepient={recepient} />
-              </Link>
-            </SwiperSlide>
-          ))}
+          {recentRecipients.map((recentRecipient) => {
+            return (
+              <SwiperSlide key={recentRecipient.id}>
+                <Link to={`/post/${recentRecipient.id}`}>
+                  <RollingPaper recipient={recentRecipient} />
+                </Link>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
       </div>
     </div>

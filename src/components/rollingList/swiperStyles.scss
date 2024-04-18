@@ -54,6 +54,6 @@
 .swiper.swiper-initialized.swiper-horizontal.mySwiper {
   position: static;
 }
-// .swiper-wrapper {
-//   position: static;
-// }
+.swiper-wrapper > .swiper-slide {
+  width: auto;
+}

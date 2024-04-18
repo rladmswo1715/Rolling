@@ -1,15 +1,15 @@
-import "./emojiBox.scss";
-import { useRef, useState } from "react";
-import Emoji from "../../rollingPost/emoji/Emoji";
-import { BASE_URL_RECIPIENT } from "../../../constants/url";
-import EmojiPicker from "emoji-picker-react";
+import './emojiBox.scss';
+import { useRef, useState } from 'react';
+import Emoji from '../../rollingPost/emoji/Emoji';
+import { BASE_URL_RECIPIENT } from '../../../constants/url';
+import EmojiPicker from 'emoji-picker-react';
 
 async function setPostEmoji(id, method, emoji, type) {
   try {
     const response = await fetch(`${BASE_URL_RECIPIENT}${id}/reactions/`, {
       method,
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         emoji,
@@ -60,7 +60,7 @@ export default function EmojiBox({ onEmoji, onID }) {
           count: 1,
         },
       ]);
-      setPostEmoji(onID, "POST", emojiData.emoji, "increase");
+      setPostEmoji(onID, 'POST', emojiData.emoji, 'increase');
     }
     setIsEmojiAdd(false);
     return;
@@ -78,7 +78,7 @@ export default function EmojiBox({ onEmoji, onID }) {
     const emojiApiUpdate = isSelectedEmojis.find(
       (emoji) => emoji.id === id && emoji
     );
-    setPostEmoji(onID, "POST", emojiApiUpdate.emoji, "increase");
+    setPostEmoji(onID, 'POST', emojiApiUpdate.emoji, 'increase');
     setIsSelectedEmojis(() => hendleStateUpdate(id));
   };
 
@@ -96,7 +96,7 @@ export default function EmojiBox({ onEmoji, onID }) {
           {isSelectedEmojis.length > 3 && (
             <button
               type="button"
-              className={`before-icon emoji-box__dropdown--toggle-btn ${isEmojiMore && "hide"}`}
+              className={`before-icon emoji-box__dropdown--toggle-btn ${isEmojiMore && 'hide'}`}
               onClick={handleDoropDwonOpen}
             >
               <span className="unvisible">열기</span>
@@ -124,7 +124,7 @@ export default function EmojiBox({ onEmoji, onID }) {
         </button>
         <div className="emoji-box--picker-box">
           <EmojiPicker
-            emojiStyle={"google"}
+            emojiStyle={'google'}
             searchDisabled={true}
             previewConfig={{
               showPreview: false,

@@ -1,55 +1,63 @@
 import ProfileList from '../layout/subHeader/ProfileList';
 import Emoji from '../rollingPost/emoji/Emoji';
 import './rollingPaper.scss';
+import { BASE_URL_RECIPIENT } from '../../constants/url';
 
-const testArr = Array.from({ length: 97 }, (_, i) => i);
-const emojiArr = Array.from({ length: 8 }, (_, i) => i);
+async function setPostEmoji(id, method, emoji, type) {
+  try {
+    const response = await fetch(`${BASE_URL_RECIPIENT}${id}/reactions/`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        emoji,
+        type,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to ${type} reaction`);
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
+}
 
-export default function RollingPaper({ recepient }) {
-  if (!recepient) return null;
+export default function RollingPaper({ recipient }) {
+  if (!recipient) return null;
+
   const {
-    id,
     name,
     backgroundColor,
     backgroundImageURL,
-    createdAt,
-    messageCount,
-  } = recepient;
+    topReactions,
+    recentMessages,
+  } = recipient;
 
-  const background = `RollingPaper--${backgroundColor}`;
+  const background = `RollingPaper__background RollingPaper--${backgroundImageURL ? 'image' : backgroundColor}`;
+
   const imageStyle = {
     background: `linear-gradient(180deg, rgba(0, 0, 0, 0.54) 0%, rgba(0, 0, 0, 0.54) 100%), url(${backgroundImageURL})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
 
+  const isImageStyle = backgroundImageURL ? imageStyle : null;
+
   return (
     <div className="RollingPaper">
-      {backgroundImageURL ? (
-        <div className="RollingPaper--image" style={imageStyle}>
-          <div className="RollingPaper--profile">
-            <h1>{name}</h1>
-            <ProfileList arrayProps={testArr} />
-          </div>
-          <div className="RollingPaper--emoji">
-            {emojiArr.slice(0, 3).map((data) => (
-              <Emoji key={data} />
-            ))}
-          </div>
+      <div className={background} style={isImageStyle}>
+        <div className="RollingPaper--profile">
+          <h1>{name}</h1>
+          <ProfileList onComent={recentMessages} />
+          <div className="RollingPaper--line"></div>
         </div>
-      ) : (
-        <div className={background}>
-          <div className="RollingPaper--profile">
-            <h1>{name}</h1>
-            <ProfileList arrayProps={testArr} />
-          </div>
-          <div className="RollingPaper--emoji">
-            {emojiArr.slice(0, 3).map((data) => (
-              <Emoji key={data} />
-            ))}
-          </div>
+        <div className="RollingPaper--emoji">
+          {topReactions.map((emoji) => (
+            <Emoji key={emoji.id} {...emoji} />
+          ))}
         </div>
-      )}
+      </div>
     </div>
   );
 }
