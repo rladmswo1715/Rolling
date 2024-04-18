@@ -2,13 +2,12 @@ import './rollingPostMessage.scss';
 import NameInput from '../../components/rollingPostMessage/NameInput';
 import ProfileBox from '../../components/rollingPostMessage/ProfileBox';
 import DropBox from '../../components/rollingPostMessage/DropBox';
-import TextEditor from "../../components/rollingPostMessage/TextEditor";
-import { useState } from "react";
+import TextEditor from '../../components/rollingPostMessage/TextEditor';
+import { useState } from 'react';
 
 export default function RollingPostMessage() {
+  const [data, setData] = useState('');
 
-  const [data, setData] = useState("");
-  
   return (
     <section className="layout__message">
       <div className="inner__size-ms inner__body">
@@ -38,7 +37,9 @@ export default function RollingPostMessage() {
             <DropBox boxType="font" />
           </div>
 
-          <button className="button--fill-primary button__size-h56 font-bold send-form__btn">생성하기</button>
+          <button className="button--fill-primary button__size-h56 font-bold send-form__btn">
+            생성하기
+          </button>
         </form>
       </div>
     </section>

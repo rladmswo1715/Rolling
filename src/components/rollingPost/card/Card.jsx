@@ -12,8 +12,13 @@ export default function Card({
 }) {
   const formatedDate = formatDate(createdAt);
 
+  // TODO: 모달 실행으로 바꿔야 함!
+  const handleCardClick = () => {
+    console.log('카드 클릭!');
+  };
+
   return (
-    <button className="card">
+    <button className="card" onClick={handleCardClick}>
       <div className="card--container">
         <div className="card--from-group">
           <div className="card--from-group--img profile-picture--large">
@@ -28,11 +33,9 @@ export default function Card({
             <Badge relationship={relationship} />
           </div>
         </div>
-
         <div className="content">
           <p className="content--short">{content}</p>
         </div>
-
         <div className="createdAt">{formatedDate}</div>
       </div>
     </button>
