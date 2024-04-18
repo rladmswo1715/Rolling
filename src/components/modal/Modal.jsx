@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import "./modal.scss";
+import React, { useState } from 'react';
+import './modal.scss';
 
 export function Modal({ cardData }) {
   const [modalOpen, setModalOpen] = useState(true); // 모달 상태를 관리하는 useState 훅 사용
@@ -21,13 +21,13 @@ export function Modal({ cardData }) {
               <div className="modal__content__header__profile__name">
                 <p>From. {cardData.sender}</p>
                 <div className="modal__content__header__profile__relationship">
-                  {cardData.relationship === "지인" ? (
+                  {cardData.relationship === '지인' ? (
                     <span class="badge__orange">지인</span>
-                  ) : cardData.relationship === "동료" ? (
+                  ) : cardData.relationship === '동료' ? (
                     <span class="badge__purple">동료</span>
-                  ) : cardData.relationship === "가족" ? (
+                  ) : cardData.relationship === '가족' ? (
                     <span class="badge__green">가족</span>
-                  ) : cardData.relationship === "친구" ? (
+                  ) : cardData.relationship === '친구' ? (
                     <span class="badge__blue">친구</span>
                   ) : (
                     <p>Unknown Sender</p>

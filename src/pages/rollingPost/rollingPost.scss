@@ -1,16 +1,120 @@
 @import '../../styles/_variables';
 @import '../../styles/_mixin';
 
-.layout__post {
-  .inner__body {
-    padding: 181px 24px 60px;
-
-    @media screen and (max-width: $G-window-size-tablet) {
-      padding: 161px 24px 60px;
-    }
+.card__background__img {
+  &__1 {
+    display: flex;
+    justify-content: center;
+    padding-block: 150px;
+    padding-top: 150px;
+    padding-bottom: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('https://picsum.photos/id/683/3840/2160');
+    background-size: cover;
 
     @media screen and (max-width: $G-window-size-mobile) {
-      padding: 84px 24px 40px;
+      padding-top: 170px;
     }
+  }
+
+  &__2 {
+    display: flex;
+    justify-content: center;
+    padding-top: 150px;
+    padding-bottom: 100vh;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('https://picsum.photos/id/24/3840/2160');
+    @media screen and (max-width: $G-window-size-mobile) {
+      padding-top: 170px;
+    }
+  }
+
+  &__3 {
+    display: flex;
+    justify-content: center;
+    padding-top: 150px;
+    padding-bottom: 100vh;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('https://picsum.photos/id/599/3840/2160');
+    @media screen and (max-width: $G-window-size-mobile) {
+      padding-top: 170px;
+    }
+  }
+
+  &__4 {
+    display: flex;
+    justify-content: center;
+    padding-top: 150px;
+    padding-bottom: 100vh;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('https://picsum.photos/id/1058/3840/2160');
+    @media screen and (max-width: $G-window-size-mobile) {
+      padding-top: 170px;
+    }
+  }
+}
+
+.card__background__color {
+  &__purple {
+    display: flex;
+    justify-content: center;
+    padding-top: 150px;
+    padding-bottom: 100vh;
+    background: $G-color-purple-200;
+    @media screen and (max-width: $G-window-size-mobile) {
+      padding-top: 170px;
+    }
+  }
+
+  &__beige {
+    display: flex;
+    justify-content: center;
+    background-color: $G-color-orange-200;
+    padding-top: 150px;
+    padding-bottom: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      padding-top: 170px;
+    }
+  }
+
+  &__blue {
+    display: flex;
+    justify-content: center;
+    background-color: $G-color-blue-200;
+    padding-top: 150px;
+    padding-bottom: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      padding-top: 170px;
+    }
+  }
+
+  &__green {
+    display: flex;
+    justify-content: center;
+    background-color: $G-color-green-200;
+    padding-top: 150px;
+    padding-bottom: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      padding-top: 170px;
+    }
+  }
+}
+
+.cards__layout {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  @media screen and (max-width: $G-window-size-tablet) {
+    margin-inline: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    grid-template-columns: 1fr;
+    justify-items: center;
   }
 }

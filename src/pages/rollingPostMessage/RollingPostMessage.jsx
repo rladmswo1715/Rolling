@@ -21,7 +21,7 @@ export default function RollingPostMessage() {
     const { sender, profileImageURL, relationship, content, font } = data;
 
   };
-  
+
   return (
     <section className="layout__message">
       <div className="inner__size-ms inner__body">
@@ -52,7 +52,9 @@ export default function RollingPostMessage() {
               <DropBox boxType="font" />
             </div>
           </MsgCreateDataSet.Provider>
-          <button className="button--fill-primary button__size-h56 font-bold send-form__btn">생성하기</button>
+          <button className="button--fill-primary button__size-h56 font-bold send-form__btn">
+            생성하기
+          </button>
         </form>
       </div>
     </section>
