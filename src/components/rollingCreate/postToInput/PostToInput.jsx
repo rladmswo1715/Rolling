@@ -39,7 +39,7 @@ function PostToInput({ onInputChange }) {
       onInputChange(value); // 부모 컴포넌트로 input value를 전달
       setError(''); // 에러 초기화
     } else {
-      setError('최대 20자까지 입력 가능합니다.');
+      setError('최대 14자까지 입력 가능합니다.');
     }
   }
 
