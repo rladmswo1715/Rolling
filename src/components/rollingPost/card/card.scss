@@ -81,7 +81,7 @@
   text-overflow: clip;
 
   &--short {
-    // width: 330px;
+    width: 330px;
     height: 130px;
     padding-top: 1rem;
     border-top: 1px solid #eee;
@@ -97,7 +97,13 @@
     color: #4a4a4a;
     // $G-window-size-mobile
     // $G-window-size-mobile2
+    @media screen and (max-width: $G-window-size-tablet) {
+    }
+    @media screen and (max-width: $G-window-size-mobile) {
+      width: 290px;
+    }
     @media screen and (max-width: $G-window-size-mobile2) {
+      width: 270px;
       height: 80px;
     }
   }
