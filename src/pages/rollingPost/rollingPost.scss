@@ -1,16 +1,90 @@
 @import '../../styles/_variables';
 @import '../../styles/_mixin';
 
-.layout__post {
-  .inner__body {
-    padding: 181px 24px 60px;
-
-    @media screen and (max-width: $G-window-size-tablet) {
-      padding: 161px 24px 60px;
-    }
-
+.card__background__img {
+  &__1 {
+    position: relative;
+    top: 65px;
+    height: 100vh;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('https://picsum.photos/id/683/3840/2160');
     @media screen and (max-width: $G-window-size-mobile) {
-      padding: 84px 24px 40px;
+      top: 105px;
+    }
+  }
+
+  &__2 {
+    position: relative;
+    top: 65px;
+    height: 100vh;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('https://picsum.photos/id/24/3840/2160');
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
+  }
+
+  &__3 {
+    position: relative;
+    top: 65px;
+    height: 100vh;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('https://picsum.photos/id/599/3840/2160');
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
+  }
+
+  &__4 {
+    position: relative;
+    top: 65px;
+    height: 100vh;
+    background-size: cover;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      url('https://picsum.photos/id/1058/3840/2160');
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
+  }
+}
+
+.card__background__color {
+  &__purple {
+    background: $G-color-purple-200;
+    top: 65px;
+    height: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
+  }
+
+  &__beige {
+    background-color: $G-color-orange-200;
+    top: 65px;
+    height: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
+  }
+
+  &__blue {
+    background-color: $G-color-blue-200;
+    top: 65px;
+    height: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
+    }
+  }
+
+  &__green {
+    background-color: $G-color-green-200;
+    top: 65px;
+    height: 100vh;
+    @media screen and (max-width: $G-window-size-mobile) {
+      top: 105px;
     }
   }
 }

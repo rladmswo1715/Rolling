@@ -1,10 +1,10 @@
-import "./subHeader.scss";
-import ProfileList from "./ProfileList";
-import EmojiBox from "./EmojiBox";
-import { Link, useParams } from "react-router-dom";
-import { useGetData } from "../../../hooks/useGetData";
-import { BASE_URL_RECIPIENT } from "../../../constants/url";
-import ShareBox from "./ShareBox";
+import './subHeader.scss';
+import ProfileList from './ProfileList';
+import EmojiBox from './EmojiBox';
+import { Link, useParams } from 'react-router-dom';
+import { useGetData } from '../../../hooks/useGetData';
+import { BASE_URL_RECIPIENT } from '../../../constants/url';
+import ShareBox from './ShareBox';
 
 export default function SubHeader() {
   const { id } = useParams();
