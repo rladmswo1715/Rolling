@@ -1,5 +1,5 @@
 import './rollingPostEdit.scss';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useGetRecipient } from '../../api/rollingPost';
 import {
   hasBackgroundImage,
@@ -9,15 +9,19 @@ import {
 import CardDeleteList from '../../components/rollingPostEdit/CardDeleteList';
 import { useParams } from 'react-router-dom';
 import { BASE_URL_RECIPIENT } from '../../constants/url';
+
 export default function RollingPostEdit() {
+  const [hasCard, setHasCard] = useState(false);
   const { recipient, getRecipientData } = useGetRecipient();
   const { id } = useParams();
 
-  const hasCard = recipient.length > 0;
-
   useEffect(() => {
     getRecipientData(id);
+    // TODO: 메세지의 길이가 0 초과면(메세지가 있으면) hasCard를 true로 설정하고, 삭제 버튼을 렌더링
+    if (recipient.recentMessage) setHasCard(true);
   }, []);
+
+  console.log(hasCard);
 
   const handleDeleteClick = async () => {
     try {
@@ -42,6 +46,9 @@ export default function RollingPostEdit() {
             : getBackgroundColor(recipient)
         }
       >
+        <div className="cards__layout">
+          <CardDeleteList />
+        </div>
         {hasCard ? (
           <div className="button__layout">
             <button className="button__delete" onClick={handleDeleteClick}>
@@ -51,9 +58,6 @@ export default function RollingPostEdit() {
         ) : (
           ''
         )}
-        <div className="cards__layout">
-          <CardDeleteList />
-        </div>
       </div>
     </section>
   );
