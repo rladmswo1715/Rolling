@@ -1,19 +1,21 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { useGetMessage } from '../../../api/rollingPost';
 import './card.scss';
 import EmptyCard from './EmptyCard';
 import Card from './Card';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function CardList() {
   const { message, getMessage } = useGetMessage();
+  const navigate = useNavigate();
+  const id = useParams();
 
-  const handleCardClick = () => {
-    console.log('버튼 클릭!');
-    return <Link to={<RollingPostEdit />} />;
+  const handleEmptyCardClick = () => {
+    navigate(`/post/${id}/message`);
   };
 
   useEffect(() => {
-    getMessage(5852, 10, 0);
+    getMessage(id, 10, 0);
   }, []);
 
   const hasCard = message.length > 0;
@@ -32,6 +34,6 @@ export default function CardList() {
       );
     })
   ) : (
-    <EmptyCard onClick={handleCardClick} />
+    <EmptyCard onClick={handleEmptyCardClick} />
   );
 }

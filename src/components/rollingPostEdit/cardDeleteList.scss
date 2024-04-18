@@ -1,0 +1,20 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
+
+.position_fixed {
+  position: relative;
+  bottom: 250px;
+  left: 320px;
+
+  @media screen and (max-width: $G-window-size-tablet) {
+    left: 320px;
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    left: 270px;
+    bottom: 240px;
+  }
+  @media screen and (max-width: $G-window-size-mobile2) {
+    left: 260px;
+    bottom: 200px;
+  }
+}
