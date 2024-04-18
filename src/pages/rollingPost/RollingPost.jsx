@@ -7,12 +7,14 @@ import {
   getBackgroundColor,
 } from '../../utills/dataToStyle';
 import CardList from '../../components/rollingPost/card/CardList';
+import { useParams } from 'react-router-dom';
 
 export default function RollingPost() {
   const { recipient, getRecipientData } = useGetRecipient();
+  const { id } = useParams();
 
   useEffect(() => {
-    getRecipientData(5852);
+    getRecipientData(id);
   }, []);
 
   return (
@@ -24,7 +26,7 @@ export default function RollingPost() {
             : getBackgroundColor(recipient)
         }
       >
-        <div className="card__layout">
+        <div className="cards__layout">
           <CardList />
         </div>
       </div>
