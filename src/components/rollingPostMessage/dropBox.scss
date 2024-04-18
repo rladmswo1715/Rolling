@@ -1,0 +1,10 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
+
+.send-form__content {
+  & .dropdown {
+    &__menu {
+      z-index: $G-z-index-header;
+    }
+  }
+}

@@ -1,9 +1,13 @@
 import './rollingPostMessage.scss';
 import NameInput from '../../components/rollingPostMessage/NameInput';
-import ProfileBox from "../../components/rollingPostMessage/ProfileBox";
-import RelationDropBox from "../../components/rollingPostMessage/RelationDropBox";
+import ProfileBox from '../../components/rollingPostMessage/ProfileBox';
+import DropBox from '../../components/rollingPostMessage/DropBox';
+import TextEditor from "../../components/rollingPostMessage/TextEditor";
+import { useState } from "react";
 
 export default function RollingPostMessage() {
+
+  const [data, setData] = useState("");
   
   return (
     <section className="layout__message">
@@ -21,19 +25,17 @@ export default function RollingPostMessage() {
 
           <div className="send-form__content">
             <span>상대와의 관계</span>
-            <RelationDropBox />
+            <DropBox boxType="relation" />
           </div>
 
           <div className="send-form__content">
             <span>내용을 입력해 주세요</span>
-            <div>에디터</div>
+            <TextEditor setData={setData} />
           </div>
 
           <div className="send-form__content">
             <span>폰트 선택</span>
-            <div className="dropdown">
-              <button className="dropdown__toggle hide">선택</button>
-            </div>
+            <DropBox boxType="font" />
           </div>
 
           <button className="button--fill-primary button__size-h56 font-bold send-form__btn">생성하기</button>
