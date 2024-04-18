@@ -1,12 +1,16 @@
 import './profileBox.scss';
-import { useEffect,useState,useCallback } from "react";
-import { useGetData } from "../../hooks/useGetData";
-import { BASE_URL } from "../../constants/url.js";
-import ProfileImage from "./ProfileImage";
+import React, { useContext } from 'react';
+import { useEffect, useState } from 'react';
+import { useGetData } from '../../hooks/useGetData';
+import { BASE_URL } from '../../constants/url.js';
+import { MsgCreateDataSet } from '../../context/MsgCreateDataSet';
+import { useFormDataSet } from '../../hooks/useFormDataSet';
+import ProfileImage from './ProfileImage';
 
-export default function ProfileBox() {
+function ProfileBox() {
   const {data, error} = useGetData(`${BASE_URL}profile-images/`);
   const [currentProfileImg, setCurrentProfileImg] = useState(null);
+  const {setData} = useContext(MsgCreateDataSet)
 
   if(error) {
     alert("프로필 이미지를 불러오는데 실패했습니다.");
@@ -15,7 +19,8 @@ export default function ProfileBox() {
   useEffect(() => {
     setCurrentProfileImg(data?.imageUrls[0]);
   },[data]);
-  
+
+  useFormDataSet(setData, 'profileImageURL', currentProfileImg);
   
   return (
     <div className="send-form__profile-wrap">
@@ -33,3 +38,5 @@ export default function ProfileBox() {
     </div>
   )
 }
+
+export default React.memo(ProfileBox);
