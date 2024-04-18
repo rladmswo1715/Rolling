@@ -4,18 +4,19 @@ import '../rollingPost/card/card.scss';
 import EmptyCard from '../rollingPost/card/EmptyCard';
 import Card from '../rollingPost/card/Card';
 import './cardDeleteList.scss';
+import { useParams } from 'react-router-dom';
 export default function CardDeleteList() {
   const { message, getMessage } = useGetMessage();
+  const { id } = useParams();
 
   const handleCardClick = () => {
     console.log('버튼 클릭!');
-    return <Link to={<RollingPostEdit />} />;
   };
 
   const handleDeleteClick = () => {};
 
   useEffect(() => {
-    getMessage(5850, 10, 0);
+    getMessage(id, 10, 0);
   }, []);
 
   const hasCard = message.length > 0;
@@ -23,7 +24,7 @@ export default function CardDeleteList() {
   return hasCard ? (
     message.map((el) => {
       return (
-        <div>
+        <div key={el.id}>
           <Card
             key={el.id}
             sender={el.sender}
