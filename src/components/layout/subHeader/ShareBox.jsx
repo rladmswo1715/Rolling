@@ -1,59 +1,64 @@
-import { useEffect, useState } from "react";
-import "./shareBox.scss";
-import kakaoImg from '/assets/image/kakao_share_image.png'
-const { Kakao } = window;
+import './shareBox.scss';
+import { useEffect, useState } from 'react';
+import { kakaoShare } from '../../../utills/kakaoShare';
+import Toast from '../../toast/Toast';
 
-export default function ShareBox() {
+const { Kakao } = window;
+const shareURL = window.location.href;
+
+export default function ShareBox({ onName }) {
   const [isShareOpen, setIsShareOpen] = useState(false);
+  const [isShowToast, setIsShowToast] = useState(false);
+  const [isMessage, setMessage] = useState('');
+
+  // kakao 공유하기
+  useEffect(() => {
+    Kakao.cleanup();
+    Kakao.init(import.meta.env.VITE_KAKAO_KEY);
+  }, [Kakao]);
 
   const handleDoropDwonOpen = () => {
     setIsShareOpen((prev) => !prev);
   };
-  const [copied, setCopied] = useState(false);
 
-  const handleURLCopy = () => {
-    const currentUrl = window.location.href;
-    navigator.clipboard
-      .writeText(currentUrl)
-      .then(() => {
-        setCopied(true);
-        setTimeout(() => setCopied(false), 5000); // 5초 후에 토스트 메시지 사라짐
-      })
-      .catch((error) => {
-        console.error("클립보드 복사 실패:", error);
-      });
+  const handleToast = (message) => {
+    setMessage(message);
+    setIsShowToast(true);
+    setTimeout(() => setIsShowToast(false), 2000);
   };
 
-  // 카카오톡 공유하기 
-  useEffect(()=>{
-    Kakao.cleanup();
-    Kakao.init(import.meta.env.VITE_KAKAO_KEY);
-  },[])
+  // url 공유하기
+  const handleURLShare = async () => {
+    try {
+      // 클립보드 복사
+      if (navigator.clipboard) {
+        await navigator.clipboard
+          .writeText(shareURL)
+          .then(() => {
+            handleToast('URL이 복사 되었습니다.');
+          })
+          .catch((error) => {
+            handleToast('클립보드 복사 실패');
+            console.log(error);
+          });
+      }
 
-  const handleKaKaoShare = () => {
-    Kakao.Share.sendDefault({
-      objectType: 'feed',
-      content: {
-        title: `Rolling`,
-        description: `${'홍길동'} 롤링을 소개합니다.`,
-        imageUrl:`https://i.pinimg.com/originals/07/ce/fe/07cefe14f9b9e45f0e5f0a42a78f0747.gif`,
-        link: {
-          mobileWebUrl: 'https://developers.kakao.com',
-          webUrl: 'https://developers.kakao.com',
-        },
-      },
-      buttons: [
-        {
-          title: `${'홍길동'} 롤링 페이지로 이동`,
-          link: {
-            mobileWebUrl: 'https://developers.kakao.com',
-            webUrl: 'https://developers.kakao.com',
-          },
-        },
-      ],
-    })
-  }
-  
+      // pc, mobile 공유화면
+      if (navigator.share) {
+        await navigator.share({
+          title: '공유하기',
+          text: '복사된 URL 주소 : ',
+          url: shareURL,
+        });
+      } else {
+        handleToast('Web Share API를 지원하지 않는 브라우저입니다.');
+      }
+    } catch (error) {
+      handleToast('URL 공유 실패');
+      console.log(error);
+    }
+  };
+
   return (
     <div className="dropdown share-box--wrap">
       <button
@@ -64,10 +69,15 @@ export default function ShareBox() {
       </button>
       {isShareOpen && (
         <div className="dropdown__menu">
-          <button className="item" onClick={handleKaKaoShare}>카카오톡 공유</button>
-          <button className="item" onClick={handleURLCopy}>URL 공유</button>
+          <button className="item" onClick={() => kakaoShare(onName)}>
+            카카오톡 공유
+          </button>
+          <button className="item" onClick={handleURLShare}>
+            URL 공유
+          </button>
         </div>
       )}
+      {isShowToast && <Toast message={isMessage} />}
     </div>
   );
 }
