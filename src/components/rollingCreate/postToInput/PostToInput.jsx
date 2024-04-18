@@ -3,8 +3,7 @@ import './postToInput.scss';
 import { BASE_URL_RECIPIENT } from '../../../constants/url';
 import { useGetData } from '../../../hooks/useGetData';
 
-function PostToInput({ onInputChange }) {
-  const [receiverName, setReceiverName] = useState('');
+function PostToInput({ onInputChange, receiverName }) {
   const [error, setError] = useState('');
   const { data: recipients, error: recipientsError } = useGetData(
     `${BASE_URL_RECIPIENT}`
@@ -35,7 +34,6 @@ function PostToInput({ onInputChange }) {
   function handleChange(e) {
     const value = e.target.value;
     if (value.length <= 14) {
-      setReceiverName(value);
       onInputChange(value); // 부모 컴포넌트로 input value를 전달
       setError(''); // 에러 초기화
     } else {
@@ -59,4 +57,4 @@ function PostToInput({ onInputChange }) {
   );
 }
 
-export default PostToInput;
+export default React.memo(PostToInput);

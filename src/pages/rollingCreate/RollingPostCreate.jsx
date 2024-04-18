@@ -9,7 +9,6 @@ import { useGetData } from '../../hooks/useGetData';
 import { BASE_URL_RECIPIENT } from '../../constants/url';
 
 export default function RollingPostCreate() {
-  const [receiverName, setReceiverName] = useState('');
   const [backgroundOption, setBackgroundOption] = useState({
     type: 'color',
     value: 'beige',
@@ -17,6 +16,7 @@ export default function RollingPostCreate() {
   const [toastMessage, setToastMessage] = useState(''); // 토스트 메시지 상태 추가
   const [showToast, setShowToast] = useState(false); // 토스트 상태 추가
   const [isDuplicateName, setIsDuplicateName] = useState(false); // 중복 이름 상태 추가
+  const [receiverName, setReceiverName] = useState(''); // 수신자 이름 상태 추가
   const navigate = useNavigate(); // useNavigate로 변경
   const { data } = useGetData(BASE_URL_RECIPIENT); // 데이터 가져오기 훅 사용
 
@@ -35,13 +35,8 @@ export default function RollingPostCreate() {
     setIsDuplicateName(isDuplicate);
   }
 
-  function handleBackgroundOptionChange(option) {
-    setBackgroundOption(option);
-  }
-
   async function handleCreatePost() {
-    if (isDuplicateName) return; // 중복된 이름이면 함수 종료
-    // 토스트 메시지 설정
+    if (isDuplicateName) return;
     setToastMessage('게시물을 생성 중입니다...');
     setShowToast(true);
     setTimeout(async () => {
@@ -67,7 +62,7 @@ export default function RollingPostCreate() {
           receiverName={receiverName}
         />
         <BackgroundOption
-          onOptionChange={handleBackgroundOptionChange}
+          onOptionChange={setBackgroundOption}
           backgroundOption={backgroundOption}
         />
         <div className="btn--container">

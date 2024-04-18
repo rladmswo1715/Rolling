@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useGetData } from '../../../hooks/useGetData';
 import './backgroundOption.scss';
 import iconselected from '/assets/icon/icon_selected.svg';
@@ -12,7 +12,7 @@ const COLORS = {
   green: 'select-bg__colors--green',
 };
 
-export default function BackgroundOption({ onOptionChange }) {
+function BackgroundOption({ onOptionChange }) {
   const { data, isLoading, error } = useGetData(
     `${BASE_URL}background-images/`
   );
@@ -134,3 +134,5 @@ export default function BackgroundOption({ onOptionChange }) {
     </section>
   );
 }
+
+export default React.memo(BackgroundOption);
