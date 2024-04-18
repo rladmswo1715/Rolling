@@ -9,7 +9,7 @@ import ShareBox from './ShareBox';
 export default function SubHeader() {
   const { id } = useParams();
   const { data: getAllapi, isLoading: allLoading } = useGetData(
-    `${BASE_URL_RECIPIENT}/${id}/`
+    `${BASE_URL_RECIPIENT}${id}/`
   );
   const { data: getEmojiApi, isLoading: emojiLoading } = useGetData(
     `${BASE_URL_RECIPIENT}${id}/reactions/`
