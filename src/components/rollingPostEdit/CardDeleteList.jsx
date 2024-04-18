@@ -1,19 +1,15 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { useGetMessage } from '../../api/rollingPost';
 import '../rollingPost/card/card.scss';
+import './cardDeleteList.scss';
+import React, { useEffect } from 'react';
+import { useGetMessage } from '../../api/rollingPost';
+import { useParams } from 'react-router-dom';
 import EmptyCard from '../rollingPost/card/EmptyCard';
 import Card from '../rollingPost/card/Card';
-import './cardDeleteList.scss';
-import { useParams } from 'react-router-dom';
+import DeleteButton from './DeleteButton';
+
 export default function CardDeleteList() {
   const { message, getMessage } = useGetMessage();
   const { id } = useParams();
-
-  const handleCardClick = () => {
-    console.log('버튼 클릭!');
-  };
-
-  const handleDeleteClick = () => {};
 
   useEffect(() => {
     getMessage(id, 10, 0);
@@ -33,14 +29,11 @@ export default function CardDeleteList() {
             relationship={el.relationship}
             profileImageURL={el.profileImageURL}
           />
-          <button
-            className="button--outlined button__size-h36 before-icon btn-delete position_fixed"
-            onClick={handleDeleteClick}
-          />
+          <DeleteButton id={el.id} />
         </div>
       );
     })
   ) : (
-    <EmptyCard onClick={handleCardClick} />
+    <EmptyCard />
   );
 }
