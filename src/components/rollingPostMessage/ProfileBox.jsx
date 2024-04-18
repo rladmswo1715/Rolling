@@ -1,10 +1,11 @@
 import './profileBox.scss';
-import { useEffect,useState,useCallback } from "react";
-import { useGetData } from "../../hooks/useGetData";
-import { BASE_URL } from "../../constants/url.js";
-import ProfileImage from "./ProfileImage";
+import React from 'react';
+import { useEffect, useState } from 'react';
+import { useGetData } from '../../hooks/useGetData';
+import { BASE_URL } from '../../constants/url.js';
+import ProfileImage from './ProfileImage';
 
-export default function ProfileBox() {
+function ProfileBox() {
   const {data, error} = useGetData(`${BASE_URL}profile-images/`);
   const [currentProfileImg, setCurrentProfileImg] = useState(null);
 
@@ -33,3 +34,5 @@ export default function ProfileBox() {
     </div>
   )
 }
+
+export default React.memo(ProfileBox);

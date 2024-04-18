@@ -1,11 +1,20 @@
-import { useState } from "react";
+import React, { useContext } from 'react';
+import { useState } from 'react';
+import { MsgCreateDataSet } from '../../context/MsgCreateDataSet';
 
-export default function NameInput() {
+function NameInput() {
   const [userName,setUserName] = useState('');
   const [isNameBlank, setIsNameBlank] = useState(false);
+  const {setData} = useContext(MsgCreateDataSet);
+
 
   function handleSetUserName(e) {
     setUserName(e.target.value);
+
+    setData((prevData) => ({
+      ...prevData,
+      name: userName
+    }));
   }
 
   function handleInputFocusOut(e) {
@@ -25,7 +34,9 @@ export default function NameInput() {
         onChange={handleSetUserName} 
         onBlur={handleInputFocusOut}
       />
-      {isNameBlank && <p class="error--message">값을 입력해주세요.</p>}
+      {isNameBlank && <p className="error--message">값을 입력해주세요.</p>}
     </>
   )
 }
+
+export default React.memo(NameInput);
