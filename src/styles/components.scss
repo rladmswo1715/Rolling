@@ -215,10 +215,10 @@
 // 아이콘 버튼
 .before-icon {
   &.btn-delete {
-    @include buttonIconWithBackground(40px, 40px, 100%, 100%, '/public/assets/icon/icon_deleted.svg', '/public/assets/icon/icon_deleted-white.svg');
+    @include buttonIconWithBackground(40px, 40px, 100%, 100%, '/assets/icon/icon_deleted.svg', '/assets/icon/icon_deleted-white.svg');
   }
   &.btn-share {
-    @include buttonIconWithBackground(56px, 36px, 100%, 100%, '/public/assets/icon/icon_share-24.svg', '/public/assets/icon/icon_share-24-white.svg',36px, 32px );
+    @include buttonIconWithBackground(56px, 36px, 100%, 100%, '/assets/icon/icon_share-24.svg', '/assets/icon/icon_share-24-white.svg',36px, 32px );
   }
   
   &.btn-back {
@@ -227,7 +227,7 @@
       height: 100%;
     }
     @include flexStyle(center, center);
-    @include buttonIconWithBackground(40px, 40px, 100%, 100%, '/public/assets/icon/icon_arrow_left.svg', '/public/assets/icon/icon_arrow_left.svg', $MoBgSize: 24px 24px );
+    @include buttonIconWithBackground(40px, 40px, 100%, 100%, '/assets/icon/icon_arrow_left.svg', '/assets/icon/icon_arrow_left.svg', $MoBgSize: 24px 24px );
     margin-right: 16px;
   }
 }
@@ -304,7 +304,7 @@
       top: 16px;
       width: 16px;
       height: 16px;
-      background: url(/public/assets/icon/icon_arrow_down.svg) no-repeat center;
+      background: url(/assets/icon/icon_arrow_down.svg) no-repeat center;
     }
 
     &.hide::before {
