@@ -29,9 +29,9 @@ export default function SubHeader() {
               <h1 className="subHeader__title">To. {getAllapi?.name}</h1>
             </div>
             <div className="d__flex--center subHeader__right">
-              {getAllapi && <ProfileList onComent={getAllapi.recentMessages} />}
-              <EmojiBox onEmoji={getEmojiApi?.results} onID={id} />
-              <ShareBox onName={getAllapi?.name || ''} />
+              {getAllapi && <ProfileList coment={getAllapi.recentMessages} />}
+              <EmojiBox emojis={getEmojiApi?.results} id={id} />
+              <ShareBox name={getAllapi?.name || ''} />
             </div>
           </>
         )}

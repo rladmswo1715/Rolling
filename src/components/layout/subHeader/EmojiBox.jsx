@@ -6,7 +6,7 @@ import EmojiPicker from 'emoji-picker-react';
 
 async function setPostEmoji(id, method, emoji, type) {
   try {
-    const response = await fetch(`${BASE_URL_RECIPIENT}${id}/reactions/`, {
+    await fetch(`${BASE_URL_RECIPIENT}${id}/reactions/`, {
       method,
       headers: {
         'Content-Type': 'application/json',
@@ -16,18 +16,15 @@ async function setPostEmoji(id, method, emoji, type) {
         type,
       }),
     });
-    if (!response.ok) {
-      throw new Error(`Failed to ${type} reaction`);
-    }
   } catch (e) {
-    throw new Error(e);
+    throw new Error('이모지 POST 전송 실패 :', e);
   }
 }
 
-export default function EmojiBox({ onEmoji, onID }) {
+export default function EmojiBox({ emojis, id }) {
   const [isEmojiAdd, setIsEmojiAdd] = useState(false);
   const [isEmojiMoreView, setIsEmojiMoreView] = useState(false);
-  const [isSelectedEmojis, setIsSelectedEmojis] = useState(onEmoji);
+  const [selectedEmojis, setSelectedEmojis] = useState(emojis);
   const refID = useRef(0);
   const handleDoropDwonOpen = () => {
     setIsEmojiMoreView((prev) => !prev);
@@ -39,19 +36,19 @@ export default function EmojiBox({ onEmoji, onID }) {
 
   // emoji 8개 노출
   const headleEmojiLength = () => {
-    return isSelectedEmojis.length > 7 ? false : true;
+    return selectedEmojis.length > 7 ? false : true;
   };
 
   // emojiPicker의 emoji 클릭
   const handleEmojiPickerIconClick = (emojiData) => {
     if (
       !emojiData ||
-      isSelectedEmojis.some((data) => data.emoji === emojiData.emoji)
+      selectedEmojis.some((data) => data.emoji === emojiData.emoji)
     )
       return;
     // 8개 까지만 emoji 추가
     if (headleEmojiLength()) {
-      setIsSelectedEmojis((prev) => [
+      setSelectedEmojis((prev) => [
         ...prev,
         {
           id: refID.current++,
@@ -59,7 +56,7 @@ export default function EmojiBox({ onEmoji, onID }) {
           count: 1,
         },
       ]);
-      setPostEmoji(onID, 'POST', emojiData.emoji, 'increase');
+      setPostEmoji(id, 'POST', emojiData.emoji, 'increase');
     }
     setIsEmojiAdd(false);
     return;
@@ -67,27 +64,27 @@ export default function EmojiBox({ onEmoji, onID }) {
 
   // emoji count 증가
   const hendleStateUpdate = (id) => {
-    const emojiStateUpdate = isSelectedEmojis.map((emoji) =>
+    const emojiStateUpdate = selectedEmojis.map((emoji) =>
       emoji.id === id ? { ...emoji, count: emoji.count + 1 } : emoji
     );
     return emojiStateUpdate.sort((a, b) => b.count - a.count);
   };
 
   const handleEmojiClickCount = (id) => {
-    const emojiApiUpdate = isSelectedEmojis.find(
+    const emojiApiUpdate = selectedEmojis.find(
       (emoji) => emoji.id === id && emoji
     );
-    setPostEmoji(onID, 'POST', emojiApiUpdate.emoji, 'increase');
-    setIsSelectedEmojis(() => hendleStateUpdate(id));
+    setPostEmoji(id, 'POST', emojiApiUpdate.emoji, 'increase');
+    setSelectedEmojis(() => hendleStateUpdate(id));
     setIsEmojiMoreView(false);
   };
 
   return (
     <div className="d__flex--btw content--separator emoji-box__wrap">
-      {isSelectedEmojis && (
+      {selectedEmojis && (
         <div className="emoji-box__dropdown">
           <div className="emoji-box__dropdown--view d__flex--center">
-            {isSelectedEmojis.slice(0, 3).map((emoji, i) => (
+            {selectedEmojis.slice(0, 3).map((emoji, i) => (
               <Emoji
                 key={emoji.id}
                 {...emoji}
@@ -96,7 +93,7 @@ export default function EmojiBox({ onEmoji, onID }) {
                 }
               />
             ))}
-            {isSelectedEmojis.length > 3 && (
+            {selectedEmojis.length > 3 && (
               <button
                 type="button"
                 className={`before-icon emoji-box__dropdown--toggle-btn ${isEmojiMoreView && 'hide'}`}
@@ -108,7 +105,7 @@ export default function EmojiBox({ onEmoji, onID }) {
           </div>
           {isEmojiMoreView && (
             <div className="emoji-box__dropdown--detail">
-              {isSelectedEmojis.map((emoji) => (
+              {selectedEmojis.map((emoji) => (
                 <Emoji
                   key={emoji.id}
                   {...emoji}

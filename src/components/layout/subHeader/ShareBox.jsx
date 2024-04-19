@@ -6,10 +6,10 @@ import Toast from '../../toast/Toast';
 const { Kakao } = window;
 const shareURL = window.location.href;
 
-export default function ShareBox({ onName }) {
+export default function ShareBox({ name }) {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isShowToast, setIsShowToast] = useState(false);
-  const [isMessage, setMessage] = useState('');
+  const [messageText, setMessageText] = useState('');
 
   // kakao 공유하기
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function ShareBox({ onName }) {
   };
 
   const handleToast = (message) => {
-    setMessage(message);
+    setMessageText(message);
     setIsShowToast(true);
     setTimeout(() => setIsShowToast(false), 2000);
   };
@@ -69,7 +69,7 @@ export default function ShareBox({ onName }) {
       </button>
       {isShareOpen && (
         <div className="dropdown__menu">
-          <button className="item" onClick={() => kakaoShare(onName)}>
+          <button className="item" onClick={() => kakaoShare(name)}>
             카카오톡 공유
           </button>
           <button className="item" onClick={handleURLShare}>
@@ -77,7 +77,7 @@ export default function ShareBox({ onName }) {
           </button>
         </div>
       )}
-      {isShowToast && <Toast message={isMessage} />}
+      {isShowToast && <Toast message={messageText} />}
     </div>
   );
 }
