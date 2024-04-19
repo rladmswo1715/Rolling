@@ -14,20 +14,29 @@ export default function CardList() {
     getMessage(id, 10, 0);
   }, []);
 
-  return hasCard ? (
-    message.map((el) => {
-      return (
-        <Card
-          key={el.id}
-          sender={el.sender}
-          content={el.content}
-          createdAt={el.createdAt}
-          relationship={el.relationship}
-          profileImageURL={el.profileImageURL}
-        />
-      );
-    })
-  ) : (
-    <EmptyCard />
+  useEffect(() => {
+    console.log(message);
+  }, [message]);
+
+  return (
+    <>
+      <EmptyCard />
+
+      {hasCard
+        ? message.map((el) => {
+            return (
+              <Card
+                key={el.id}
+                sender={el.sender}
+                content={el.content}
+                createdAt={el.createdAt}
+                relationship={el.relationship}
+                profileImageURL={el.profileImageURL}
+                font={el.font}
+              />
+            );
+          })
+        : ''}
+    </>
   );
 }
