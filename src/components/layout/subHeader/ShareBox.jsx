@@ -14,7 +14,7 @@ export default function ShareBox({ name }) {
   // kakao 공유하기
   useEffect(() => {
     Kakao.cleanup();
-    Kakao.init(import.meta.env.VITE_KAKAO_KEY);
+    Kakao.init('05743ed3cfb15137cfb8f330f2d22473');
   }, [Kakao]);
 
   const handleDoropDwonOpen = () => {
