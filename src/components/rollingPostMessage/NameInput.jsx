@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { MsgCreateDataSet } from '../../context/MsgCreateDataSet';
 import { useFormDataSet } from '../../hooks/useFormDataSet';
 
@@ -12,13 +12,17 @@ function NameInput() {
     setUserName(e.target.value);
   }
 
-  useEffect(() => {
-    setData((prevData) => ({
-      ...prevData,
-      sender: userName
-    }));
-  },[userName]);
-  //useFormDataSet(setData, 'sender', userName);
+  function handleSetUserName(e) {
+    const value = e.target.value;
+    if (value.length <= 14) {
+      setUserName(e.target.value);
+    } else {
+      alert('최대 14자까지 입력 가능합니다.');
+      return;
+    }
+  }
+
+  useFormDataSet(setData, 'sender', userName);
 
   function handleInputFocusOut(e) {
     const isUserName = (userName === '');
@@ -36,6 +40,7 @@ function NameInput() {
         className="input__element" 
         onChange={handleSetUserName} 
         onBlur={handleInputFocusOut}
+        maxLength="14"
       />
       {isNameBlank && <p className="error--message">값을 입력해주세요.</p>}
     </>
