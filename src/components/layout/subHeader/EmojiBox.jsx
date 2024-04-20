@@ -2,11 +2,12 @@ import './emojiBox.scss';
 import { useRef, useState } from 'react';
 import Emoji from '../../rollingPost/emoji/Emoji';
 import { BASE_URL_RECIPIENT } from '../../../constants/url';
-import EmojiPicker from 'emoji-picker-react';
+import data from '@emoji-mart/data';
+import Picker from '@emoji-mart/react';
 
-async function setPostEmoji(id, method, emoji, type) {
+async function setPostEmoji(rollingPageId, method, emoji, type) {
   try {
-    await fetch(`${BASE_URL_RECIPIENT}${id}/reactions/`, {
+    await fetch(`${BASE_URL_RECIPIENT}${rollingPageId}/reactions/`, {
       method,
       headers: {
         'Content-Type': 'application/json',
@@ -21,7 +22,7 @@ async function setPostEmoji(id, method, emoji, type) {
   }
 }
 
-export default function EmojiBox({ emojis, id }) {
+export default function EmojiBox({ emojis, rollingPageId }) {
   const [isEmojiAdd, setIsEmojiAdd] = useState(false);
   const [isEmojiMoreView, setIsEmojiMoreView] = useState(false);
   const [selectedEmojis, setSelectedEmojis] = useState(emojis);
@@ -43,7 +44,7 @@ export default function EmojiBox({ emojis, id }) {
   const handleEmojiPickerIconClick = (emojiData) => {
     if (
       !emojiData ||
-      selectedEmojis.some((data) => data.emoji === emojiData.emoji)
+      selectedEmojis.some((data) => data.native === emojiData.native)
     )
       return;
     // 8개 까지만 emoji 추가
@@ -52,11 +53,11 @@ export default function EmojiBox({ emojis, id }) {
         ...prev,
         {
           id: refID.current++,
-          emoji: emojiData.emoji,
+          emoji: emojiData.native,
           count: 1,
         },
       ]);
-      setPostEmoji(id, 'POST', emojiData.emoji, 'increase');
+      setPostEmoji(rollingPageId, 'POST', emojiData.native, 'increase');
     }
     setIsEmojiAdd(false);
     return;
@@ -74,7 +75,7 @@ export default function EmojiBox({ emojis, id }) {
     const emojiApiUpdate = selectedEmojis.find(
       (emoji) => emoji.id === id && emoji
     );
-    setPostEmoji(id, 'POST', emojiApiUpdate.emoji, 'increase');
+    setPostEmoji(rollingPageId, 'POST', emojiApiUpdate.emoji, 'increase');
     setSelectedEmojis(() => hendleStateUpdate(id));
     setIsEmojiMoreView(false);
   };
@@ -88,9 +89,7 @@ export default function EmojiBox({ emojis, id }) {
               <Emoji
                 key={emoji.id}
                 {...emoji}
-                onClickCount={() =>
-                  handleEmojiClickCount(emoji.id, emoji.emoji)
-                }
+                onClickCount={() => handleEmojiClickCount(emoji.id)}
               />
             ))}
             {selectedEmojis.length > 3 && (
@@ -123,18 +122,11 @@ export default function EmojiBox({ emojis, id }) {
         >
           <span>추가</span>
         </button>
-        <div className="emoji-box--picker-box">
-          <EmojiPicker
-            emojiStyle={'google'}
-            searchDisabled={true}
-            previewConfig={{
-              showPreview: false,
-            }}
-            lazyLoadEmojis={true}
-            open={isEmojiAdd}
-            onEmojiClick={handleEmojiPickerIconClick}
-          />
-        </div>
+        {isEmojiAdd && (
+          <div className="emoji-box--picker-box">
+            <Picker data={data} onEmojiSelect={handleEmojiPickerIconClick} />
+          </div>
+        )}
       </div>
     </div>
   );
