@@ -51,7 +51,7 @@ export default function RollingPostCreate() {
         setToastMessage('게시물 생성에 실패했습니다.');
         setShowToast(false);
       }
-    }, 1500); // 1초 뒤에 실행
+    }, 1500); // 1.5초 뒤에 실행
   }
 
   return (
