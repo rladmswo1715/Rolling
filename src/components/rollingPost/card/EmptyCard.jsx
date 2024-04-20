@@ -3,7 +3,7 @@ import './card.scss';
 import plusIcon from '/assets/icon/icon_plus.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 export default function EmptyCard() {
-  const id = useParams();
+  const { id } = useParams();
   const navigate = useNavigate();
 
   const handleEmptyCardClick = () => {

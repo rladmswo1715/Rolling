@@ -6,15 +6,26 @@
       width: unset;
       max-width: unset;
       margin-left: 13px;
+
       .btn-share {
         flex-shrink: 0;
       }
+
       .dropdown__menu {
         left: unset;
         width: 140px;
+        transition: right 0.3s;
       }
+
       @media screen and (max-width: $G-window-size-mobile) {
         margin-left: 15px;
+      }
+
+      @media screen and (max-width: $G-window-size-mobile2) {
+        .dropdown__menu {
+          right: -100%;
+          width: 140px;
+        }
       }
     }
   }
