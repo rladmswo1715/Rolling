@@ -30,7 +30,7 @@ export default function SubHeader() {
             </div>
             <div className="d__flex--center subHeader__right">
               {getAllapi && <ProfileList coment={getAllapi.recentMessages} />}
-              <EmojiBox emojis={getEmojiApi?.results} id={id} />
+              <EmojiBox emojis={getEmojiApi?.results} rollingPageId={id} />
               <ShareBox name={getAllapi?.name || ''} />
             </div>
           </>
