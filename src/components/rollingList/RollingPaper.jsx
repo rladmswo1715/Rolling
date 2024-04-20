@@ -49,7 +49,7 @@ export default function RollingPaper({ recipient }) {
       <div className={background} style={isImageStyle}>
         <div className="RollingPaper--profile">
           <h1>{name}</h1>
-          <ProfileList onComent={recentMessages} />
+          <ProfileList coment={recentMessages} />
           <div className="RollingPaper--line"></div>
         </div>
         <div className="RollingPaper--emoji">
