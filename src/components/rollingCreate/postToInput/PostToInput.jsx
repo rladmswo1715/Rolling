@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
 import './postToInput.scss';
+import React, { useState, useEffect } from 'react';
 import { BASE_URL_RECIPIENT } from '../../../constants/url';
 import { useGetData } from '../../../hooks/useGetData';
 

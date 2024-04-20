@@ -1,14 +1,14 @@
+import './rollingPostCreate.scss';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PostToInput from '../../components/rollingCreate/postToInput/PostToInput';
 import BackgroundOption from '../../components/rollingCreate/backgroundOption/BackgroundOption';
-import './rollingPostCreate.scss';
 import CreateRollingPaper from '../../api/CreateRollingPaper';
 import Toast from '../../components/toast/Toast';
 import { useGetData } from '../../hooks/useGetData';
 import { BASE_URL_RECIPIENT } from '../../constants/url';
 
-export default function RollingPostCreate() {
+function RollingPostCreate() {
   const [backgroundOption, setBackgroundOption] = useState({
     type: 'color',
     value: 'beige',
@@ -79,3 +79,5 @@ export default function RollingPostCreate() {
     </section>
   );
 }
+
+export default RollingPostCreate;
