@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import './modal.scss';
 
-export function Modal({ cardData }) {
+export function Modal({ cardData, isModalOpen }) {
   const [modalOpen, setModalOpen] = useState(true); // 모달 상태를 관리하는 useState 훅 사용
 
   function closeModal() {
+    isModalOpen(false);
     setModalOpen(false);
   }
 
+  // if (isModalOpen) setModalOpen(true);
   return (
     // 모달이 열려있는 상태일 때만 렌더링
     modalOpen && (
@@ -22,13 +24,13 @@ export function Modal({ cardData }) {
                 <p>From. {cardData.sender}</p>
                 <div className="modal__content__header__profile__relationship">
                   {cardData.relationship === '지인' ? (
-                    <span class="badge__orange">지인</span>
+                    <span className="badge__orange">지인</span>
                   ) : cardData.relationship === '동료' ? (
-                    <span class="badge__purple">동료</span>
+                    <span className="badge__purple">동료</span>
                   ) : cardData.relationship === '가족' ? (
-                    <span class="badge__green">가족</span>
+                    <span className="badge__green">가족</span>
                   ) : cardData.relationship === '친구' ? (
-                    <span class="badge__blue">친구</span>
+                    <span className="badge__blue">친구</span>
                   ) : (
                     <p>Unknown Sender</p>
                   )}
