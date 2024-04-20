@@ -20,7 +20,10 @@ export default function TextEditor() {
 				style={{ height: '300px' }}
 				onBlur={ (event, editor) => {
 					setContent(editor.getData());
-				} }
+				}}
+        onChange={(event, editor) => {
+          setContent(editor.getData());
+        }}
       />
     </div>
   )
