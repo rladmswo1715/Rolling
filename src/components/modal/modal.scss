@@ -87,3 +87,44 @@
     }
   }
 }
+
+.content--short {
+  * {
+    margin: auto;
+    padding: auto;
+    border: unset;
+    font-size: unset;
+    font-weight: unset;
+    color: unset;
+    box-sizing: unset;
+    vertical-align: unset;
+    line-height: 1.3;
+  }
+
+  strong,
+  b {
+    font-weight: bold;
+  }
+
+  ul {
+    margin-top: 16px;
+    padding-left: 40px;
+    list-style: disc;
+  }
+
+  ol {
+    margin-top: 16px;
+    padding-left: 40px;
+    list-style: decimal;
+  }
+
+  a {
+    text-decoration: underline;
+    color: blue;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+}
