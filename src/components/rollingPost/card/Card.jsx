@@ -3,8 +3,6 @@ import '../../../styles/components.scss';
 import { formatDate } from '../../../utills/time';
 import Badge from './Badge';
 import CardContent from './CardContent';
-import Modal from '../../../components/modal/Modal';
-import { useState } from 'react';
 
 export default function Card({
   sender,
@@ -16,15 +14,8 @@ export default function Card({
   cardClick,
 }) {
   const formatedDate = formatDate(createdAt);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // TODO: 모달 실행으로 바꿔야 함!
-  const handleCardClick = () => {
-    cardClick(true);
-  };
-
   return (
-    <button className="card" onClick={handleCardClick}>
+    <button className="card" onClick={cardClick}>
       <div className="card--container">
         <div className="card--from-group">
           <div className="card--from-group--img profile-picture--large">
