@@ -1,7 +1,7 @@
-import cancelicon from '/assets/icon/icon_cancel.svg';
-import toasticon from '/assets/icon/icon_toast.svg';
 import './toast.scss';
 import { useState } from 'react';
+import cancelicon from '/assets/icon/icon_cancel.svg';
+import toasticon from '/assets/icon/icon_toast.svg';
 
 function Toast({ message }) {
   const [showToast, setShowToast] = useState(true);
