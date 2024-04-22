@@ -1,59 +1,59 @@
 import { useEffect, useState } from 'react';
-import { kakaoShare } from '../../utills/kakaoShare';
+import { kakaoInitial, kakaoShare } from '../../utills/kakaoShare';
 import Toast from '../toast/Toast';
 import './shareBox.scss';
-
-const { Kakao } = window;
-const shareURL = window.location.href;
 
 export default function ShareBox({ name }) {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [isShowToast, setIsShowToast] = useState(false);
   const [messageText, setMessageText] = useState('');
 
-  // kakao 공유하기
-  useEffect(() => {
-    Kakao.cleanup();
-    Kakao.init('05743ed3cfb15137cfb8f330f2d22473');
-  }, [Kakao]);
-
   const handleDoropDwonOpen = () => {
     setIsShareOpen((prev) => !prev);
   };
 
+  // kakao 공유하기
+  useEffect(() => {
+    kakaoInitial();
+  }, []);
+
+  // url 공유하기
   const handleToast = (message) => {
     setMessageText(message);
     setIsShowToast(true);
     setTimeout(() => setIsShowToast(false), 1500);
   };
 
-  // url 공유하기
   const handleURLShare = async () => {
-    try {
-      // 클립보드 복사
-      if (navigator.clipboard) {
-        await navigator.clipboard
-          .writeText(shareURL)
-          .then(() => {
-            handleToast('URL이 복사 되었습니다.');
-          })
-          .catch((error) => {
-            throw new Error('클립보드 복사 실패: ', error);
-          });
-      }
+    const shareURL = window.location.href;
 
-      // pc, mobile 공유화면
-      if (navigator.share) {
+    // 클립보드 복사
+    if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(shareURL);
+        handleToast('URL이 복사 되었습니다.');
+      } catch (error) {
+        throw new Error('클립보드 복사 실패: ' + error);
+      }
+    } else {
+      throw new Error('현재 브라우저에서는 클립보드 기능을 지원하지 않습니다.');
+    }
+
+    // pc, mobile 공유화면
+    if (navigator.share) {
+      try {
         await navigator.share({
           title: '공유하기',
           text: '복사된 URL 주소 : ',
           url: shareURL,
         });
-      } else {
-        handleToast('Web Share API를 지원하지 않는 브라우저입니다.');
+      } catch (error) {
+        throw new Error('URL 공유 실패: ' + error);
       }
-    } catch (error) {
-      throw new Error('URL 공유 실패: ', error);
+    } else {
+      throw new Error(
+        '현재 브라우저에서는 Web Share API 기능을 지원하지 않습니다'
+      );
     }
   };
 
