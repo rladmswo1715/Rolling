@@ -69,7 +69,7 @@ function RollingPostCreate() {
           <button
             className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === "" ? "disabled" : ""}`}
             onClick={handleCreatePost}
-            disabled={receiverName.trim() === "" || isDuplicateName}
+            disabled={receiverName.trim() === "" || isDuplicateName || showToast}
           >
             생성하기
           </button>
