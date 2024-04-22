@@ -3,7 +3,7 @@ import { BASE_URL_RECIPIENT } from '../constants/url';
 export async function createMessageFetch(rollingId, data) {
   const response = await fetch(`${BASE_URL_RECIPIENT}${rollingId}/messages/`,{
     method: 'POST',
-    headers: { "Content-Type": "application/json" },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data) 
   });
 

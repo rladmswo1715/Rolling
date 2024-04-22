@@ -1,6 +1,6 @@
 import './textEditor.scss';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import Editor from "ckeditor5-custom-build";
+import Editor from 'ckeditor5-custom-build';
 import { useState, useContext } from 'react';
 import { useFormDataSet } from '../../hooks/useFormDataSet';
 import { MsgCreateDataSet } from '../../context/MsgCreateDataSet';
@@ -17,7 +17,6 @@ export default function TextEditor() {
       <CKEditor
         editor={ Editor }
         config={EDITOR_CONFIG}
-				style={{ height: '300px' }}
 				onBlur={ (event, editor) => {
 					setContent(editor.getData());
 				}}
