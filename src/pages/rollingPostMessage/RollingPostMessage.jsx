@@ -17,18 +17,18 @@ export default function RollingPostMessage() {
 
   const [data, setData] = useState({
     id: id,
-    sender: "",
-    profileImageURL: "",
-    relationship: "",
-    content: "",
-    font: "",
+    sender: '',
+    profileImageURL: '',
+    relationship: '',
+    content: '',
+    font: '',
   });
 
   async function handleSubmit(e) {
     e.preventDefault();
     try {
-      if(data.sender === "" || data.content === ""){
-        alert("내용을 모두 입력해주세요.");
+      if(data.sender === '' || data.content === ''){
+        alert('내용을 모두 입력해주세요.');
         return false;
       }
       
@@ -38,7 +38,7 @@ export default function RollingPostMessage() {
       if(!result){
         throw new Error('에러 발생!');
       }
-      alert("메세지를 등록하였습니다.");
+      alert('메세지를 등록하였습니다.');
       navigate(`/post/${id}`);
     }catch(error) {
       alert(error.message);
