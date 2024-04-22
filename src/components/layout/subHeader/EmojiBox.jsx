@@ -1,26 +1,9 @@
-import './emojiBox.scss';
 import { useRef, useState } from 'react';
-import Emoji from '../../rollingPost/emoji/Emoji';
-import { BASE_URL_RECIPIENT } from '../../../constants/url';
 import data from '@emoji-mart/data';
 import Picker from '@emoji-mart/react';
-
-async function setPostEmoji(rollingPageId, method, emoji, type) {
-  try {
-    await fetch(`${BASE_URL_RECIPIENT}${rollingPageId}/reactions/`, {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        emoji,
-        type,
-      }),
-    });
-  } catch (e) {
-    throw new Error('이모지 POST 전송 실패 :', e);
-  }
-}
+import Emoji from '../../rollingPost/emoji/Emoji';
+import { setPostEmoji } from '../../../api/subHeader';
+import './emojiBox.scss';
 
 export default function EmojiBox({ emojis, rollingPageId }) {
   const [isEmojiAdd, setIsEmojiAdd] = useState(false);
