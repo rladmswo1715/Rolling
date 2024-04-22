@@ -1,7 +1,7 @@
-import './shareBox.scss';
 import { useEffect, useState } from 'react';
-import { kakaoShare } from '../../../utills/kakaoShare';
-import Toast from '../../toast/Toast';
+import { kakaoShare } from '../../utills/kakaoShare';
+import Toast from '../toast/Toast';
+import './shareBox.scss';
 
 const { Kakao } = window;
 const shareURL = window.location.href;
@@ -24,7 +24,7 @@ export default function ShareBox({ name }) {
   const handleToast = (message) => {
     setMessageText(message);
     setIsShowToast(true);
-    setTimeout(() => setIsShowToast(false), 2000);
+    setTimeout(() => setIsShowToast(false), 1500);
   };
 
   // url 공유하기
@@ -38,8 +38,7 @@ export default function ShareBox({ name }) {
             handleToast('URL이 복사 되었습니다.');
           })
           .catch((error) => {
-            handleToast('클립보드 복사 실패');
-            console.log(error);
+            throw new Error('클립보드 복사 실패: ', error);
           });
       }
 
@@ -54,8 +53,7 @@ export default function ShareBox({ name }) {
         handleToast('Web Share API를 지원하지 않는 브라우저입니다.');
       }
     } catch (error) {
-      handleToast('URL 공유 실패');
-      console.log(error);
+      throw new Error('URL 공유 실패: ', error);
     }
   };
 
