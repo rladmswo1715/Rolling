@@ -1,6 +1,6 @@
-import Toast from '../../toast/Toast';
 import { useEffect, useState } from 'react';
-import { kakaoShare } from '../../../utills/kakaoShare';
+import { kakaoShare } from '../../utills/kakaoShare';
+import Toast from '../toast/Toast';
 import './shareBox.scss';
 
 const { Kakao } = window;

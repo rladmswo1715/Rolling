@@ -3,8 +3,8 @@ import { useGetData } from '../../../hooks/useGetData';
 import { BASE_URL_RECIPIENT } from '../../../constants/url';
 import ProfileList from './ProfileList';
 import EmojiBox from './EmojiBox';
-import ShareBox from './ShareBox';
 import './subHeader.scss';
+import ShareBox from '../../share/ShareBox';
 
 export default function SubHeader() {
   const { id } = useParams();

@@ -27,7 +27,7 @@ export default function EmojiBox({ emojis, rollingPageId }) {
   const handleEmojiPickerIconClick = (emojiData) => {
     if (
       !emojiData ||
-      selectedEmojis.some((data) => data.native === emojiData.native)
+      selectedEmojis.some((data) => data.emoji === emojiData.native)
     )
       return;
     // 8개 까지만 emoji 추가
