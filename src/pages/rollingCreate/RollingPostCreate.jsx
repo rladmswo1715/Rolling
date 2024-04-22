@@ -1,12 +1,12 @@
 import './rollingPostCreate.scss';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PostToInput from '../../components/rollingCreate/postToInput/PostToInput';
-import BackgroundOption from '../../components/rollingCreate/backgroundOption/BackgroundOption';
-import CreateRollingPaper from '../../api/CreateRollingPaper';
-import Toast from '../../components/toast/Toast';
 import { useGetData } from '../../hooks/useGetData';
 import { BASE_URL_RECIPIENT } from '../../constants/url';
+import PostToInput from '../../components/rollingCreate/postToInput/PostToInput';
+import BackgroundOption from '../../components/rollingCreate/backgroundOption/BackgroundOption';
+import createRollingPaper from '../../api/createRollingPaper';
+import Toast from '../../components/toast/Toast';
 
 function RollingPostCreate() {
   const [backgroundOption, setBackgroundOption] = useState({
@@ -41,15 +41,15 @@ function RollingPostCreate() {
     setShowToast(true);
     setTimeout(async () => {
       try {
-        // CreateRollingPaper 함수가 프로미스를 반환하도록 변경
-        const res = await CreateRollingPaper(receiverName, backgroundOption);
+        // createRollingPaper 함수가 프로미스를 반환하도록 변경
+        const res = await createRollingPaper(receiverName, backgroundOption);
         // 페이지 이동
         navigate(`/post/${res.id}`);
       } catch (error) {
-        console.error('게시물 생성 실패:', error);
         // 에러 처리
-        setToastMessage('게시물 생성에 실패했습니다.');
         setShowToast(false);
+        alert('게시물 생성에 실패했습니다.')
+        throw new Error('게시물 생성 실패: ', error)
       }
     }, 1500); // 1.5초 뒤에 실행
   }
@@ -67,9 +67,9 @@ function RollingPostCreate() {
         />
         <div className="btn--container">
           <button
-            className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === '' ? 'disabled' : ''}`}
+            className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === "" ? "disabled" : ""}`}
             onClick={handleCreatePost}
-            disabled={receiverName.trim() === '' || isDuplicateName}
+            disabled={receiverName.trim() === "" || isDuplicateName || showToast}
           >
             생성하기
           </button>

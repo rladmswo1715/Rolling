@@ -1,8 +1,8 @@
 import './backgroundOption.scss';
 import React, { useEffect, useState } from 'react';
 import { useGetData } from '../../../hooks/useGetData';
-import iconselected from '/assets/icon/icon_selected.svg';
 import { BASE_URL } from '../../../constants/url';
+import iconselected from '/assets/icon/icon_selected.svg';
 
 // 배경 이미지의 색상이름을 key로, 클래스 이름을 value 값으로 객체화
 const COLORS = {
@@ -42,7 +42,7 @@ function BackgroundOption({ onOptionChange }) {
     setSelectedImageIndex(index);
     setSelectedColor(null); // Reset selected color
     // 부모 컴포넌트로 선택된 이미지 전달
-    onOptionChange({ type: 'image', value: data.imageUrls[index] });
+    onOptionChange({ type: 'image', value: `${data.imageUrls[index]}` });
   }
 
   return (
@@ -55,7 +55,7 @@ function BackgroundOption({ onOptionChange }) {
         <button
           type="button"
           className={`button--toggle button__size-h40 ${
-            isColorSelected ? 'active' : ''
+            isColorSelected ? "active" : ""
           }`}
           onClick={() => {
             setIsColorSelected(true);
@@ -68,7 +68,7 @@ function BackgroundOption({ onOptionChange }) {
         <button
           type="button"
           className={`button--toggle button__size-h40 ${
-            !isColorSelected ? 'active' : ''
+            !isColorSelected ? "active" : ""
           }`}
           onClick={() => {
             setIsColorSelected(false);
@@ -85,7 +85,7 @@ function BackgroundOption({ onOptionChange }) {
             <div
               key={colorName}
               className={`${className} ${
-                selectedColor === colorName ? 'selected' : ''
+                selectedColor === colorName ? "selected" : ""
               } `}
               onClick={() => handleColorClick(colorName)}
             >
@@ -110,7 +110,7 @@ function BackgroundOption({ onOptionChange }) {
               <div
                 key={index}
                 className={`select-bg__images__container ${
-                  selectedImageIndex === index ? 'selected' : ''
+                  selectedImageIndex === index ? "selected" : ""
                 }`}
                 onClick={() => handleImageClick(index)}
               >
