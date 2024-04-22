@@ -1,5 +1,5 @@
 import './dropBox.scss';
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext } from 'react';
 import { useFormDataSet } from '../../hooks/useFormDataSet';
 import { MsgCreateDataSet } from '../../context/MsgCreateDataSet';
 
@@ -8,8 +8,8 @@ function dropBoxArrowToggle(element, toggleBoolean) {
 }
 
 const LIST_SET = {
-  "relationship" : ['지인', '친구', '동료', '가족'],
-  "font" : ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체']
+  relationship : ['지인', '친구', '동료', '가족'],
+  font : ['Noto Sans', 'Pretendard', '나눔명조', '나눔손글씨 손편지체']
 }
 
 export default function RelationDropBox({boxType}) {

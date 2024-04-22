@@ -13,7 +13,7 @@ function ProfileBox() {
   const {setData} = useContext(MsgCreateDataSet)
 
   if(error) {
-    alert("프로필 이미지를 불러오는데 실패했습니다.");
+    alert('프로필 이미지를 불러오는데 실패했습니다.');
   }
 
   useEffect(() => {
