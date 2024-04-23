@@ -24,7 +24,6 @@ export default function PopularPapers() {
       setError(null);
       const { results, next } = await getRollingList(options, nextUri);
       setNextUri(next);
-      console.log(nextUri);
       if (options.offset === 0) {
         setRecipients(results);
       } else {
