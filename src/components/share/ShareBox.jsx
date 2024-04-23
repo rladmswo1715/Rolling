@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
 import { kakaoInitial, kakaoShare } from '../../utills/kakaoShare';
-import Toast from '../toast/Toast';
 import './shareBox.scss';
 
-export default function ShareBox({ name }) {
+export default function ShareBox({ name, onToastMessage }) {
   const [isShareOpen, setIsShareOpen] = useState(false);
-  const [isShowToast, setIsShowToast] = useState(false);
-  const [messageText, setMessageText] = useState('');
 
   const handleDoropDwonOpen = () => {
     setIsShareOpen((prev) => !prev);
@@ -17,13 +14,6 @@ export default function ShareBox({ name }) {
     kakaoInitial();
   }, []);
 
-  // url 공유하기
-  const handleToast = (message) => {
-    setMessageText(message);
-    setIsShowToast(true);
-    setTimeout(() => setIsShowToast(false), 1500);
-  };
-
   const handleURLShare = async () => {
     const shareURL = window.location.href;
 
@@ -31,7 +21,7 @@ export default function ShareBox({ name }) {
     if (navigator.clipboard) {
       try {
         await navigator.clipboard.writeText(shareURL);
-        handleToast('URL이 복사 되었습니다.');
+        onToastMessage('URL이 복사 되었습니다.');
       } catch (error) {
         throw new Error('클립보드 복사 실패: ' + error);
       }
@@ -55,6 +45,7 @@ export default function ShareBox({ name }) {
         '현재 브라우저에서는 Web Share API 기능을 지원하지 않습니다'
       );
     }
+    setIsShareOpen(false);
   };
 
   return (
@@ -67,7 +58,13 @@ export default function ShareBox({ name }) {
       </button>
       {isShareOpen && (
         <div className="dropdown__menu">
-          <button className="item" onClick={() => kakaoShare(name)}>
+          <button
+            className="item"
+            onClick={() => {
+              kakaoShare(name);
+              setIsShareOpen(false);
+            }}
+          >
             카카오톡 공유
           </button>
           <button className="item" onClick={handleURLShare}>
@@ -75,7 +72,6 @@ export default function ShareBox({ name }) {
           </button>
         </div>
       )}
-      {isShowToast && <Toast message={messageText} />}
     </div>
   );
 }

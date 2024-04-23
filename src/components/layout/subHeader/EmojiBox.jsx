@@ -5,10 +5,11 @@ import Emoji from '../../rollingPost/emoji/Emoji';
 import { setPostEmoji } from '../../../api/subHeader';
 import './emojiBox.scss';
 
-export default function EmojiBox({ emojis, rollingPageId }) {
+export default function EmojiBox({ emojis, rollingPageId, onToastMessage }) {
   const [isEmojiAdd, setIsEmojiAdd] = useState(false);
   const [isEmojiMoreView, setIsEmojiMoreView] = useState(false);
   const [selectedEmojis, setSelectedEmojis] = useState(emojis);
+
   const refID = useRef(0);
   const handleDoropDwonOpen = () => {
     setIsEmojiMoreView((prev) => !prev);
@@ -20,16 +21,23 @@ export default function EmojiBox({ emojis, rollingPageId }) {
 
   // emoji 8개 노출
   const headleEmojiLength = () => {
-    return selectedEmojis.length > 7 ? false : true;
+    if (selectedEmojis.length > 7) {
+      onToastMessage('더 이상 추가 할수 없습니다.');
+      return false;
+    }
+    return true;
   };
 
   // emojiPicker의 emoji 클릭
-  const handleEmojiPickerIconClick = (emojiData) => {
+  const handleEmojiPickerIconClick = (emojiData, e) => {
     if (
       !emojiData ||
       selectedEmojis.some((data) => data.emoji === emojiData.native)
-    )
+    ) {
+      e.currentTarget.disabled = true;
+      onToastMessage('추가된 이모지 입니다. 다른 이모지를 선택해 주세요.');
       return;
+    }
     // 8개 까지만 emoji 추가
     if (headleEmojiLength()) {
       setSelectedEmojis((prev) => [
