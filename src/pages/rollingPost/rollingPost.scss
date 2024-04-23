@@ -7,13 +7,18 @@
     justify-content: center;
     padding-block: 150px;
     padding-top: 150px;
-    padding-bottom: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), #00000080),
       url('https://picsum.photos/id/683/3840/2160');
-    background-size: cover;
+    padding-bottom: 20vh;
 
+    background-size: cover;
+    @media screen and (max-width: $G-window-size-tablet) {
+      padding-bottom: 20vh;
+    }
     @media screen and (max-width: $G-window-size-mobile) {
       padding-top: 170px;
+      padding-bottom: 20vh;
     }
   }
 
@@ -21,12 +26,18 @@
     display: flex;
     justify-content: center;
     padding-top: 150px;
-    padding-bottom: 100vh;
+    padding-bottom: 20vh;
     background-size: cover;
+    min-height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url('https://picsum.photos/id/24/3840/2160');
+
+    @media screen and (max-width: $G-window-size-tablet) {
+      padding-bottom: 70vh;
+    }
     @media screen and (max-width: $G-window-size-mobile) {
       padding-top: 170px;
+      padding-bottom: 40vh;
     }
   }
 
@@ -34,12 +45,18 @@
     display: flex;
     justify-content: center;
     padding-top: 150px;
-    padding-bottom: 100vh;
+    padding-bottom: 20vh;
+    min-height: 100vh;
     background-size: cover;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url('https://picsum.photos/id/599/3840/2160');
+
+    @media screen and (max-width: $G-window-size-tablet) {
+      padding-bottom: 20vh;
+    }
     @media screen and (max-width: $G-window-size-mobile) {
       padding-top: 170px;
+      padding-bottom: 40vh;
     }
   }
 
@@ -47,12 +64,18 @@
     display: flex;
     justify-content: center;
     padding-top: 150px;
-    padding-bottom: 100vh;
+    padding-bottom: 20vh;
+    min-height: 100vh;
     background-size: cover;
     background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
       url('https://picsum.photos/id/1058/3840/2160');
+
+    @media screen and (max-width: $G-window-size-tablet) {
+      padding-bottom: 40vh;
+    }
     @media screen and (max-width: $G-window-size-mobile) {
       padding-top: 170px;
+      padding-bottom: 40vh;
     }
   }
 }
@@ -62,10 +85,15 @@
     display: flex;
     justify-content: center;
     padding-top: 150px;
-    padding-bottom: 100vh;
+    padding-bottom: 20vh;
+    min-height: 100vh;
     background: $G-color-purple-200;
+    @media screen and (max-width: $G-window-size-tablet) {
+      padding-bottom: 70vh;
+    }
     @media screen and (max-width: $G-window-size-mobile) {
       padding-top: 170px;
+      padding-bottom: 40vh;
     }
   }
 
@@ -74,9 +102,15 @@
     justify-content: center;
     background-color: $G-color-orange-200;
     padding-top: 150px;
-    padding-bottom: 100vh;
+    min-height: 100vh;
+    padding-bottom: 40vh;
+
+    @media screen and (max-width: $G-window-size-tablet) {
+      padding-bottom: 70vh;
+    }
     @media screen and (max-width: $G-window-size-mobile) {
       padding-top: 170px;
+      padding-bottom: 40vh;
     }
   }
 
@@ -85,9 +119,15 @@
     justify-content: center;
     background-color: $G-color-blue-200;
     padding-top: 150px;
-    padding-bottom: 100vh;
+    min-height: 100vh;
+    padding-bottom: 20vh;
+
+    @media screen and (max-width: $G-window-size-tablet) {
+      padding-bottom: 20vh;
+    }
     @media screen and (max-width: $G-window-size-mobile) {
       padding-top: 170px;
+      padding-bottom: 40vh;
     }
   }
 
@@ -96,25 +136,15 @@
     justify-content: center;
     background-color: $G-color-green-200;
     padding-top: 150px;
-    padding-bottom: 100vh;
+    padding-bottom: 20vh;
+    min-height: 100vh;
+
+    @media screen and (max-width: $G-window-size-tablet) {
+      padding-bottom: 70vh;
+    }
     @media screen and (max-width: $G-window-size-mobile) {
       padding-top: 170px;
+      padding-bottom: 40vh;
     }
-  }
-}
-
-.cards__layout {
-  width: 1200px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  @media screen and (max-width: $G-window-size-tablet) {
-    margin-inline: 24px;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-  }
-  @media screen and (max-width: $G-window-size-mobile) {
-    grid-template-columns: 1fr;
-    justify-items: center;
   }
 }

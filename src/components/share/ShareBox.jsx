@@ -1,73 +1,73 @@
-import { useEffect, useState } from 'react';
-import { kakaoShare } from '../../utills/kakaoShare';
-import Toast from '../toast/Toast';
+import { useEffect } from 'react';
+import { kakaoInitial, kakaoShare } from '../../utills/kakaoShare';
 import './shareBox.scss';
 
-const { Kakao } = window;
-const shareURL = window.location.href;
-
-export default function ShareBox({ name }) {
-  const [isShareOpen, setIsShareOpen] = useState(false);
-  const [isShowToast, setIsShowToast] = useState(false);
-  const [messageText, setMessageText] = useState('');
+export default function ShareBox({
+  name,
+  onToastMessage,
+  isShareOpen,
+  onShareOpen,
+}) {
+  const handleShareOpen = (value) => {
+    onShareOpen((prev) => (value === false ? false : !prev));
+  };
 
   // kakao 공유하기
   useEffect(() => {
-    Kakao.cleanup();
-    Kakao.init('05743ed3cfb15137cfb8f330f2d22473');
-  }, [Kakao]);
+    kakaoInitial();
+  }, []);
 
-  const handleDoropDwonOpen = () => {
-    setIsShareOpen((prev) => !prev);
-  };
-
-  const handleToast = (message) => {
-    setMessageText(message);
-    setIsShowToast(true);
-    setTimeout(() => setIsShowToast(false), 1500);
-  };
-
-  // url 공유하기
   const handleURLShare = async () => {
-    try {
-      // 클립보드 복사
-      if (navigator.clipboard) {
-        await navigator.clipboard
-          .writeText(shareURL)
-          .then(() => {
-            handleToast('URL이 복사 되었습니다.');
-          })
-          .catch((error) => {
-            throw new Error('클립보드 복사 실패: ', error);
-          });
-      }
+    const shareURL = window.location.href;
 
-      // pc, mobile 공유화면
-      if (navigator.share) {
+    // 클립보드 복사
+    if (navigator.clipboard) {
+      try {
+        await navigator.clipboard.writeText(shareURL);
+        onToastMessage('URL이 복사 되었습니다.');
+      } catch (error) {
+        throw new Error('클립보드 복사 실패: ' + error);
+      }
+    } else {
+      throw new Error('현재 브라우저에서는 클립보드 기능을 지원하지 않습니다.');
+    }
+
+    // pc, mobile 공유화면
+    if (navigator.share) {
+      try {
         await navigator.share({
           title: '공유하기',
           text: '복사된 URL 주소 : ',
           url: shareURL,
         });
-      } else {
-        handleToast('Web Share API를 지원하지 않는 브라우저입니다.');
+      } catch (error) {
+        throw new Error('URL 공유 실패: ' + error);
       }
-    } catch (error) {
-      throw new Error('URL 공유 실패: ', error);
+    } else {
+      throw new Error(
+        '현재 브라우저에서는 Web Share API 기능을 지원하지 않습니다'
+      );
     }
+    handleShareOpen(false);
   };
 
   return (
     <div className="dropdown share-box--wrap">
       <button
         className="button--outlined button__size-h36 before-icon btn-share"
-        onClick={handleDoropDwonOpen}
+        onClick={handleShareOpen}
       >
         <span className="unvisible">공유하기</span>
       </button>
       {isShareOpen && (
         <div className="dropdown__menu">
-          <button className="item" onClick={() => kakaoShare(name)}>
+          <button
+            className="item"
+            onClick={() => {
+              kakaoShare(name);
+              handleShareOpen(false);
+            }}
+          >
             카카오톡 공유
           </button>
           <button className="item" onClick={handleURLShare}>
@@ -75,7 +75,6 @@ export default function ShareBox({ name }) {
           </button>
         </div>
       )}
-      {isShowToast && <Toast message={messageText} />}
     </div>
   );
 }

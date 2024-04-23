@@ -5,32 +5,49 @@ import Emoji from '../../rollingPost/emoji/Emoji';
 import { setPostEmoji } from '../../../api/subHeader';
 import './emojiBox.scss';
 
-export default function EmojiBox({ emojis, rollingPageId }) {
-  const [isEmojiAdd, setIsEmojiAdd] = useState(false);
-  const [isEmojiMoreView, setIsEmojiMoreView] = useState(false);
+export default function EmojiBox({
+  emojis,
+  rollingPageId,
+  onToastMessage,
+  isEmojiMoreView,
+  isEmojiAdd,
+  onEmojiAdd,
+  onEmojiMoreView,
+}) {
   const [selectedEmojis, setSelectedEmojis] = useState(emojis);
   const refID = useRef(0);
-  const handleDoropDwonOpen = () => {
-    setIsEmojiMoreView((prev) => !prev);
+
+  const handleEmojiMoreView = (value) => {
+    onEmojiMoreView((prev) => (value === false ? false : !prev));
   };
 
-  const handleEmojiPickerOpen = () => {
-    setIsEmojiAdd((prev) => !prev);
+  const handleEmojiAdd = (value) => {
+    onEmojiAdd((prev) => (value === false ? false : !prev));
   };
 
   // emoji 8개 노출
   const headleEmojiLength = () => {
-    return selectedEmojis.length > 7 ? false : true;
+    if (selectedEmojis.length > 7) {
+      onToastMessage('더 이상 추가 할수 없습니다.');
+      handleEmojiAdd();
+      return false;
+    }
+    return true;
   };
 
   // emojiPicker의 emoji 클릭
-  const handleEmojiPickerIconClick = (emojiData) => {
+  const handleEmojiPickerIconClick = (emojiData, e) => {
     if (
       !emojiData ||
       selectedEmojis.some((data) => data.emoji === emojiData.native)
-    )
+    ) {
+      e.currentTarget.disabled = true;
+      onToastMessage('추가된 이모지 입니다. 다른 이모지를 선택해 주세요.');
+      handleEmojiAdd(false);
       return;
-    // 8개 까지만 emoji 추가
+    }
+
+    // 8개 이하 일때
     if (headleEmojiLength()) {
       setSelectedEmojis((prev) => [
         ...prev,
@@ -41,8 +58,9 @@ export default function EmojiBox({ emojis, rollingPageId }) {
         },
       ]);
       setPostEmoji(rollingPageId, 'POST', emojiData.native, 'increase');
+      onToastMessage(`${emojiData.native} 이모지가 추가 되었습니다.`);
     }
-    setIsEmojiAdd(false);
+    handleEmojiAdd(false);
     return;
   };
 
@@ -60,7 +78,7 @@ export default function EmojiBox({ emojis, rollingPageId }) {
     );
     setPostEmoji(rollingPageId, 'POST', emojiApiUpdate.emoji, 'increase');
     setSelectedEmojis(() => hendleStateUpdate(id));
-    setIsEmojiMoreView(false);
+    handleEmojiMoreView(false);
   };
 
   return (
@@ -79,7 +97,7 @@ export default function EmojiBox({ emojis, rollingPageId }) {
               <button
                 type="button"
                 className={`before-icon emoji-box__dropdown--toggle-btn ${isEmojiMoreView && 'hide'}`}
-                onClick={handleDoropDwonOpen}
+                onClick={handleEmojiMoreView}
               >
                 <span className="unvisible">열기</span>
               </button>
@@ -101,7 +119,7 @@ export default function EmojiBox({ emojis, rollingPageId }) {
       <div className="emoji-box__add-box">
         <button
           className="button--outlined button__size-h36 before-icon emoji--add"
-          onClick={handleEmojiPickerOpen}
+          onClick={handleEmojiAdd}
         >
           <span>추가</span>
         </button>

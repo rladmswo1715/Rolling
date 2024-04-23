@@ -1,3 +1,8 @@
+export const kakaoInitial = () => {
+  window.Kakao.cleanup();
+  window.Kakao.init('05743ed3cfb15137cfb8f330f2d22473');
+};
+
 export const kakaoShare = (onName) => {
   Kakao.Share.sendDefault({
     objectType: 'feed',

@@ -1,4 +1,4 @@
-import "./emoji.scss";
+import './emoji.scss';
 
 function Emoji({ emoji, count, onClickCount }) {
   return (

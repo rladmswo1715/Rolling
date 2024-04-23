@@ -1,44 +1,30 @@
+import React from 'react';
 import './modal.scss';
-import React, { useState } from 'react';
+import Badge from '../rollingPost/card/Badge';
 import { formatDate } from '../../utills/time';
 
-function Modal({ cardData, isModalOpen }) {
-  const [modalOpen, setModalOpen] = useState(true); // 모달 상태를 관리하는 useState 훅 사용
+export default function Modal({
+  isModalOpen,
+  modalContents,
+  handleCloseModal,
+}) {
+  const formatedDate = formatDate(modalContents.createdAt);
+  const formatSenderInMobile =
+    modalContents.sender.length > 5 ? 'mobileSender' : '';
 
-  function closeModal() {
-    isModalOpen(false);
-    setModalOpen(false);
-  }
-  const formatedDate = formatDate(cardData.createdAt);
-  // if (isModalOpen) setModalOpen(true);
   return (
-    // 모달이 열려있는 상태일 때만 렌더링
-    modalOpen && (
+    isModalOpen && (
       <div className="modal">
         <div className="modal__content">
           <div className="modal__content__header">
             <div className="modal__content__header__profile">
-              <div className="modal_content__header__profile__image">
-                <img
-                  src={cardData.profileImageURL}
-                  alt="프로필 사진"
-                  className="profile-picture--large"
-                />
+              <div className="modal__content__header__profile__image">
+                <img src={modalContents.profileImageURL} alt="프로필 사진" />
               </div>
-              <div className="modal__content__header__profile__name">
-                <p>From. {cardData.sender}</p>
+              <div className="modal__content__header__profile__name modal__content__header__profile__name">
+                <p>From. {modalContents.sender}</p>
                 <div className="modal__content__header__profile__relationship">
-                  {cardData.relationship === "지인" ? (
-                    <span className="badge__orange">지인</span>
-                  ) : cardData.relationship === "동료" ? (
-                    <span className="badge__purple">동료</span>
-                  ) : cardData.relationship === "가족" ? (
-                    <span className="badge__green">가족</span>
-                  ) : cardData.relationship === "친구" ? (
-                    <span className="badge__blue">친구</span>
-                  ) : (
-                    <p>Unknown Sender</p>
-                  )}
+                  <Badge relationship={modalContents.relationship} />
                 </div>
               </div>
             </div>
@@ -46,12 +32,16 @@ function Modal({ cardData, isModalOpen }) {
               <p>{formatedDate}</p>
             </div>
           </div>
-          <div className="modal__content__body">{cardData.content}</div>
+
+          <div
+            className="modal__content__body content--short"
+            dangerouslySetInnerHTML={{ __html: modalContents.content }}
+          />
 
           <div className="modal__button-container">
             <button
               className="button--fill-primary button__size-h40"
-              onClick={closeModal} // 확인 버튼 클릭 시 모달 닫기
+              onClick={handleCloseModal}
             >
               확인
             </button>
@@ -61,5 +51,3 @@ function Modal({ cardData, isModalOpen }) {
     )
   );
 }
-
-export default Modal;

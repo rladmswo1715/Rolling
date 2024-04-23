@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './card.scss';
 import '../../../styles/fonts.scss';
+import './cardContent.scss';
 
 function addFontClassName(font, obj) {
-  // console.log('font', font);
-  //console.log("obj",obj.classList.add("zzz"));
   let addClassName = '';
 
   if (font === 'Noto Sans') addClassName = 'font__notosans';
@@ -16,7 +15,7 @@ function addFontClassName(font, obj) {
   if (obj && addClassName !== '') obj.classList.add(addClassName);
 }
 
-function CardContent({ content, font }) {
+export function CardContent({ content, font }) {
   const [hasFont, setHasFont] = useState({
     fontFamily: false,
     fontStyle: false,
@@ -30,9 +29,11 @@ function CardContent({ content, font }) {
   }, []);
 
   return (
-    <p className="content--short" ref={fontClassRef}>
-      {content}
-    </p>
+    <div
+      className="content--short "
+      ref={fontClassRef}
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
   );
 }
 
