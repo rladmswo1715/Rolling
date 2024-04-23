@@ -5,7 +5,6 @@ import { useGetData } from '../../hooks/useGetData';
 import { BASE_URL_RECIPIENT } from '../../constants/url';
 import RollingPostView from './RollingPostView';
 import SubHeader from '../../components/layout/subHeader/SubHeader';
-const DISTANCE_WINDOW_BOTTOM = 800;
 
 export default function RollingPost() {
   const [offset, setOffset] = useState(0); // 0번부터
@@ -59,10 +58,9 @@ export default function RollingPost() {
 
   // 스크롤 핸들러
   const handleScroll = () => {
-    cardScrollRef.current.getBoundingClientRect().bottom <
-    DISTANCE_WINDOW_BOTTOM // 800
-      ? setIsEndPage(true)
-      : '';
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
+      setIsEndPage(true);
+    }
   };
 
   // 토스트 열림 여부
@@ -77,6 +75,7 @@ export default function RollingPost() {
     nextURL을 다시 setNextMessageURL 하고,
     messageContent를 다시 set한다.
    */
+  
   useEffect(() => {
     if (isEndPage && nextMessagesURL) {
       const fetchData = async () => {
