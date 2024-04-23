@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-
+  position: relative;
   @media screen and (max-width: $G-window-size-tablet) {
     margin-inline: 24px;
     grid-template-columns: repeat(2, 1fr);

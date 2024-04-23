@@ -19,8 +19,6 @@ export default function RollingPostEditView(props) {
             <>
               <div className="cards__layout">
                 <CardDeleteList {...props} />
-              </div>
-              <div className="button__layout">
                 <button
                   className="button__delete"
                   onClick={props.handleDeleteButtonClick}
