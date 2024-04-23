@@ -58,7 +58,10 @@ export default function RollingPost() {
 
   // 스크롤 핸들러
   const handleScroll = () => {
-    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight) {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight
+    ) {
       setIsEndPage(true);
     }
   };
@@ -75,7 +78,7 @@ export default function RollingPost() {
     nextURL을 다시 setNextMessageURL 하고,
     messageContent를 다시 set한다.
    */
-  
+
   useEffect(() => {
     if (isEndPage && nextMessagesURL) {
       const fetchData = async () => {
