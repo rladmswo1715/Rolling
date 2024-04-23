@@ -1,10 +1,9 @@
-import './toast.scss';
 import { useState } from 'react';
 import cancelicon from '/assets/icon/icon_cancel.svg';
 import toasticon from '/assets/icon/icon_toast.svg';
 import './toast.scss';
 
-export default function Toast({ isToastShow, toastContent, handleToastClose }) {
+export default function Toast({ message }) {
   const [showToast, setShowToast] = useState(true);
 
   function handleClose() {
@@ -13,16 +12,16 @@ export default function Toast({ isToastShow, toastContent, handleToastClose }) {
 
   return (
     <>
-      {isToastShow && (
+      {showToast && (
         <div className="toast--msg">
           <div className="toast--msg__container">
             <div className="toast--msg__container-body">
               <img src={toasticon} alt="toasticon" />
-              <p className="toast--msg__container-body__text">{toastContent}</p>
+              <p className="toast--msg__container-body__text">{message}</p>
             </div>
             <button
               className="toast--msg__container-button"
-              onClick={handleToastClose}
+              onClick={handleClose}
             >
               <img src={cancelicon} alt="cancelicon" />
             </button>

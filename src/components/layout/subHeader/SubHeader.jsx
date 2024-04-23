@@ -81,8 +81,8 @@ export default function SubHeader() {
             </div>
           </>
         )}
-        {isShowToast && <Toast message={messageText} />}
       </div>
+      {isShowToast && <Toast message={messageText} />}
     </section>
   );
 }
