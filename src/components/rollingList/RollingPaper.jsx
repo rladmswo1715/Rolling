@@ -1,6 +1,27 @@
 import ProfileList from '../layout/subHeader/ProfileList';
 import Emoji from '../rollingPost/emoji/Emoji';
 import './rollingPaper.scss';
+import { BASE_URL_RECIPIENT } from '../../constants/url';
+
+async function setPostEmoji(id, method, emoji, type) {
+  try {
+    const response = await fetch(`${BASE_URL_RECIPIENT}${id}/reactions/`, {
+      method,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        emoji,
+        type,
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to ${type} reaction`);
+    }
+  } catch (e) {
+    throw new Error(e);
+  }
+}
 
 export default function RollingPaper({ recipient }) {
   if (!recipient) return null;

@@ -29,7 +29,7 @@ export default function Main() {
               <div className="main__wrap__point--second">
                 <div className="main__wrap__point--title">Point.02</div>
                 <div className="main__wrap__point--description">
-                  <h2>서로에게 이모지로 감정을 표현해보세요</h2>
+                  <h1>서로에게 이모지로 감정을 표현해보세요</h1>
                   <p>롤링 페이퍼에 이모지를 추가할 수 있어요.</p>
                 </div>
               </div>
