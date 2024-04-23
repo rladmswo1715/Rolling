@@ -1,6 +1,27 @@
 @import '../../../styles/_variables';
 @import '../../../styles/_mixin';
 
+.cards__layout {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @media screen and (max-width: $G-window-size-tablet) {
+    margin-inline: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+.card__list {
+  display: contents;
+}
+
 .card {
   background-color: white;
   width: 24rem;
@@ -48,6 +69,14 @@
     display: flex;
     flex-direction: column;
     gap: 0.38rem;
+    &--sender {
+      @media screen and (max-width: $G-window-size-mobile) {
+        @include textLineOverflow;
+      }
+      @media screen and (max-width: $G-window-size-mobile2) {
+        @include textLineOverflow;
+      }
+    }
   }
 
   &--empty {

@@ -1,15 +1,7 @@
 import React from 'react';
 import './card.scss';
 import plusIcon from '/assets/icon/icon_plus.svg';
-import { useNavigate, useParams } from 'react-router-dom';
-export default function EmptyCard() {
-  const { id } = useParams();
-  const navigate = useNavigate();
-
-  const handleEmptyCardClick = () => {
-    navigate(`/post/${id}/message`);
-  };
-
+export default function EmptyCard({ handleEmptyCardClick }) {
   return (
     <button className="card" onClick={handleEmptyCardClick}>
       <div className="card--empty">

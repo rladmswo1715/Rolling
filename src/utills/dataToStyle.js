@@ -5,31 +5,27 @@ import {
   IMAGE_URL_4,
 } from '../constants/url';
 
-export function hasBackgroundImage(recipient) {
+export function hasBackgroundImage(data) {
   let hasBackgroundImage = false;
-  if (!recipient) return;
-  if (recipient.backgroundImageURL) {
+  if (!data) return;
+  if (data.backgroundImageURL) {
     hasBackgroundImage = true;
     return hasBackgroundImage;
   }
   return hasBackgroundImage;
 }
 
-export function getBackgroundImage({ backgroundImageURL }) {
-  if (!backgroundImageURL) return;
+export function getBackgroundImage(background) {
+  if (!background) return;
   let className = '';
-  if (backgroundImageURL === IMAGE_URL_1)
-    className = 'card__background__img__1';
-  else if (backgroundImageURL === IMAGE_URL_2)
-    className = 'card__background__img__2';
-  else if (backgroundImageURL === IMAGE_URL_3)
-    className = 'card__background__img__3';
-  else if (backgroundImageURL === IMAGE_URL_4)
-    className = 'card__background__img__4';
+  if (background === IMAGE_URL_1) className = 'card__background__img__1';
+  else if (background === IMAGE_URL_2) className = 'card__background__img__2';
+  else if (background === IMAGE_URL_3) className = 'card__background__img__3';
+  else if (background === IMAGE_URL_4) className = 'card__background__img__4';
   return className;
 }
 
-export function getBackgroundColor({ backgroundColor }) {
+export function getBackgroundColor(backgroundColor) {
   if (!backgroundColor) return;
   let className = '';
 
