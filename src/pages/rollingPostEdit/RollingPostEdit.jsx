@@ -17,11 +17,11 @@ export default function RollingPostEdit() {
 
   useEffect(() => {
     getRecipientData(id);
-    // TODO: 메세지의 길이가 0 초과면(메세지가 있으면) hasCard를 true로 설정하고, 삭제 버튼을 렌더링
-    if (recipient.recentMessage) setHasCard(true);
   }, []);
 
-  console.log(hasCard);
+  useEffect(() => {
+    if (recipient.recentMessages) setHasCard(true);
+  }, [recipient]);
 
   const handleDeleteClick = async () => {
     try {

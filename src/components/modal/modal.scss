@@ -1,6 +1,5 @@
 @import '../../styles/_variables';
 @import '../../styles/_mixin';
-@import '../../styles/components.scss';
 
 .modal {
   position: fixed;
@@ -8,6 +7,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: $G-z-index-modal;
   background-color: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
   @include flexStyle(center, center);
 
@@ -15,13 +15,17 @@
     @include flexStyle(center, center);
     margin-top: auto;
 
+    @media screen and (max-width: $G-window-size-mobile) {
+      margin-top: 15px;
+    }
+
     .button--fill-primary {
       width: 120px;
     }
   }
 
   &__content {
-    @include flexStyle(unset, flex-start);
+    @include flexStyle(unset, space-between);
     flex-direction: column;
     background-color: white;
     width: 600px;
@@ -31,7 +35,7 @@
 
     @media screen and (max-width: $G-window-size-mobile) {
       width: 320px;
-      height: 256px;
+      height: 356px;
       padding: 20px;
     }
     &__header {
@@ -62,11 +66,9 @@
     }
     &__body {
       font-size: $G-font-size-18;
-      padding-top: 16px;
-      padding-right: 16px;
+      padding: 16px 16px 0 0;
       border-top: 1px solid #eee;
-      margin-top: 19px;
-      margin-bottom: 24px;
+      margin: 19px 0 24px 0;
       line-height: 28px;
       text-align: left;
       width: 520px;
@@ -74,14 +76,13 @@
       overflow: auto;
 
       @media screen and (max-width: $G-window-size-mobile) {
-        padding-top: 8px;
+        padding-top: 5px;
         padding-right: 8px;
         border-top: 1px solid #eee;
-        margin-top: 10px;
-        margin-bottom: 15px;
-        line-height: 20px;
-        width: 240px;
-        height: 136px;
+        margin: 10px 0 5px 0;
+        line-height: 24px;
+        width: 290px;
+        height: 150px;
       }
     }
   }

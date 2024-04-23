@@ -1,15 +1,14 @@
+import './rollingPostCreate.scss';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PostToInput from '../../components/rollingCreate/postToInput/PostToInput';
-import BackgroundOption from '../../components/rollingCreate/backgroundOption/BackgroundOption';
-import './rollingPostCreate.scss';
-import CreateRollingPaper from '../../api/CreateRollingPaper';
-import Toast from '../../components/toast/Toast';
 import { useGetData } from '../../hooks/useGetData';
 import { BASE_URL_RECIPIENT } from '../../constants/url';
+import PostToInput from '../../components/rollingCreate/postToInput/PostToInput';
+import BackgroundOption from '../../components/rollingCreate/backgroundOption/BackgroundOption';
+import createRollingPaper from '../../api/createRollingPaper';
+import Toast from '../../components/toast/Toast';
 
-export default function RollingPostCreate() {
-  const [receiverName, setReceiverName] = useState('');
+function RollingPostCreate() {
   const [backgroundOption, setBackgroundOption] = useState({
     type: 'color',
     value: 'beige',
@@ -17,6 +16,7 @@ export default function RollingPostCreate() {
   const [toastMessage, setToastMessage] = useState(''); // 토스트 메시지 상태 추가
   const [showToast, setShowToast] = useState(false); // 토스트 상태 추가
   const [isDuplicateName, setIsDuplicateName] = useState(false); // 중복 이름 상태 추가
+  const [receiverName, setReceiverName] = useState(''); // 수신자 이름 상태 추가
   const navigate = useNavigate(); // useNavigate로 변경
   const { data } = useGetData(BASE_URL_RECIPIENT); // 데이터 가져오기 훅 사용
 
@@ -35,28 +35,23 @@ export default function RollingPostCreate() {
     setIsDuplicateName(isDuplicate);
   }
 
-  function handleBackgroundOptionChange(option) {
-    setBackgroundOption(option);
-  }
-
   async function handleCreatePost() {
-    if (isDuplicateName) return; // 중복된 이름이면 함수 종료
-    // 토스트 메시지 설정
+    if (isDuplicateName) return;
     setToastMessage('게시물을 생성 중입니다...');
     setShowToast(true);
     setTimeout(async () => {
       try {
-        // CreateRollingPaper 함수가 프로미스를 반환하도록 변경
-        const res = await CreateRollingPaper(receiverName, backgroundOption);
+        // createRollingPaper 함수가 프로미스를 반환하도록 변경
+        const res = await createRollingPaper(receiverName, backgroundOption);
         // 페이지 이동
         navigate(`/post/${res.id}`);
       } catch (error) {
-        console.error('게시물 생성 실패:', error);
         // 에러 처리
-        setToastMessage('게시물 생성에 실패했습니다.');
         setShowToast(false);
+        alert('게시물 생성에 실패했습니다.')
+        throw new Error('게시물 생성 실패: ', error)
       }
-    }, 1500); // 1초 뒤에 실행
+    }, 1500); // 1.5초 뒤에 실행
   }
 
   return (
@@ -67,14 +62,14 @@ export default function RollingPostCreate() {
           receiverName={receiverName}
         />
         <BackgroundOption
-          onOptionChange={handleBackgroundOptionChange}
+          onOptionChange={setBackgroundOption}
           backgroundOption={backgroundOption}
         />
         <div className="btn--container">
           <button
-            className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === '' ? 'disabled' : ''}`}
+            className={`button--fill-primary button__size-h56 font-bold ${receiverName.trim() === "" ? "disabled" : ""}`}
             onClick={handleCreatePost}
-            disabled={receiverName.trim() === '' || isDuplicateName}
+            disabled={receiverName.trim() === "" || isDuplicateName || showToast}
           >
             생성하기
           </button>
@@ -84,3 +79,5 @@ export default function RollingPostCreate() {
     </section>
   );
 }
+
+export default RollingPostCreate;

@@ -9,6 +9,8 @@
     right: 0;
     background-color: $G-white;
     border-bottom: 1px solid #ededed;
+    z-index: $G-z-index-header;
+    
     .header__inner {
       padding: 16px 24px;
     }

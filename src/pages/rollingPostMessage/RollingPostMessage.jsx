@@ -1,26 +1,51 @@
 import './rollingPostMessage.scss';
+import { useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import NameInput from '../../components/rollingPostMessage/NameInput';
 import ProfileBox from '../../components/rollingPostMessage/ProfileBox';
 import DropBox from '../../components/rollingPostMessage/DropBox';
 import TextEditor from '../../components/rollingPostMessage/TextEditor';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import Toast from '../../components/toast/Toast';
 import { MsgCreateDataSet } from '../../context/MsgCreateDataSet';
+import { createMessageFetch } from '../../api/rollingPostMessage';
+
 
 export default function RollingPostMessage() {
-  const params = useParams();
+  const [showToast, setShowToast] = useState(false);
+  const navigate = useNavigate();
+  const {id} = useParams();
 
   const [data, setData] = useState({
-    sender: "",
-    profileImageURL: "",
+    id: id,
+    sender: '',
+    profileImageURL: '',
+    relationship: '',
+    content: '',
+    font: '',
   });
 
-  const handleSubmit = (e) => {
+  async function handleSubmit(e) {
     e.preventDefault();
+    try {
+      if(data.sender === '' || data.content === ''){
+        alert('내용을 모두 입력해주세요.');
+        return false;
+      }
+      
+      setShowToast(true);
+      const result = await createMessageFetch(id, data);
 
-    const { sender, profileImageURL, relationship, content, font } = data;
-
-  };
+      if(!result){
+        throw new Error('에러 발생!');
+      }
+      alert('메세지를 등록하였습니다.');
+      navigate(`/post/${id}`);
+    }catch(error) {
+      alert(error.message);
+    }finally {
+      setShowToast(false);
+    }
+  }
 
   return (
     <section className="layout__message">
@@ -52,10 +77,14 @@ export default function RollingPostMessage() {
               <DropBox boxType="font" />
             </div>
           </MsgCreateDataSet.Provider>
-          <button className="button--fill-primary button__size-h56 font-bold send-form__btn">
+          <button 
+            className="button--fill-primary button__size-h56 font-bold send-form__btn"
+            disabled={(data.sender === "" || data.content === "")}
+          >
             생성하기
           </button>
         </form>
+        {showToast && <Toast message="메세지를 등록 중입니다..." />}
       </div>
     </section>
   );

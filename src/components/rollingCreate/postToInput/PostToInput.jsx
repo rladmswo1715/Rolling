@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
 import './postToInput.scss';
+import React, { useState, useEffect } from 'react';
 import { BASE_URL_RECIPIENT } from '../../../constants/url';
 import { useGetData } from '../../../hooks/useGetData';
 
-function PostToInput({ onInputChange }) {
-  const [receiverName, setReceiverName] = useState('');
+function PostToInput({ onInputChange, receiverName }) {
   const [error, setError] = useState('');
   const { data: recipients, error: recipientsError } = useGetData(
     `${BASE_URL_RECIPIENT}`
@@ -35,7 +34,6 @@ function PostToInput({ onInputChange }) {
   function handleChange(e) {
     const value = e.target.value;
     if (value.length <= 14) {
-      setReceiverName(value);
       onInputChange(value); // 부모 컴포넌트로 input value를 전달
       setError(''); // 에러 초기화
     } else {
@@ -48,7 +46,7 @@ function PostToInput({ onInputChange }) {
       <p className="post-to-box__desc"> To. </p>
       <input
         type="text"
-        className={`input__element ${error ? 'error' : ''}`}
+        className={`input__element ${error ? "error" : ""}`}
         placeholder="받는 사람 이름을 입력해 주세요"
         value={receiverName}
         onChange={handleChange}
@@ -59,4 +57,4 @@ function PostToInput({ onInputChange }) {
   );
 }
 
-export default PostToInput;
+export default React.memo(PostToInput);

@@ -1,0 +1,59 @@
+// 프리텐다드 글꼴(font-family: Pretendard)
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+// 노토산스 weight:300(얇게), 400(보통), 700(굵게)
+// @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap');
+// 나눔 명조
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400&display=swap');
+// 손글씨
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+
+// @font-face {
+//   font-family: 'Pretendard', 'sans-serif';
+// }
+.font {
+  &__notosans {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+  }
+
+  &__pretendard {
+    font-family: 'Pretendard', sans-serif;
+  }
+
+  &__nanum__myeongjo {
+    font-family: 'Nanum Myeongjo', 'serif';
+  }
+
+  &__nanum_songuelssi {
+    font-family: 'Nanum Pen Script', 'serif';
+  }
+
+  &__style {
+    &__normal {
+      font-style: normal;
+    }
+
+    &__italic {
+      font-style: italic;
+    }
+  }
+
+  &__weight {
+    &__normal {
+      font-weight: 400;
+    }
+
+    &__bold {
+      font-weight: 700;
+    }
+  }
+}
+
+.font__nanum__myeongjo {
+}
+
+.font__nanum__songuelssi {
+}
