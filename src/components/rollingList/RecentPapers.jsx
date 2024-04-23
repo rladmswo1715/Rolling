@@ -1,5 +1,5 @@
 import RollingPaper from './RollingPaper';
-import './recentPapers.scss';
+import './PapersStyles.scss';
 import React, { useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -54,9 +54,9 @@ export default function RecentPapers() {
   }, []);
 
   return (
-    <div className="RecentPapers">
-      <h1 className="RecentPapers--title">최근에 만든 롤링 페이퍼 ⭐️</h1>
-      <div className="RecentPapers--papers">
+    <div className="PapersStyles">
+      <h1 className="PapersStyles--title">최근에 만든 롤링 페이퍼 ⭐️</h1>
+      <div className="PapersStyles--papers">
         <Swiper
           onSwiper={setSwiperRef}
           slidesPerView={'auto'}

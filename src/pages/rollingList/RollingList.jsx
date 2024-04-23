@@ -11,7 +11,7 @@ export default function RollingList() {
           <PopularPapers />
           <RecentPapers />
           <div className="button-box">
-            <Link to={'/post'}>
+            <Link to="/post">
               <button className="button--fill-primary button__size-h56 main__button-box">
                 나도 만들어보기
               </button>
