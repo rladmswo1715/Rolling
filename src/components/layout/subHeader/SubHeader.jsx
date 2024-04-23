@@ -12,6 +12,9 @@ export default function SubHeader() {
   const { id } = useParams();
   const [isShowToast, setIsShowToast] = useState(false);
   const [messageText, setMessageText] = useState('');
+  const [isEmojiAdd, setIsEmojiAdd] = useState(false);
+  const [isEmojiMoreView, setIsEmojiMoreView] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
 
   const { data: getAllapi, isLoading: allLoading } = useGetData(
     `${BASE_URL_RECIPIENT}${id}/`
@@ -20,7 +23,25 @@ export default function SubHeader() {
     `${BASE_URL_RECIPIENT}${id}/reactions/`
   );
 
-  // url 공유하기
+  const handleShareOpen = (value) => {
+    setIsShareOpen(value);
+    setIsEmojiAdd(false);
+    setIsEmojiMoreView(false);
+  };
+
+  const handleEmojiMoreView = (value) => {
+    setIsEmojiMoreView(value);
+    setIsEmojiAdd(false);
+    setIsShareOpen(false);
+  };
+
+  const handleEmojiPickerOpen = (value) => {
+    setIsEmojiAdd(value);
+    setIsEmojiMoreView(false);
+    setIsShareOpen(false);
+  };
+
+  // Toast
   const handleToast = (message) => {
     setMessageText(message);
     setIsShowToast(true);
@@ -46,10 +67,16 @@ export default function SubHeader() {
                 emojis={getEmojiApi?.results}
                 rollingPageId={id}
                 onToastMessage={handleToast}
+                isEmojiMoreView={isEmojiMoreView}
+                isEmojiAdd={isEmojiAdd}
+                onEmojiMoreView={handleEmojiMoreView}
+                onEmojiAdd={handleEmojiPickerOpen}
               />
               <ShareBox
                 name={getAllapi?.name || ''}
                 onToastMessage={handleToast}
+                isShareOpen={isShareOpen}
+                onShareOpen={handleShareOpen}
               />
             </div>
           </>

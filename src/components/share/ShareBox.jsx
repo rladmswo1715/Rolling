@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { kakaoInitial, kakaoShare } from '../../utills/kakaoShare';
 import './shareBox.scss';
 
-export default function ShareBox({ name, onToastMessage }) {
-  const [isShareOpen, setIsShareOpen] = useState(false);
-
-  const handleDoropDwonOpen = () => {
-    setIsShareOpen((prev) => !prev);
+export default function ShareBox({
+  name,
+  onToastMessage,
+  isShareOpen,
+  onShareOpen,
+}) {
+  const handleShareOpen = (value) => {
+    onShareOpen((prev) => (value === false ? false : !prev));
   };
 
   // kakao 공유하기
@@ -45,14 +48,14 @@ export default function ShareBox({ name, onToastMessage }) {
         '현재 브라우저에서는 Web Share API 기능을 지원하지 않습니다'
       );
     }
-    setIsShareOpen(false);
+    handleShareOpen(false);
   };
 
   return (
     <div className="dropdown share-box--wrap">
       <button
         className="button--outlined button__size-h36 before-icon btn-share"
-        onClick={handleDoropDwonOpen}
+        onClick={handleShareOpen}
       >
         <span className="unvisible">공유하기</span>
       </button>
@@ -62,7 +65,7 @@ export default function ShareBox({ name, onToastMessage }) {
             className="item"
             onClick={() => {
               kakaoShare(name);
-              setIsShareOpen(false);
+              handleShareOpen(false);
             }}
           >
             카카오톡 공유
