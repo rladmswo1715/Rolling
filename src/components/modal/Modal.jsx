@@ -28,13 +28,13 @@ function Modal({ cardData, isModalOpen }) {
               <div className="modal__content__header__profile__name">
                 <p>From. {cardData.sender}</p>
                 <div className="modal__content__header__profile__relationship">
-                  {cardData.relationship === '지인' ? (
+                  {cardData.relationship === "지인" ? (
                     <span className="badge__orange">지인</span>
-                  ) : cardData.relationship === '동료' ? (
+                  ) : cardData.relationship === "동료" ? (
                     <span className="badge__purple">동료</span>
-                  ) : cardData.relationship === '가족' ? (
+                  ) : cardData.relationship === "가족" ? (
                     <span className="badge__green">가족</span>
-                  ) : cardData.relationship === '친구' ? (
+                  ) : cardData.relationship === "친구" ? (
                     <span className="badge__blue">친구</span>
                   ) : (
                     <p>Unknown Sender</p>

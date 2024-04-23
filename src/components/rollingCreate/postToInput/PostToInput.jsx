@@ -46,7 +46,7 @@ function PostToInput({ onInputChange, receiverName }) {
       <p className="post-to-box__desc"> To. </p>
       <input
         type="text"
-        className={`input__element ${error ? 'error' : ''}`}
+        className={`input__element ${error ? "error" : ""}`}
         placeholder="받는 사람 이름을 입력해 주세요"
         value={receiverName}
         onChange={handleChange}
