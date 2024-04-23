@@ -38,7 +38,6 @@ export default function RollingPostMessage() {
       if(!result){
         throw new Error('에러 발생!');
       }
-      alert('메세지를 등록하였습니다.');
       navigate(`/post/${id}`);
     }catch(error) {
       alert(error.message);
