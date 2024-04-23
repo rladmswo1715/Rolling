@@ -9,16 +9,19 @@ export default function Modal({
   handleCloseModal,
 }) {
   const formatedDate = formatDate(modalContents.createdAt);
+  const formatSenderInMobile =
+    modalContents.sender.length > 5 ? 'mobileSender' : '';
+
   return (
     isModalOpen && (
       <div className="modal">
         <div className="modal__content">
           <div className="modal__content__header">
             <div className="modal__content__header__profile">
-              <div className="modal_content__header__profile__image">
+              <div className="modal__content__header__profile__image">
                 <img src={modalContents.profileImageURL} alt="프로필 사진" />
               </div>
-              <div className="modal__content__header__profile__name">
+              <div className="modal__content__header__profile__name modal__content__header__profile__name">
                 <p>From. {modalContents.sender}</p>
                 <div className="modal__content__header__profile__relationship">
                   <Badge relationship={modalContents.relationship} />
@@ -26,7 +29,6 @@ export default function Modal({
               </div>
             </div>
             <div className="modal__content__header__message-created">
-              <p>{formatedDate}</p>
               <p>{formatedDate}</p>
             </div>
           </div>

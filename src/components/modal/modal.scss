@@ -50,11 +50,17 @@
           gap: 8px;
         }
 
-        &__name > p {
-          font-size: $G-font-size-20;
+        &__image > img {
+          border-radius: 50%;
+        }
 
-          @media screen and (max-width: $G-window-size-mobile) {
-            font-size: $G-font-size-16;
+        &__name {
+          & > p {
+            font-size: $G-font-size-20;
+
+            @media screen and (max-width: $G-window-size-mobile) {
+              font-size: $G-font-size-16;
+            }
           }
         }
       }
