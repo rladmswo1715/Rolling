@@ -25,7 +25,9 @@ export default function Card({
           <div className="card--profile-text-group">
             <div className="card--from">
               <span>From.</span>
-              <strong>{sender}</strong>
+              <strong className="card--profile-text-group--sender">
+                {sender}
+              </strong>
             </div>
             <Badge relationship={relationship} />
           </div>

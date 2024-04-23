@@ -69,6 +69,14 @@
     display: flex;
     flex-direction: column;
     gap: 0.38rem;
+    &--sender {
+      @media screen and (max-width: $G-window-size-mobile) {
+        @include textLineOverflow;
+      }
+      @media screen and (max-width: $G-window-size-mobile2) {
+        @include textLineOverflow;
+      }
+    }
   }
 
   &--empty {
