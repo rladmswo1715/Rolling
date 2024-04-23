@@ -13,6 +13,6 @@ export const setPostEmoji = async (rollingPageId, method, emoji, type) => {
       }),
     });
   } catch (error) {
-    throw new Error('이모지 POST 전송 실패 :', error);
+    throw new Error('이모지 POST 전송 실패 :' + error);
   }
 };
