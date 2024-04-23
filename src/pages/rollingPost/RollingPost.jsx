@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useGetData } from '../../hooks/useGetData';
 import { BASE_URL_RECIPIENT } from '../../constants/url';
 import RollingPostView from './RollingPostView';
+import SubHeader from '../../components/layout/subHeader/SubHeader';
 const DISTANCE_WINDOW_BOTTOM = 800;
 
 export default function RollingPost() {
@@ -145,5 +146,10 @@ export default function RollingPost() {
     handleEmptyCardClick,
   };
 
-  return <RollingPostView {...props} />;
+  return (
+    <>
+      <SubHeader />
+      <RollingPostView {...props} />
+    </>
+  );
 }
