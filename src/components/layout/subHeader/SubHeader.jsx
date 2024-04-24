@@ -73,6 +73,7 @@ export default function SubHeader() {
                 onEmojiAdd={handleEmojiPickerOpen}
               />
               <ShareBox
+                pageId={id}
                 name={getAllapi?.name || ''}
                 onToastMessage={handleToast}
                 isShareOpen={isShareOpen}

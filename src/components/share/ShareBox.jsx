@@ -3,6 +3,7 @@ import { kakaoInitial, kakaoShare } from '../../utills/kakaoShare';
 import './shareBox.scss';
 
 export default function ShareBox({
+  pageId,
   name,
   onToastMessage,
   isShareOpen,
@@ -64,7 +65,7 @@ export default function ShareBox({
           <button
             className="item"
             onClick={() => {
-              kakaoShare(name);
+              kakaoShare(name, pageId);
               handleShareOpen(false);
             }}
           >
