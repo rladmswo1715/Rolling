@@ -1,16 +1,34 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import './modal.scss';
+import '../../styles/fonts.scss';
 import Badge from '../rollingPost/card/Badge';
 import { formatDate } from '../../utills/time';
+
+function addFontClassName(font, obj) {
+  let addClassName = '';
+
+  if (font === 'Noto Sans') addClassName = 'font__notosans';
+  else if (font === 'Pretendard') addClassName = 'font__pretendard';
+  else if (font === '나눔명조') addClassName = 'font__nanum__myeongjo';
+  else if (font === '나눔손글씨 손편지체')
+    addClassName = 'font__nanum_songuelssi';
+
+  if (obj && addClassName !== '') obj.classList.add(addClassName);
+}
 
 export default function Modal({
   isModalOpen,
   modalContents,
   handleCloseModal,
 }) {
+  const fontClassRef = useRef(null);
   const formatedDate = formatDate(modalContents.createdAt);
   const formatSenderInMobile =
     modalContents.sender.length > 5 ? 'mobileSender' : '';
+
+  useEffect(() => {
+    addFontClassName(modalContents.font, fontClassRef.current);
+  }, [modalContents]);
 
   return (
     isModalOpen && (
@@ -34,6 +52,7 @@ export default function Modal({
           </div>
 
           <div
+            ref={fontClassRef}
             className="modal__content__body content--short"
             dangerouslySetInnerHTML={{ __html: modalContents.content }}
           />
