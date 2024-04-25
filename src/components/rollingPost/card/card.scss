@@ -1,0 +1,144 @@
+@import '../../../styles/_variables';
+@import '../../../styles/_mixin';
+
+.cards__layout {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  position: relative;
+  @media screen and (max-width: $G-window-size-tablet) {
+    margin-inline: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+.card__list {
+  display: contents;
+}
+
+.card {
+  background-color: white;
+  width: 24rem;
+  height: 17.5rem;
+  border-radius: 1rem;
+  box-shadow: 0px 2px 12px 0px #00000014;
+
+  // $G-window-size-mobile
+  // $G-window-size-mobile2
+
+  @media screen and (max-width: $G-window-size-mobile) {
+    width: 21rem;
+    height: 17rem;
+  }
+  @media screen and (max-width: $G-window-size-mobile2) {
+    width: 320px;
+    height: 230px;
+  }
+
+  &--container {
+    display: flex;
+    flex-direction: column;
+    padding-inline: 1.5em;
+    align-items: flex-start;
+    // $G-window-size-mobile
+    // $G-window-size-mobile2
+    @media screen and (max-width: $G-window-size-mobile) {
+      // padding-inline:;
+    }
+    @media screen and (max-width: $G-window-size-mobile2) {
+    }
+  }
+
+  &--from-group {
+    display: flex;
+    gap: 0.38rem;
+    padding-top: 1rem;
+  }
+
+  &--from {
+    font-size: 1.25rem;
+  }
+
+  &--profile-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.38rem;
+    &--sender {
+      @media screen and (max-width: $G-window-size-mobile) {
+        @include textLineOverflow;
+      }
+      @media screen and (max-width: $G-window-size-mobile2) {
+        @include textLineOverflow;
+      }
+    }
+  }
+
+  &--empty {
+    display: flex;
+    justify-content: center;
+  }
+
+  &--img-container {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: #555;
+    border-radius: 50%;
+    @include flexStyle(center, center);
+  }
+}
+
+.badge {
+  width: 2.5rem;
+  height: 1.25rem;
+  background-color: $G-color-green-100;
+  border-radius: 4px;
+  @include flexStyle(center, center);
+
+  &--title {
+    font-size: 0.87rem;
+    color: $G-color-green-500;
+  }
+}
+
+.content {
+  text-overflow: clip;
+
+  &--short {
+    width: 330px;
+    height: 130px;
+    padding-top: 1rem;
+    border-top: 1px solid #eee;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.75rem;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    color: #4a4a4a;
+    // $G-window-size-mobile
+    // $G-window-size-mobile2
+    @media screen and (max-width: $G-window-size-tablet) {
+    }
+    @media screen and (max-width: $G-window-size-mobile) {
+      width: 290px;
+    }
+    @media screen and (max-width: $G-window-size-mobile2) {
+      width: 270px;
+      height: 80px;
+    }
+  }
+}
+
+.createdAt {
+  font-size: 0.75rem;
+  color: #999;
+}

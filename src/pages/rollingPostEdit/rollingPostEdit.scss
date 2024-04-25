@@ -1,0 +1,55 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
+.cards__layout {
+  width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  position: relative;
+  @media screen and (max-width: $G-window-size-tablet) {
+    margin-inline: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+.button__layout {
+  position: fixed;
+  bottom: 50px;
+  width: 90%;
+  @media screen and (min-width: 1100px) {
+    top: 155px;
+    left: 1220px;
+  }
+  @media screen and (max-width: $G-window-size-tablet) {
+    bottom: 20px;
+  }
+
+  @media screen and (max-width: $G-window-size-mobile2) {
+    bottom: 30px;
+  }
+}
+
+.button__delete {
+  display: flex;
+  position: absolute;
+  top: -80px;
+  right: 0;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: #9935ff;
+  padding-inline: 1rem;
+  padding-block: 1rem;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1rem;
+  box-shadow: 0px 2px 12px 0px rgba(0, 0, 0, 0.0784313725);
+  @media screen and (max-width: $G-window-size-tablet) {
+    width: 100%;
+  }
+}

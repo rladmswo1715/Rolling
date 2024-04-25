@@ -1,0 +1,41 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
+
+.send-form {
+  &__profile-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+
+      @media screen and (max-width: $G-window-size-mobile) {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      > span {
+        line-height: 1.625;
+        color: $G-color-black-500;
+      }
+    }
+  }
+
+  &__profile-list {
+    @include gridStyle(repeat(10, 1fr));
+    gap: 4px;
+
+    @media screen and (max-width: $G-window-size-mobile) {
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      > li {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+}

@@ -1,28 +1,25 @@
-import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import IncludeHeaderStructure from './components/layout/IncludeHeaderStructure';
-import IncludeSubHeaderStructure from './components/layout/IncludeSubHeaderStructure';
 import Main from './pages/main/Main';
 import RollingList from './pages/rollingList/RollingList';
 import RollingPost from './pages/rollingPost/RollingPost';
 import RollingPostEdit from './pages/rollingPostEdit/RollingPostEdit';
 import RollingPostMessage from './pages/rollingPostMessage/RollingPostMessage';
-import RollingCreate from './pages/rollingCreate/RollingCreate';
+import RollingPostCreate from './pages/rollingCreate/RollingPostCreate';
+import NotFoundPage from './pages/error/NotFoundPage';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<IncludeHeaderStructure />} >
+        <Route path="/" element={<IncludeHeaderStructure />}>
           <Route index element={<Main />} />
           <Route path="list" element={<RollingList />} />
-          <Route path="rolling-create" element={<RollingCreate />} />
+          <Route path="post" element={<RollingPostCreate />} />
+          <Route path="post/:id" element={<RollingPost />} />
+          <Route path="post/:id/edit" element={<RollingPostEdit />} />
           <Route path="post/:id/message" element={<RollingPostMessage />} />
-        </Route>
-
-        <Route path="/post" element={<IncludeSubHeaderStructure />}>
-          <Route path=":id" element={<RollingPost />} />
-          <Route path=":id/edit" element={<RollingPostEdit />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </>

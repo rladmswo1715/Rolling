@@ -1,0 +1,14 @@
+@import '../../styles/_variables';
+@import '../../styles/_mixin';
+
+.send-form__content {
+  & .dropdown {
+    @media screen and (max-width: $G-window-size-mobile) {
+      max-width: none;
+    }
+
+    &__menu {
+      z-index: $G-z-index-header;
+    }
+  }
+}

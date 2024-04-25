@@ -1,0 +1,24 @@
+@import '../../../styles/_variables';
+@import '../../../styles/_mixin';
+
+.emoji {
+  @include flexStyle(center, center);
+  padding: 0 12px;
+  color: $G-color-black-100;
+  line-height: 36px;
+  border-radius: 50em;
+  background-color: $G-color-black-500;
+  gap: 6px;
+  &--emoji {
+    font-size: 16px;
+  }
+  @media screen and (max-width: $G-window-size-mobile) {
+    padding: 0 8px;
+    line-height: 26px;
+    font-size: $G-font-size-14;
+    gap: 4px;
+    &--emoji {
+      font-size: 13px;
+    }
+  }
+}

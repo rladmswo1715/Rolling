@@ -1,0 +1,31 @@
+@import '../../../styles/_variables';
+@import '../../../styles/_mixin';
+
+.header {
+  &__wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-height: 65px;
+    border-bottom: 1px solid #ededed;
+    background-color: $G-white;
+    z-index: $G-z-index-header;
+  }
+
+  &__inner {
+    &.inner__size-ls {
+      padding: 12px 24px;
+    }
+  }
+
+  &__image__logo {
+    height: 40px;
+    cursor: pointer;
+  }
+
+  &__button-box {
+    width: 157px;
+    height: 40px;
+  }
+}
