@@ -1,17 +1,15 @@
+import { BASE_URL_RECIPIENT } from '../../constants/url';
+import { useGetData } from '../../hooks/useGetData';
 import ProfileList from '../layout/subHeader/ProfileList';
 import Emoji from '../rollingPost/emoji/Emoji';
 import './rollingPaper.scss';
 
 export default function RollingPaper({ recipient }) {
   if (!recipient) return null;
-
-  const {
-    name,
-    backgroundColor,
-    backgroundImageURL,
-    topReactions,
-    recentMessages,
-  } = recipient;
+  const { data: getMessage } = useGetData(
+    `${BASE_URL_RECIPIENT}${recipient.id}/messages/`
+  );
+  const { name, backgroundColor, backgroundImageURL, topReactions } = recipient;
 
   const background = `RollingPaper__background RollingPaper--${backgroundImageURL ? 'image' : backgroundColor}`;
 
@@ -28,7 +26,7 @@ export default function RollingPaper({ recipient }) {
       <div className={background} style={isImageStyle}>
         <div className="RollingPaper--profile">
           <h1>{name}</h1>
-          <ProfileList coment={recentMessages} />
+          <ProfileList coment={getMessage} />
           <div className="RollingPaper--line"></div>
         </div>
         <div className="RollingPaper--emoji">

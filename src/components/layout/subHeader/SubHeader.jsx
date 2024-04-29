@@ -16,8 +16,8 @@ export default function SubHeader() {
   const [isEmojiMoreView, setIsEmojiMoreView] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
 
-  const { data: getAllapi, isLoading: allLoading } = useGetData(
-    `${BASE_URL_RECIPIENT}${id}/`
+  const { data: getMessage, isLoading: allLoading } = useGetData(
+    `${BASE_URL_RECIPIENT}${id}/messages/`
   );
   const { data: getEmojiApi, isLoading: emojiLoading } = useGetData(
     `${BASE_URL_RECIPIENT}${id}/reactions/`
@@ -59,10 +59,10 @@ export default function SubHeader() {
               <Link to="/list" className="before-icon btn-back">
                 <span className="unvisible">뒤로가기</span>
               </Link>
-              <h1 className="subHeader__title">To. {getAllapi?.name}</h1>
+              <h1 className="subHeader__title">To. {getMessage?.name}</h1>
             </div>
             <div className="d__flex--center subHeader__right">
-              {getAllapi && <ProfileList coment={getAllapi.recentMessages} />}
+              <ProfileList coment={getMessage} />
               <EmojiBox
                 emojis={getEmojiApi?.results}
                 rollingPageId={id}
@@ -74,7 +74,7 @@ export default function SubHeader() {
               />
               <ShareBox
                 pageId={id}
-                name={getAllapi?.name || ''}
+                name={getMessage?.name || ''}
                 onToastMessage={handleToast}
                 isShareOpen={isShareOpen}
                 onShareOpen={handleShareOpen}

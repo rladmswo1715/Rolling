@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 import './swiperStyles.scss';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import getRollingList from '../../api/rollingList';
+import Loading from '../loading/Loading';
 
 export default function PopularPapers() {
   const [swiperRef, setSwiperRef] = useState(null);
@@ -20,7 +21,6 @@ export default function PopularPapers() {
 
   const handleLoad = async (options, nextUri) => {
     try {
-      setIsLoading(true);
       setError(null);
       const { results, next } = await getRollingList(options, nextUri);
       setNextUri(next);
@@ -57,42 +57,46 @@ export default function PopularPapers() {
   return (
     <div className="PapersStyles">
       <h1 className="PapersStyles--title">인기 롤링 페이퍼 🔥</h1>
-      <div className="PapersStyles--papers">
-        <Swiper
-          onSwiper={setSwiperRef}
-          slidesPerView={'auto'}
-          centeredSlides={false}
-          spaceBetween={30}
-          pagination={{
-            type: 'fraction',
-          }}
-          navigation={true}
-          modules={[Pagination, Navigation]}
-          className="mySwiper"
-          breakpoints={{
-            1250: {
-              slidesPerView: 4,
-            },
-          }}
-          autoplay={{
-            delay: 3000,
-            disableOnInteraction: false,
-          }}
-          onSlideChangeTransitionEnd={handleSlideChangeEnd}
-          initialSlide={currentIndex}
-          slidesPerGroup={2}
-        >
-          {recipients.map((recipient, index) => {
-            return (
-              <SwiperSlide key={`${recipient.id}-${index}`}>
-                <Link to={`/post/${recipient.id}`}>
-                  <RollingPaper recipient={recipient} />
-                </Link>
-              </SwiperSlide>
-            );
-          })}
-        </Swiper>
-      </div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="PapersStyles--papers">
+          <Swiper
+            onSwiper={setSwiperRef}
+            slidesPerView={'auto'}
+            centeredSlides={false}
+            spaceBetween={30}
+            pagination={{
+              type: 'fraction',
+            }}
+            navigation={true}
+            modules={[Pagination, Navigation]}
+            className="mySwiper"
+            breakpoints={{
+              1250: {
+                slidesPerView: 4,
+              },
+            }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            onSlideChangeTransitionEnd={handleSlideChangeEnd}
+            initialSlide={currentIndex}
+            slidesPerGroup={2}
+          >
+            {recipients.map((recipient, index) => {
+              return (
+                <SwiperSlide key={`${recipient.id}-${index}`}>
+                  <Link to={`/post/${recipient.id}`}>
+                    <RollingPaper recipient={recipient} />
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+      )}
     </div>
   );
 }
