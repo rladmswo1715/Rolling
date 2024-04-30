@@ -24,29 +24,3 @@ export function useGetRecipient() {
 
   return { recipient, isLoading, error, getRecipientData };
 }
-
-// export function useGetMessage() {
-//   const [message, setMessage] = useState([]);
-//   const [error, setError] = useState(null);
-//   const [isLoading, setIsLoading] = useState(false);
-
-//   const getMessage = useCallback(async (id, limit = 8, offset = 0) => {
-//     try {
-//       setIsLoading(true);
-//       const response = await fetch(
-//         `${BASE_URL_RECIPIENT}${id}/messages/?limit=${limit}&offset=${offset}`
-//       );
-//       if (response.ok) {
-//         const res = await response.json();
-//         setMessage(res.results);
-//         setIsLoading(false);
-//       } else {
-//         throw new Error('데이터를 받아오는데 실패했습니다!');
-//       }
-//     } catch (error) {
-//       setError(error);
-//     }
-//   }, []);
-
-//   return { message, isLoading, error, getMessage };
-// }
