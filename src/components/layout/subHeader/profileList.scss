@@ -23,7 +23,8 @@
   }
   &--counter {
     font-size: 10px;
+    font-weight: 500;
     color: $G-color-black-600;
-    background-color: $G-white;
+    background: $G-white !important;
   }
 }
